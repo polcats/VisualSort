@@ -110,13 +110,16 @@ function selectionSort() {
         var currentMaxIndex = i;
         (function(i) {
             setTimeout(function() {
-                $(bars[i]).addClass("compared");
+                if (TOTAL_ELEMENTS - 1 != i) {
+                    $(bars[i]).addClass("red");
+                }
 
                 for (j = i + 1; j < TOTAL_ELEMENTS; j++) {
-                    outerDelay = delay * (TOTAL_ELEMENTS - j);
+                    outerDelay = delay * (TOTAL_ELEMENTS - i);
+                    var innerDelay = outerDelay / (TOTAL_ELEMENTS - j);
                     $(bars[i])
                         .wait(outerDelay)
-                        .removeClass("compared");
+                        .removeClass("red");
 
                     (function(j) {
                         setTimeout(function() {
@@ -127,9 +130,9 @@ function selectionSort() {
                             }
 
                             $(bars[j])
-                                .wait(outerDelay / (TOTAL_ELEMENTS - j))
+                                .wait(delay)
                                 .removeClass("compared");
-                        }, outerDelay / (TOTAL_ELEMENTS - j));
+                        }, innerDelay / 2);
                     })(j);
                 }
                 try {

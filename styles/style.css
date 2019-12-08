@@ -6,7 +6,7 @@ body {
 }
 
 #container {
-    width: 100%; /*can be in percentage also.*/
+    width: 100%;
     height: auto;
     position: absolute;
     top: 100px;
@@ -22,7 +22,6 @@ body {
 .bar {
     background: green;
     border-right: 1px solid #000;
-    /* width: 10px; */
     margin: 0px;
     display: inline-block;
     position: relative;
