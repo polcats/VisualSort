@@ -49,7 +49,7 @@ function swapElements(obj1, obj2) {
 }
 
 function getHeight(elem) {
-    return elem.style.height;
+    return elem.style.height.replace("%", "");
 }
 
 function redBg(elem1, elem2) {
@@ -97,14 +97,81 @@ function bubbleSort() {
     }
 }
 
+// function selectio2nSort() {
+//     for (i = 0; i < TOTAL_ELEMENTS - 1; ++i) {
+//         var max = i;
+//         for (j = i + 1; j < TOTAL_ELEMENTS; ++j) {
+//             if (getHeight(bars[j]) > getHeight(bars[max])) {
+//                 max = j;
+//             }
+//         }
+//         swapElements(bars[i], bars[max]);
+//     }
+// }
+
 function selectionSort() {
-    for (i = 0; i < TOTAL_ELEMENTS - 1; ++i) {
-        var max = i;
-        for (j = i + 1; j < TOTAL_ELEMENTS; ++j) {
-            if (getHeight(bars[j]) > getHeight(bars[max])) {
-                max = j;
-            }
-        }
-        swapElements(bars[i], bars[max]);
+    var delay = 300;
+    var outerDelay = delay * TOTAL_ELEMENTS;
+    for (i = 0; i < TOTAL_ELEMENTS; ++i) {
+        var currentMaxIndex = i;
+        (function(i) {
+            setTimeout(function() {
+                $(bars[i]).addClass("compared");
+                console.log(i + " " + outerDelay);
+
+                for (j = i + 1; j < TOTAL_ELEMENTS; ++j) {
+                    $(bars[i])
+                        .wait(outerDelay)
+                        .removeClass("compared");
+                    outerDelay = delay * (TOTAL_ELEMENTS - (i + 1));
+                    // (function(j) {
+                    //     setTimeout(function() {
+                    console.log(" - " + j + " " + delay);
+                    //     }, delay);
+                    // })(j);
+                }
+            }, outerDelay * i);
+        })(i);
     }
 }
+
+// function selectionSort() {
+//     var delay = 200;
+//     var compareDelay = delay / 2;
+//     var outerDelay = delay * TOTAL_ELEMENTS;
+
+//     for (i = 0; i < TOTAL_ELEMENTS - 1; ++i) {
+//         (function(i) {
+//             setTimeout(function() {
+//                 var max = i;
+//                 $(bars[i]).addClass("compared");
+//                 console.log("max : " + max);
+
+//                 for (j = i + 1; j < TOTAL_ELEMENTS; ++j) {
+//                     (function(j) {
+//                         setTimeout(function() {
+//                             $(bars[j]).addClass("compared");
+
+//                             console.log("compare : " + getHeight(bars[j]) + ">" + getHeight(bars[max]));
+
+//                             if (getHeight(bars[j]) > getHeight(bars[max])) {
+//                                 max = j;
+//                                 console.log("new max: " + max);
+//                             }
+
+//                             $(bars[j])
+//                                 .wait(delay * (TOTAL_ELEMENTS - j))
+//                                 .removeClass("compared");
+//                         }, delay * (TOTAL_ELEMENTS - j));
+//                     })(j);
+//                 }
+
+//                 // outerDelay = delay * (TOTAL_ELEMENTS - i);
+//                 $(bars[i])
+//                     .wait(outerDelay * (TOTAL_ELEMENTS - i))
+//                     .removeClass("compared");
+//                 swapElements(bars[i], bars[max]);
+//             }, outerDelay * (TOTAL_ELEMENTS - i));
+//         })(i);
+//     }
+// }

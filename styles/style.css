@@ -37,6 +37,10 @@ body {
     background: lightseagreen;
 }
 
+.red {
+    background: red;
+}
+
 button {
     border: none;
     background: #222;
