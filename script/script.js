@@ -103,27 +103,14 @@ function bubbleSort() {
     }
 }
 
-// function selectio2nSort() {
-//     for (i = 0; i < TOTAL_ELEMENTS - 1; ++i) {
-//         var max = i;
-//         for (j = i + 1; j < TOTAL_ELEMENTS; ++j) {
-//             if (getHeight(bars[j]) > getHeight(bars[max])) {
-//                 max = j;
-//             }
-//         }
-//         swapElements(bars[i], bars[max]);
-//     }
-// }
-
 function selectionSort() {
-    var delay = 100;
+    var delay = 300;
     var outerDelay = delay * TOTAL_ELEMENTS;
     for (i = 0; i < TOTAL_ELEMENTS; i++) {
         var currentMaxIndex = i;
         (function(i) {
             setTimeout(function() {
                 $(bars[i]).addClass("compared");
-                console.log(i + " " + outerDelay);
 
                 for (j = i + 1; j < TOTAL_ELEMENTS; j++) {
                     outerDelay = delay * (TOTAL_ELEMENTS - j);
@@ -133,7 +120,6 @@ function selectionSort() {
 
                     (function(j) {
                         setTimeout(function() {
-                            console.log(" - " + j + " " + delay);
                             $(bars[j]).addClass("compared");
 
                             if (getHeight(bars[j]) > getHeight(bars[currentMaxIndex])) {
@@ -148,7 +134,6 @@ function selectionSort() {
                 }
                 try {
                     if (getHeight(bars[i - 1]) < getHeight(bars[currentMaxIndex])) {
-                        console.log("swapping : " + getHeight(bars[i - 1]) + " < " + getHeight(bars[currentMaxIndex]));
                         swapElements(bars[i - 1], bars[currentMaxIndex]);
                         bars = document.getElementsByClassName("bar");
                     }
