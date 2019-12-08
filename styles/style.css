@@ -1,0 +1,49 @@
+body {
+    background: #fff;
+    margin: 0px;
+    padding: 0px;
+}
+#container {
+    width: 100%; /*can be in percentage also.*/
+    height: auto;
+    /* margin: 0 auto; */
+    /* padding: 10px; */
+    position: absolute;
+    /* display: flex; */
+    /* align-items: center; */
+    /* justify-content: center; */
+    top: 100px;
+    border-top: #222 10px solid;
+}
+
+#bars {
+    width: 605px;
+    margin: auto;
+    height: 500px;
+}
+
+.bar {
+    background: green;
+    border-right: 1px solid #fff;
+    /* width: 10px; */
+    margin: 0px;
+    display: inline-block;
+    position: relative;
+    bottom: 0px;
+    vertical-align: top;
+    text-align: center;
+    color: #fff;
+    font-family: Microsoft Sans Serif;
+}
+
+.green {
+    background: lightgreen;
+}
+
+.red {
+    background: red;
+}
+
+.blue {
+    background: lightblue;
+}
