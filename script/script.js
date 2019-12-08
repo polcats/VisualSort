@@ -4,7 +4,7 @@ function clearContainer() {
     container.innerHTML = "";
 }
 
-var TOTAL_ELEMENTS = 10;
+var TOTAL_ELEMENTS = 9;
 function insertBars() {
     var width = CONTAINER_WIDTH / TOTAL_ELEMENTS;
 
@@ -26,36 +26,36 @@ insertBars();
 
 // from https://stackoverflow.com/questions/10716986/swap-2-html-elements-and-preserve-event-listeners-on-them?lq=1
 function swapElements(obj1, obj2) {
-    try {
-        // save the location of obj2
-        var parent2 = obj2.parentNode;
-        var next2 = obj2.nextSibling;
-        // special case for obj1 is the next sibling of obj2
-        if (next2 === obj1) {
-            // just put obj1 before obj2
-            parent2.insertBefore(obj1, obj2);
-        } else {
-            // insert obj2 right before obj1
-            obj1.parentNode.insertBefore(obj2, obj1);
+    // try {
+    // save the location of obj2
+    var parent2 = obj2.parentNode;
+    var next2 = obj2.nextSibling;
+    // special case for obj1 is the next sibling of obj2
+    if (next2 === obj1) {
+        // just put obj1 before obj2
+        parent2.insertBefore(obj1, obj2);
+    } else {
+        // insert obj2 right before obj1
+        obj1.parentNode.insertBefore(obj2, obj1);
 
-            // now insert obj1 where obj2 was
-            if (next2) {
-                // if there was an element after obj2, then insert obj1 right before that
-                parent2.insertBefore(obj1, next2);
-            } else {
-                // otherwise, just append as last child
-                parent2.appendChild(obj1);
-            }
+        // now insert obj1 where obj2 was
+        if (next2) {
+            // if there was an element after obj2, then insert obj1 right before that
+            parent2.insertBefore(obj1, next2);
+        } else {
+            // otherwise, just append as last child
+            parent2.appendChild(obj1);
         }
-    } catch (e) {}
+    }
+    // } catch (e) {}
 }
 
 function getHeight(elem) {
-    try {
-        return elem.style.height.replace("%", "");
-    } catch (e) {
-        return 0;
-    }
+    // try {
+    return elem.style.height.replace("%", "");
+    // } catch (e) {
+    // return 0;
+    // }
 }
 
 function redBg(elem1, elem2) {
@@ -116,7 +116,7 @@ function bubbleSort() {
 // }
 
 function selectionSort() {
-    var delay = 300;
+    var delay = 100;
     var outerDelay = delay * TOTAL_ELEMENTS;
     for (i = 0; i < TOTAL_ELEMENTS; i++) {
         var currentMaxIndex = i;
@@ -126,10 +126,10 @@ function selectionSort() {
                 console.log(i + " " + outerDelay);
 
                 for (j = i + 1; j < TOTAL_ELEMENTS; j++) {
+                    outerDelay = delay * (TOTAL_ELEMENTS - j);
                     $(bars[i])
                         .wait(outerDelay)
                         .removeClass("compared");
-                    outerDelay = delay * (TOTAL_ELEMENTS - j);
 
                     (function(j) {
                         setTimeout(function() {
@@ -141,15 +141,18 @@ function selectionSort() {
                             }
 
                             $(bars[j])
-                                .wait(outerDelay / TOTAL_ELEMENTS)
+                                .wait(outerDelay / (TOTAL_ELEMENTS - j))
                                 .removeClass("compared");
-                        }, outerDelay / TOTAL_ELEMENTS - j);
+                        }, outerDelay / (TOTAL_ELEMENTS - j));
                     })(j);
                 }
-                if (getHeight(bars[i - 1]) < getHeight(bars[currentMaxIndex])) {
-                    console.log("swapping : " + getHeight(bars[i - 1]) + " < " + getHeight(bars[currentMaxIndex]));
-                    swapElements(bars[i - 1], bars[currentMaxIndex]);
-                }
+                try {
+                    if (getHeight(bars[i - 1]) < getHeight(bars[currentMaxIndex])) {
+                        console.log("swapping : " + getHeight(bars[i - 1]) + " < " + getHeight(bars[currentMaxIndex]));
+                        swapElements(bars[i - 1], bars[currentMaxIndex]);
+                        bars = document.getElementsByClassName("bar");
+                    }
+                } catch (e) {}
             }, outerDelay * i);
         })(i);
     }
