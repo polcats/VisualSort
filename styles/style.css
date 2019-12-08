@@ -1,17 +1,14 @@
 body {
-    background: #fff;
+    background: #000;
     margin: 0px;
     padding: 0px;
+    text-align: center;
 }
+
 #container {
     width: 100%; /*can be in percentage also.*/
     height: auto;
-    /* margin: 0 auto; */
-    /* padding: 10px; */
     position: absolute;
-    /* display: flex; */
-    /* align-items: center; */
-    /* justify-content: center; */
     top: 100px;
     border-top: #222 10px solid;
 }
@@ -24,7 +21,7 @@ body {
 
 .bar {
     background: green;
-    border-right: 1px solid #fff;
+    border-right: 1px solid #000;
     /* width: 10px; */
     margin: 0px;
     display: inline-block;
@@ -36,14 +33,13 @@ body {
     font-family: Microsoft Sans Serif;
 }
 
-.green {
-    background: lightgreen;
+.compared {
+    background: lightseagreen;
 }
 
-.red {
-    background: red;
-}
-
-.blue {
-    background: lightblue;
+button {
+    border: none;
+    background: #222;
+    color: #fff;
+    padding: 20px;
 }

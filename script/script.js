@@ -78,8 +78,8 @@ function bubbleSort() {
                             var leftElement = bars[j];
                             var rightElement = bars[j + 1];
 
-                            $(leftElement).addClass("blue");
-                            $(rightElement).addClass("blue");
+                            $(leftElement).addClass("compared");
+                            $(rightElement).addClass("compared");
 
                             if (getHeight(rightElement) > getHeight(leftElement)) {
                                 swapElements(rightElement, leftElement);
@@ -87,10 +87,10 @@ function bubbleSort() {
                             }
                             $(leftElement)
                                 .wait(compareDelay)
-                                .removeClass("blue");
+                                .removeClass("compared");
                             $(rightElement)
                                 .wait(compareDelay)
-                                .removeClass("blue");
+                                .removeClass("compared");
                         }, delay * j);
                     })(j);
                 }
