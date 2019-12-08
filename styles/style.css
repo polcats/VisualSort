@@ -1,8 +1,9 @@
 body {
-    background: #999;
+    background: #000;
     margin: 0px;
     padding: 0px;
     text-align: center;
+    font-family: Microsoft Sans Serif;
 }
 
 #container {
@@ -10,7 +11,7 @@ body {
     height: auto;
     position: absolute;
     top: 100px;
-    border-top: #222 10px solid;
+    border-top: #555 10px solid;
 }
 
 #bars {
@@ -29,7 +30,6 @@ body {
     vertical-align: top;
     text-align: center;
     color: #fff;
-    font-family: Microsoft Sans Serif;
 }
 
 .compared {
@@ -42,7 +42,11 @@ body {
 
 button {
     border: none;
-    background: #222;
-    color: #fff;
+    background: #555;
     padding: 20px;
+    color: #fff;
+}
+
+button[disabled] {
+    color: #888;
 }

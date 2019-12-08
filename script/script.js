@@ -17,16 +17,14 @@ function insertBars() {
         container.appendChild(bar);
     }
 }
+insertBars();
 
-function newArray() {
+function reset() {
     window.location.reload();
 }
-clearContainer();
-insertBars();
 
 // from https://stackoverflow.com/questions/10716986/swap-2-html-elements-and-preserve-event-listeners-on-them?lq=1
 function swapElements(obj1, obj2) {
-    // try {
     // save the location of obj2
     var parent2 = obj2.parentNode;
     var next2 = obj2.nextSibling;
@@ -47,29 +45,27 @@ function swapElements(obj1, obj2) {
             parent2.appendChild(obj1);
         }
     }
-    // } catch (e) {}
 }
 
 function getHeight(elem) {
-    // try {
-    return elem.style.height.replace("%", "");
-    // } catch (e) {
-    // return 0;
-    // }
+    return parseInt(elem.style.height.replace("%", ""), 10);
 }
 
-function redBg(elem1, elem2) {
-    elem1.style.backgroundColor = "red";
-    elem2.style.backgroundColor = "red";
+function shouldSwap(elem1, elem2) {
+    try {
+        return getHeight(elem1) < getHeight(elem2);
+    } catch (e) {
+        return false;
+    }
 }
 
-function blueBg(elem1, elem2) {
-    elem1.style.backgroundColor = "lightblue";
-    elem2.style.backgroundColor = "lightblue";
+function disableButtons() {
+    $(".sort").attr("disabled", true);
 }
 
 var bars = document.getElementsByClassName("bar");
 function bubbleSort() {
+    disableButtons();
     var delay = 300;
     var compareDelay = delay / 2;
     var outerDelay = delay * TOTAL_ELEMENTS;
@@ -104,6 +100,7 @@ function bubbleSort() {
 }
 
 function selectionSort() {
+    disableButtons();
     var delay = 300;
     var outerDelay = delay * TOTAL_ELEMENTS;
     for (i = 0; i < TOTAL_ELEMENTS; i++) {
@@ -135,12 +132,9 @@ function selectionSort() {
                         }, innerDelay / 2);
                     })(j);
                 }
-                try {
-                    if (getHeight(bars[i - 1]) < getHeight(bars[currentMaxIndex])) {
-                        swapElements(bars[i - 1], bars[currentMaxIndex]);
-                        bars = document.getElementsByClassName("bar");
-                    }
-                } catch (e) {}
+                if (shouldSwap(bars[i - 1], bars[currentMaxIndex])) {
+                    swapElements(bars[i - 1], bars[currentMaxIndex]);
+                }
             }, outerDelay * i);
         })(i);
     }
