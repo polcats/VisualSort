@@ -1,4 +1,4 @@
-var CONTAINER_WIDTH = 580;
+var CONTAINER_WIDTH = 600;
 var container = document.getElementById("bars");
 function clearContainer() {
     container.innerHTML = "";

@@ -1,5 +1,5 @@
 body {
-    background: #000;
+    background: #999;
     margin: 0px;
     padding: 0px;
     text-align: center;
@@ -14,14 +14,14 @@ body {
 }
 
 #bars {
-    width: 605px;
+    width: 700px;
     margin: auto;
     height: 500px;
 }
 
 .bar {
     background: green;
-    border-right: 1px solid #000;
+    border-right: 2px solid #000;
     margin: 0px;
     display: inline-block;
     position: relative;
