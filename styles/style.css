@@ -4,6 +4,7 @@ body {
     padding: 0px;
     text-align: center;
     font-family: Microsoft Sans Serif;
+    color: #fff;
 }
 
 #container {
@@ -29,7 +30,6 @@ body {
     bottom: 0px;
     vertical-align: top;
     text-align: center;
-    color: #fff;
 }
 
 .compared {
@@ -44,9 +44,16 @@ button {
     border: none;
     background: #555;
     padding: 20px;
-    color: #fff;
 }
 
 button[disabled] {
     color: #888;
+}
+
+label {
+    padding: 0px 0px 0px 0px;
+}
+input[type="range"] {
+    padding: 0px;
+    margin: 0px;
 }

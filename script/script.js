@@ -20,7 +20,9 @@ function insertBars() {
 insertBars();
 
 function reset() {
-    window.location.reload();
+    disableButtons(false);
+    container.innerHTML = "";
+    insertBars();
 }
 
 // from https://stackoverflow.com/questions/10716986/swap-2-html-elements-and-preserve-event-listeners-on-them?lq=1
@@ -59,14 +61,14 @@ function shouldSwap(elem1, elem2) {
     }
 }
 
-function disableButtons() {
-    $(".sort").attr("disabled", true);
+function disableButtons(what = true) {
+    $(".sort").attr("disabled", what);
 }
 
 var bars = document.getElementsByClassName("bar");
 function bubbleSort() {
     disableButtons();
-    var delay = 300;
+    var delay = document.getElementById("delay").value;
     var compareDelay = delay / 2;
     var outerDelay = delay * TOTAL_ELEMENTS;
 
@@ -101,7 +103,7 @@ function bubbleSort() {
 
 function selectionSort() {
     disableButtons();
-    var delay = 300;
+    var delay = 50;
     var outerDelay = delay * TOTAL_ELEMENTS;
     for (i = 0; i < TOTAL_ELEMENTS; i++) {
         var currentMaxIndex = i;
@@ -134,6 +136,7 @@ function selectionSort() {
                 }
                 if (shouldSwap(bars[i - 1], bars[currentMaxIndex])) {
                     swapElements(bars[i - 1], bars[currentMaxIndex]);
+                    bars = document.getElementsByClassName("bar");
                 }
             }, outerDelay * i);
         })(i);
