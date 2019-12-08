@@ -96,3 +96,15 @@ function bubbleSort() {
         })(i);
     }
 }
+
+function selectionSort() {
+    for (i = 0; i < TOTAL_ELEMENTS - 1; ++i) {
+        var max = i;
+        for (j = i + 1; j < TOTAL_ELEMENTS; ++j) {
+            if (getHeight(bars[j]) > getHeight(bars[max])) {
+                max = j;
+            }
+        }
+        swapElements(bars[i], bars[max]);
+    }
+}
