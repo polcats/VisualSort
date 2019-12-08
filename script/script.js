@@ -141,7 +141,7 @@ function selectionSort() {
                             }
 
                             $(bars[j])
-                                .wait(outerDelay / (TOTAL_ELEMENTS - j))
+                                .wait(outerDelay / TOTAL_ELEMENTS)
                                 .removeClass("compared");
                         }, outerDelay / TOTAL_ELEMENTS - j);
                     })(j);
@@ -154,44 +154,3 @@ function selectionSort() {
         })(i);
     }
 }
-
-// function selectionSort() {
-//     var delay = 200;
-//     var compareDelay = delay / 2;
-//     var outerDelay = delay * TOTAL_ELEMENTS;
-
-//     for (i = 0; i < TOTAL_ELEMENTS - 1; ++i) {
-//         (function(i) {
-//             setTimeout(function() {
-//                 var max = i;
-//                 $(bars[i]).addClass("compared");
-//                 console.log("max : " + max);
-
-//                 for (j = i + 1; j < TOTAL_ELEMENTS; ++j) {
-//                     (function(j) {
-//                         setTimeout(function() {
-//                             $(bars[j]).addClass("compared");
-
-//                             console.log("compare : " + getHeight(bars[j]) + ">" + getHeight(bars[max]));
-
-//                             if (getHeight(bars[j]) > getHeight(bars[max])) {
-//                                 max = j;
-//                                 console.log("new max: " + max);
-//                             }
-
-//                             $(bars[j])
-//                                 .wait(delay * (TOTAL_ELEMENTS - j))
-//                                 .removeClass("compared");
-//                         }, delay * (TOTAL_ELEMENTS - j));
-//                     })(j);
-//                 }
-
-//                 // outerDelay = delay * (TOTAL_ELEMENTS - i);
-//                 $(bars[i])
-//                     .wait(outerDelay * (TOTAL_ELEMENTS - i))
-//                     .removeClass("compared");
-//                 swapElements(bars[i], bars[max]);
-//             }, outerDelay * (TOTAL_ELEMENTS - i));
-//         })(i);
-//     }
-// }
