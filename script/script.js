@@ -24,8 +24,8 @@ function newArray() {
 clearContainer();
 insertBars();
 
+// from https://stackoverflow.com/questions/10716986/swap-2-html-elements-and-preserve-event-listeners-on-them?lq=1
 function swapElements(obj1, obj2) {
-    // from https://stackoverflow.com/questions/10716986/swap-2-html-elements-and-preserve-event-listeners-on-them?lq=1
     // save the location of obj2
     var parent2 = obj2.parentNode;
     var next2 = obj2.nextSibling;
@@ -63,27 +63,10 @@ function blueBg(elem1, elem2) {
 }
 
 var bars = document.getElementsByClassName("bar");
-function bubbleSor2t() {
-    for (i = 0; i < bars.length; ++i) {
-        for (j = 0; j < bars.length - i - 1; ++j) {
-            var leftElement = bars[j + 1];
-            var rightElement = bars[j];
-
-            $(leftElement).addClass("red");
-
-            if (getHeight(leftElement) > getHeight(rightElement)) {
-                swapElements(bars[j + 1], bars[j]);
-                bars = document.getElementsByClassName("bar");
-            }
-            $(leftElement)
-                .removeClass("red")
-                .wait(1000);
-        }
-    }
-}
 
 function bubbleSort() {
-    var delay = 100;
+    var delay = 200;
+    var compareDelay = delay / 2;
     var outerDelay = delay * TOTAL_ELEMENTS;
 
     for (i = 0; i < bars.length; ++i) {
@@ -95,19 +78,19 @@ function bubbleSort() {
                             var leftElement = bars[j];
                             var rightElement = bars[j + 1];
 
-                            $(bars[j])
-                                .addClass("blue")
-                                .wait(delay)
-                                .removeClass("blue");
-
-                            $(bars[j + 1])
-                                .addClass("blue")
-                                .wait(delay)
-                                .removeClass("blue");
+                            $(leftElement).addClass("blue");
+                            $(rightElement).addClass("blue");
 
                             if (getHeight(rightElement) > getHeight(leftElement)) {
                                 swapElements(rightElement, leftElement);
+                                // bars = document.getElementsByClassName("bar");
                             }
+                            $(leftElement)
+                                .wait(compareDelay)
+                                .removeClass("blue");
+                            $(rightElement)
+                                .wait(compareDelay)
+                                .removeClass("blue");
                         }, delay * j);
                     })(j);
                 }
