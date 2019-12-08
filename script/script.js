@@ -63,16 +63,15 @@ function blueBg(elem1, elem2) {
 }
 
 var bars = document.getElementsByClassName("bar");
-
 function bubbleSort() {
-    var delay = 200;
+    var delay = 300;
     var compareDelay = delay / 2;
     var outerDelay = delay * TOTAL_ELEMENTS;
 
-    for (i = 0; i < bars.length; ++i) {
+    for (i = 0; i < TOTAL_ELEMENTS; ++i) {
         (function(i) {
             setTimeout(function() {
-                for (j = 0; j < bars.length - i - 1; ++j) {
+                for (j = 0; j < TOTAL_ELEMENTS - i - 1; ++j) {
                     (function(j) {
                         setTimeout(function() {
                             var leftElement = bars[j];
@@ -83,7 +82,6 @@ function bubbleSort() {
 
                             if (getHeight(rightElement) > getHeight(leftElement)) {
                                 swapElements(rightElement, leftElement);
-                                // bars = document.getElementsByClassName("bar");
                             }
                             $(leftElement)
                                 .wait(compareDelay)
