@@ -4,7 +4,7 @@ function clearContainer() {
     container.innerHTML = "";
 }
 
-var TOTAL_ELEMENTS = 9;
+var TOTAL_ELEMENTS = 4;
 function insertBars() {
     var width = CONTAINER_WIDTH / TOTAL_ELEMENTS;
 
@@ -50,7 +50,7 @@ function swapElements(obj1, obj2) {
 }
 
 function getHeight(elem) {
-    return parseInt(elem.style.height.replace("%", ""), 10);
+    return parseInt(elem.style.height, 10);
 }
 
 function shouldSwap(elem1, elem2) {
@@ -101,6 +101,16 @@ function bubbleSort() {
     }
 }
 
+$.fn.swap = function(elem) {
+    elem = elem.jquery ? elem : $(elem);
+    return this.each(function() {
+        $(document.createTextNode(""))
+            .insertBefore(this)
+            .before(elem.before(this))
+            .remove();
+    });
+};
+
 function selectionSort() {
     disableButtons();
     var delay = 50;
@@ -109,19 +119,21 @@ function selectionSort() {
         var currentMaxIndex = i;
         (function(i) {
             setTimeout(function() {
+                console.log("i = " + i + " : " + getHeight(bars[i]));
                 if (TOTAL_ELEMENTS - 1 != i) {
                     $(bars[i]).addClass("red");
                 }
 
                 for (j = i + 1; j < TOTAL_ELEMENTS; j++) {
-                    outerDelay = delay * (TOTAL_ELEMENTS - i);
-                    var innerDelay = outerDelay / (TOTAL_ELEMENTS - j);
                     $(bars[i])
                         .wait(outerDelay)
                         .removeClass("red");
+                    outerDelay = delay * (TOTAL_ELEMENTS - i);
+                    var innerDelay = outerDelay / (TOTAL_ELEMENTS - i);
 
                     (function(j) {
                         setTimeout(function() {
+                            console.log("--- j = " + j + " : " + getHeight(bars[j]));
                             $(bars[j]).addClass("compared");
 
                             if (getHeight(bars[j]) > getHeight(bars[currentMaxIndex])) {
@@ -135,9 +147,22 @@ function selectionSort() {
                     })(j);
                 }
                 if (shouldSwap(bars[i - 1], bars[currentMaxIndex])) {
-                    swapElements(bars[i - 1], bars[currentMaxIndex]);
-                    bars = document.getElementsByClassName("bar");
+                    console.log(
+                        "swapping : " +
+                            (i - 1) +
+                            " and " +
+                            currentMaxIndex +
+                            " values: " +
+                            getHeight(bars[i - 1]) +
+                            " < " +
+                            getHeight(bars[currentMaxIndex])
+                    );
+                    // swapElements(bars[i - 1], bars[currentMaxIndex]);
+                    // swapEl2ement(bars[i - 1], bars[currentMaxIndex]);
+                    // swapElements(bars[i - 1], bars[currentMaxIndex]);
+                    $(bars[i - 1]).swap(bars[currentMaxIndex]);
                 }
+                bars = document.getElementsByClassName("bar");
             }, outerDelay * i);
         })(i);
     }
