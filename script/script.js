@@ -107,22 +107,17 @@ function selectionSort() {
     disableButtons();
     var delay = document.getElementById("delay").value;
     var outerDelay = delay * TOTAL_ELEMENTS;
+    var innerDelay = outerDelay / TOTAL_ELEMENTS;
     for (i = 0; i < TOTAL_ELEMENTS; i++) {
+        console.log(i + " outer : " + outerDelay * (i + 1));
         var currentMaxIndex = i;
         (function(i) {
             setTimeout(function() {
-                // console.log("i = " + i + " : " + getHeight(bars[i]));
-                if (TOTAL_ELEMENTS - 1 != i) {
-                    $(bars[i]).addClass("red");
-                }
-
+                $(bars[i]).addClass("red");
                 for (j = i + 1; j < TOTAL_ELEMENTS; j++) {
-                    outerDelay = delay * (TOTAL_ELEMENTS - i);
-                    var innerDelay = outerDelay / (TOTAL_ELEMENTS - j);
-
+                    console.log(j + " - inner : " + innerDelay);
                     (function(j) {
                         setTimeout(function() {
-                            // console.log("--- j = " + j + " : " + getHeight(bars[j]));
                             $(bars[j]).addClass("compared");
 
                             if (getHeight(bars[j]) > getHeight(bars[currentMaxIndex])) {
@@ -139,19 +134,11 @@ function selectionSort() {
                     .wait(outerDelay)
                     .removeClass("red");
                 if (shouldSwap(bars[i - 1], bars[currentMaxIndex])) {
-                    // console.log(
-                    //     "swapping : " +
-                    //         (i - 1) +
-                    //         " and " +
-                    //         currentMaxIndex +
-                    //         " values: " +
-                    //         getHeight(bars[i - 1]) +
-                    //         " < " +
-                    //         getHeight(bars[currentMaxIndex])
-                    // );
                     $(bars[i - 1]).swap(bars[currentMaxIndex]);
+                } else {
+                    currentMaxIndex = i;
                 }
-                // bars = document.getElementsByClassName("bar");
+                bars = document.getElementsByClassName("bar");
             }, outerDelay * (i + 1));
         })(i);
     }
