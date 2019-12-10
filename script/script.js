@@ -35,8 +35,13 @@ function reset() {
 }
 
 function getHeight(elem) {
-    const h = parseInt(elem.style.height, 10);
-    console.log(h);
+    try {
+        var h = parseInt(elem.style.height, 10);
+    } catch (e) {
+        h = 0;
+    }
+
+    // console.log(h);
     return h;
 }
 
@@ -116,7 +121,7 @@ function selectionSort() {
                         .wait(outerDelay)
                         .removeClass("red");
                     outerDelay = delay * (TOTAL_ELEMENTS - i);
-                    var innerDelay = outerDelay / (TOTAL_ELEMENTS - i);
+                    var innerDelay = outerDelay / (TOTAL_ELEMENTS - j);
 
                     (function(j) {
                         setTimeout(function() {
@@ -128,7 +133,7 @@ function selectionSort() {
                             }
 
                             $(bars[j])
-                                .wait(innerDelay * j)
+                                .wait(innerDelay)
                                 .removeClass("compared");
                         }, innerDelay);
                     })(j);
