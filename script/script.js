@@ -1,22 +1,31 @@
 var CONTAINER_WIDTH = 600;
+var TOTAL_ELEMENTS = 10;
+
 var container = document.getElementById("bars");
 function clearContainer() {
     container.innerHTML = "";
 }
 
-var TOTAL_ELEMENTS = 10;
 function insertBars() {
-    var width = CONTAINER_WIDTH / TOTAL_ELEMENTS;
+    const width = CONTAINER_WIDTH / TOTAL_ELEMENTS;
 
-    for (i = 0; i < TOTAL_ELEMENTS; ++i) {
-        var height = Math.round(Math.random() * 89) + 10;
-        var bar = document.createElement("div");
+    // generate unique values
+    var set = new Set();
+    while (set.size < TOTAL_ELEMENTS) {
+        set.add(Math.round(Math.random() * 89) + 10);
+    }
+
+    // generate bars
+    var arr = Array.from(set);
+    for (i = 0; i < arr.length; ++i) {
+        let bar = document.createElement("div");
         bar.setAttribute("class", "bar");
-        bar.setAttribute("style", "width: " + width + "px; height: " + height + "%;");
-        bar.innerHTML = height;
+        bar.setAttribute("style", "width: " + width + "px; height: " + arr[i] + "%;");
+        bar.innerHTML = arr[i];
         container.appendChild(bar);
     }
 }
+
 insertBars();
 
 function reset() {
@@ -25,32 +34,10 @@ function reset() {
     insertBars();
 }
 
-// from https://stackoverflow.com/questions/10716986/swap-2-html-elements-and-preserve-event-listeners-on-them?lq=1
-function swapElements(obj1, obj2) {
-    // save the location of obj2
-    var parent2 = obj2.parentNode;
-    var next2 = obj2.nextSibling;
-    // special case for obj1 is the next sibling of obj2
-    if (next2 === obj1) {
-        // just put obj1 before obj2
-        parent2.insertBefore(obj1, obj2);
-    } else {
-        // insert obj2 right before obj1
-        obj1.parentNode.insertBefore(obj2, obj1);
-
-        // now insert obj1 where obj2 was
-        if (next2) {
-            // if there was an element after obj2, then insert obj1 right before that
-            parent2.insertBefore(obj1, next2);
-        } else {
-            // otherwise, just append as last child
-            parent2.appendChild(obj1);
-        }
-    }
-}
-
 function getHeight(elem) {
-    return parseInt(elem.style.height, 10);
+    const h = parseInt(elem.style.height, 10);
+    console.log(h);
+    return h;
 }
 
 function shouldSwap(elem1, elem2) {
@@ -60,6 +47,16 @@ function shouldSwap(elem1, elem2) {
         return false;
     }
 }
+
+$.fn.swap = function(elem) {
+    elem = elem.jquery ? elem : $(elem);
+    return this.each(function() {
+        $(document.createTextNode(""))
+            .insertBefore(this)
+            .before(elem.before(this))
+            .remove();
+    });
+};
 
 function disableButtons(what = true) {
     $(".sort").attr("disabled", what);
@@ -85,7 +82,7 @@ function bubbleSort() {
                             $(rightElement).addClass("compared");
 
                             if (getHeight(rightElement) > getHeight(leftElement)) {
-                                swapElements(rightElement, leftElement);
+                                $(rightElement).swap(leftElement);
                             }
                             $(leftElement)
                                 .wait(compareDelay)
@@ -101,25 +98,15 @@ function bubbleSort() {
     }
 }
 
-$.fn.swap = function(elem) {
-    elem = elem.jquery ? elem : $(elem);
-    return this.each(function() {
-        $(document.createTextNode(""))
-            .insertBefore(this)
-            .before(elem.before(this))
-            .remove();
-    });
-};
-
 function selectionSort() {
     disableButtons();
-    var delay = 50;
+    var delay = document.getElementById("delay").value;
     var outerDelay = delay * TOTAL_ELEMENTS;
     for (i = 0; i < TOTAL_ELEMENTS; i++) {
         var currentMaxIndex = i;
         (function(i) {
             setTimeout(function() {
-                console.log("i = " + i + " : " + getHeight(bars[i]));
+                // console.log("i = " + i + " : " + getHeight(bars[i]));
                 if (TOTAL_ELEMENTS - 1 != i) {
                     $(bars[i]).addClass("red");
                 }
@@ -133,7 +120,7 @@ function selectionSort() {
 
                     (function(j) {
                         setTimeout(function() {
-                            console.log("--- j = " + j + " : " + getHeight(bars[j]));
+                            // console.log("--- j = " + j + " : " + getHeight(bars[j]));
                             $(bars[j]).addClass("compared");
 
                             if (getHeight(bars[j]) > getHeight(bars[currentMaxIndex])) {
@@ -141,28 +128,25 @@ function selectionSort() {
                             }
 
                             $(bars[j])
-                                .wait(delay)
+                                .wait(innerDelay * j)
                                 .removeClass("compared");
-                        }, innerDelay / 2);
+                        }, innerDelay);
                     })(j);
                 }
                 if (shouldSwap(bars[i - 1], bars[currentMaxIndex])) {
-                    console.log(
-                        "swapping : " +
-                            (i - 1) +
-                            " and " +
-                            currentMaxIndex +
-                            " values: " +
-                            getHeight(bars[i - 1]) +
-                            " < " +
-                            getHeight(bars[currentMaxIndex])
-                    );
-                    // swapElements(bars[i - 1], bars[currentMaxIndex]);
-                    // swapEl2ement(bars[i - 1], bars[currentMaxIndex]);
-                    // swapElements(bars[i - 1], bars[currentMaxIndex]);
+                    // console.log(
+                    //     "swapping : " +
+                    //         (i - 1) +
+                    //         " and " +
+                    //         currentMaxIndex +
+                    //         " values: " +
+                    //         getHeight(bars[i - 1]) +
+                    //         " < " +
+                    //         getHeight(bars[currentMaxIndex])
+                    // );
                     $(bars[i - 1]).swap(bars[currentMaxIndex]);
                 }
-                bars = document.getElementsByClassName("bar");
+                // bars = document.getElementsByClassName("bar");
             }, outerDelay * i);
         })(i);
     }
