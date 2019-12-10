@@ -4,7 +4,7 @@ function clearContainer() {
     container.innerHTML = "";
 }
 
-var TOTAL_ELEMENTS = 4;
+var TOTAL_ELEMENTS = 10;
 function insertBars() {
     var width = CONTAINER_WIDTH / TOTAL_ELEMENTS;
 
