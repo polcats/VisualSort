@@ -117,9 +117,6 @@ function selectionSort() {
                 }
 
                 for (j = i + 1; j < TOTAL_ELEMENTS; j++) {
-                    $(bars[i])
-                        .wait(outerDelay)
-                        .removeClass("red");
                     outerDelay = delay * (TOTAL_ELEMENTS - i);
                     var innerDelay = outerDelay / (TOTAL_ELEMENTS - j);
 
@@ -138,6 +135,9 @@ function selectionSort() {
                         }, innerDelay);
                     })(j);
                 }
+                $(bars[i])
+                    .wait(outerDelay)
+                    .removeClass("red");
                 if (shouldSwap(bars[i - 1], bars[currentMaxIndex])) {
                     // console.log(
                     //     "swapping : " +
@@ -152,7 +152,7 @@ function selectionSort() {
                     $(bars[i - 1]).swap(bars[currentMaxIndex]);
                 }
                 // bars = document.getElementsByClassName("bar");
-            }, outerDelay * i);
+            }, outerDelay * (i + 1));
         })(i);
     }
 }
