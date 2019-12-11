@@ -135,7 +135,6 @@ function selectionSort() {
                 } else {
                     currentMaxIndex = i;
                 }
-                bars = document.getElementsByClassName("bar");
             }, outerDelay * (i + 1));
         })(i);
     }

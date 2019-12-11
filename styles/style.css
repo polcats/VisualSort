@@ -40,19 +40,23 @@ body {
     background: red;
 }
 
-button {
+input[type="button"] {
     border: none;
     background: #555;
     padding: 20px;
     color: #fff;
+    width: 150px;
+    border-radius: 10px;
+    font-weight: bold;
 }
 
-button[disabled] {
+input[disabled] {
     color: #888;
 }
 
 label {
     padding: 0px 0px 0px 0px;
+    font-weight: bold;
 }
 input[type="range"] {
     padding: 0px;
@@ -83,7 +87,7 @@ input[type="range"] {
     align-items: center;
 }
 
-#buttons button
+#buttons input[type="button"]
 {
     position: relative;
     margin: 5px;
