@@ -31,6 +31,8 @@ body {
     vertical-align: top;
     text-align: center;
     font-weight: bold;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
 }
 
 .compared {
@@ -49,10 +51,23 @@ input[type="button"] {
     width: 150px;
     border-radius: 10px;
     font-weight: bold;
+    opacity: 0.7;
+    -webkit-transition: 0.2s;
+    transition: opacity 0.2s;
+}
+
+input[type="button"]:hover {
+    opacity: 1;
 }
 
 input[disabled] {
+    background: #222;
     color: #888;
+    opacity: 1;
+}
+
+input[disabled]:hover {
+    opacity: 1;
 }
 
 label {
@@ -100,15 +115,44 @@ input[type="range"] {
 
 .slider label {
     display: inline-block;
-    text-align: left;
+    text-align: right;
     width: 70px;
-    padding: 10px;
+    padding: 10px 15px 10px 0px;
 }
 
 .slider input {
-    margin: 5px 5px 0px 5px;
+    -webkit-appearance: none;
+    width: 200px;
+    height: 15px;
+    border-radius: 5px;
+    background: #555;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: 0.2s;
+    transition: opacity 0.2s;
 }
 
+.slider input:hover {
+    opacity: 1; /* Fully shown on mouse-over */
+}
+
+.slider input::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: orange;
+    cursor: pointer;
+}
+
+.slider input::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #4caf50;
+    cursor: pointer;
+}
 span.count {
     display: inline-block;
     width: 20px;
