@@ -3,7 +3,7 @@ body {
     margin: auto;
     padding: 0px;
     text-align: center;
-    font-family: Microsoft Sans Serif;
+    font-family: "Microsoft Sans Serif";
     color: #fff;
 }
 
@@ -12,7 +12,7 @@ body {
     height: auto;
     position: absolute;
     top: 100px;
-    border-top: #555 10px solid;
+    border-top: #333 10px solid;
 }
 
 #bars {
@@ -22,7 +22,7 @@ body {
 }
 
 .bar {
-    background: orange;
+    background: green;
     border-right: 2px solid #000;
     margin: 0px;
     display: inline-block;
@@ -64,6 +64,7 @@ html body div input[disabled] {
     background: #222;
     color: #888;
     opacity: 0.5;
+    cursor: not-allowed !important;
 }
 
 input[disabled]:hover {
@@ -105,6 +106,7 @@ input[type="range"] {
     margin: 5px;
     display: inline-block;
     vertical-align: middle;
+    cursor: pointer;
 }
 
 .slider {
@@ -144,6 +146,10 @@ input[type="range"] {
     border-radius: 50%;
     background: orange;
     cursor: pointer;
+}
+
+.slider input[disabled]::-webkit-slider-thumb {
+    cursor: not-allowed;
 }
 
 .slider input::-moz-range-thumb {
