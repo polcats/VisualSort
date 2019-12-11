@@ -1,7 +1,8 @@
-var CONTAINER_WIDTH = 600;
-var TOTAL_ELEMENTS = 30;
-
+const CONTAINER_WIDTH = 600;
+var TOTAL_ELEMENTS = document.getElementById("elements").value;
 var container = document.getElementById("bars");
+var bars = document.getElementsByClassName("bar");
+
 function clearContainer() {
     container.innerHTML = "";
 }
@@ -28,20 +29,12 @@ function insertBars() {
 
 insertBars();
 
-function reset() {
-    disableButtons(false);
-    container.innerHTML = "";
-    insertBars();
-}
-
 function getHeight(elem) {
     try {
         var h = parseInt(elem.style.height, 10);
     } catch (e) {
         h = 0;
     }
-
-    // console.log(h);
     return h;
 }
 
@@ -67,7 +60,13 @@ function disableButtons(what = true) {
     $(".sort").attr("disabled", what);
 }
 
-var bars = document.getElementsByClassName("bar");
+function reset() {
+    TOTAL_ELEMENTS = document.getElementById("elements").value;
+    disableButtons(false);
+    container.innerHTML = "";
+    insertBars();
+}
+
 function bubbleSort() {
     disableButtons();
     var delay = document.getElementById("delay").value;
@@ -112,7 +111,7 @@ function selectionSort() {
         var currentMaxIndex = i;
         (function(i) {
             setTimeout(function() {
-                $(bars[i]).addClass("red");
+                $(bars[i]).addClass("compared");
                 for (j = i + 1; j < TOTAL_ELEMENTS; j++) {
                     (function(j) {
                         setTimeout(function() {
@@ -130,7 +129,7 @@ function selectionSort() {
                 }
                 $(bars[i])
                     .wait(outerDelay)
-                    .removeClass("red");
+                    .removeClass("compared");
                 if (shouldSwap(bars[i - 1], bars[currentMaxIndex])) {
                     $(bars[i - 1]).swap(bars[currentMaxIndex]);
                 } else {

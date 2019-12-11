@@ -1,6 +1,6 @@
 body {
     background: #000;
-    margin: 0px;
+    margin: auto;
     padding: 0px;
     text-align: center;
     font-family: Microsoft Sans Serif;
@@ -44,6 +44,7 @@ button {
     border: none;
     background: #555;
     padding: 20px;
+    color: #fff;
 }
 
 button[disabled] {
@@ -56,4 +57,55 @@ label {
 input[type="range"] {
     padding: 0px;
     margin: 0px;
+}
+
+#menu
+{
+    display: grid;
+    grid-template-areas: "sliders buttons";
+    grid-template-columns: repeat(auto-fit, minmax(50%, 1fr));
+    width: 900px;
+    height: 100px;
+    margin: auto;
+    padding: 0px;
+}
+
+#sliders
+{
+    grid-area: sliders;
+    margin: auto;
+}
+
+#buttons
+{
+    grid-area: buttons;
+    display: flex;
+    align-items: center;
+}
+
+#buttons button
+{
+    position: relative;
+    margin: 5px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.slider
+{
+    display: block;
+    display: flex;
+    align-items: center;
+}
+
+.slider label {
+    display: inline-block;
+    text-align: left;
+    width: 70px;
+    padding: 10px;
+}
+
+.slider input
+{
+    margin: 5px 5px 0px 5px;
 }
