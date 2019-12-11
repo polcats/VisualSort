@@ -10,24 +10,26 @@
     </head>
 
     <body>
-            <div id="menu">
-                    <div id="sliders">
-                        <div class="slider">
-                            <label for="speed">Delay</label>
-                            <input class="slider-input" name="speed" id="delay" type="range" min="1" max="100" value="1" id="myRange" />
-                         </div>
-
-                        <div class="slider">
-                            <label for="elements">Elements</label>
-                            <input class="slider-input" name="elements" id="elements" type="range" min="5" max="30" value="5" id="myRange" />
-                        </div>
-                    </div>
-                    <div id="buttons">
-                        <input type="button" class="sort" onclick="bubbleSort();" value="Bubble Sort!" />
-                        <input type="button" class="sort" onclick="selectionSort();" value="Selection Sort!" />
-                        <input type="button" onclick="reset();" id="reset" value="Reset" />
-                    </div>
+        <div id="menu">
+            <div id="sliders">
+                <div class="slider">
+                    <label for="delay">Delay</label>
+                    <input class="slider-input" name="delay" id="delay" type="range" min="1" max="100" value="1" oninput="updateDelay();" />
+                    <span class="count" id="delay-count">0</span>
                 </div>
+
+                <div class="slider">
+                    <label for="elements">Elements</label>
+                    <input class="slider-input" name="elements" id="elements" type="range" min="5" max="30" value="5" oninput="updateElements();" />
+                    <span class="count" id="element-count">0</span>
+                </div>
+            </div>
+            <div id="buttons">
+                <input type="button" class="sort" onclick="bubbleSort();" value="Bubble Sort!" />
+                <input type="button" class="sort" onclick="selectionSort();" value="Selection Sort!" />
+                <input type="button" onclick="reset();" id="reset" value="Reset" />
+            </div>
+        </div>
         <div id="container">
             <div id="bars">&nbsp;</div>
         </div>

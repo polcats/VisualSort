@@ -22,7 +22,7 @@ body {
 }
 
 .bar {
-    background:orange;
+    background: orange;
     border-right: 2px solid #000;
     margin: 0px;
     display: inline-block;
@@ -64,8 +64,7 @@ input[type="range"] {
     margin: 0px;
 }
 
-#menu
-{
+#menu {
     display: grid;
     grid-template-areas: "sliders buttons";
     grid-template-columns: repeat(auto-fit, minmax(50%, 1fr));
@@ -75,29 +74,25 @@ input[type="range"] {
     padding: 0px;
 }
 
-#sliders
-{
+#sliders {
     grid-area: sliders;
     margin: auto;
 }
 
-#buttons
-{
+#buttons {
     grid-area: buttons;
     display: flex;
     align-items: center;
 }
 
-#buttons input[type="button"]
-{
+#buttons input[type="button"] {
     position: relative;
     margin: 5px;
     display: inline-block;
     vertical-align: middle;
 }
 
-.slider
-{
+.slider {
     display: block;
     display: flex;
     align-items: center;
@@ -110,7 +105,14 @@ input[type="range"] {
     padding: 10px;
 }
 
-.slider input
-{
+.slider input {
     margin: 5px 5px 0px 5px;
+}
+
+span.count {
+    display: inline-block;
+    width: 20px;
+    text-align: left;
+    font-weight: bold;
+    padding: 2px 0px 0px 5px;
 }

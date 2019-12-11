@@ -1,5 +1,6 @@
 const CONTAINER_WIDTH = 600;
 var TOTAL_ELEMENTS = document.getElementById("elements").value;
+var DELAY = document.getElementById("delay").value;
 var container = document.getElementById("bars");
 var bars = document.getElementsByClassName("bar");
 
@@ -22,7 +23,53 @@ function insertBars() {
         container.appendChild(bar);
     }
 }
-insertBars();
+
+// Initialize
+LoadUrlParams();
+
+function LoadUrlParams() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const elements = parseInt(urlParams.get("elements"));
+    var error = false;
+
+    if (urlParams.has("delay")) {
+        const delay = parseInt(urlParams.get("delay"));
+        if (delay > 0 && delay <= 100) {
+            DELAY = delay;
+            document.getElementById("delay").value = DELAY;
+        } else {
+            error = true;
+        }
+    }
+
+    if (urlParams.has("elements")) {
+        if (elements >= 5 && elements <= 30) {
+            TOTAL_ELEMENTS = elements;
+            document.getElementById("elements").value = TOTAL_ELEMENTS;
+        } else {
+            error = true;
+        }
+    }
+
+    if (error) {
+        alert("Unable to load some parameters!");
+    }
+
+    updateDelay();
+    updateElements();
+}
+
+function updateDelay() {
+    DELAY = document.getElementById("delay").value;
+    document.getElementById("delay-count").innerHTML = DELAY;
+}
+
+function updateElements() {
+    clearContainer();
+    TOTAL_ELEMENTS = document.getElementById("elements").value;
+    document.getElementById("element-count").innerHTML = TOTAL_ELEMENTS;
+    insertBars();
+}
 
 function disableInput(what = true) {
     $(".sort").attr("disabled", what);
@@ -34,10 +81,7 @@ function clearContainer() {
 }
 
 function reset() {
-    TOTAL_ELEMENTS = document.getElementById("elements").value;
-    disableInput(false);
-    clearContainer();
-    insertBars();
+    window.location.href = "index.html?delay=" + DELAY + "&elements=" + TOTAL_ELEMENTS;
 }
 
 function getHeight(elem) {
@@ -69,9 +113,8 @@ $.fn.swap = function(elem) {
 
 function bubbleSort() {
     disableInput();
-    var delay = document.getElementById("delay").value;
-    var compareDelay = delay / 2;
-    var outerDelay = delay * TOTAL_ELEMENTS;
+    var compareDelay = DELAY / 2;
+    var outerDelay = DELAY * TOTAL_ELEMENTS;
 
     for (i = 0; i < TOTAL_ELEMENTS; ++i) {
         (function(i) {
@@ -94,7 +137,7 @@ function bubbleSort() {
                             $(rightElement)
                                 .wait(compareDelay)
                                 .removeClass("compared");
-                        }, delay * j);
+                        }, DELAY * j);
                     })(j);
                 }
             }, outerDelay * i);
@@ -104,8 +147,7 @@ function bubbleSort() {
 
 function selectionSort() {
     disableInput();
-    var delay = document.getElementById("delay").value;
-    var outerDelay = delay * TOTAL_ELEMENTS;
+    var outerDelay = DELAY * TOTAL_ELEMENTS;
     var innerDelay = outerDelay / TOTAL_ELEMENTS;
     for (i = 0; i < TOTAL_ELEMENTS; i++) {
         var currentMaxIndex = i;
