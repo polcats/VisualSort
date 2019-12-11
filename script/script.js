@@ -10,7 +10,7 @@ function insertBars() {
     // generate unique values
     var set = new Set();
     while (set.size < TOTAL_ELEMENTS) {
-        set.add(Math.round(Math.random() * 89) + 10);
+        set.add(Math.round(Math.random() * 99) + 1);
     }
 
     // generate bars
