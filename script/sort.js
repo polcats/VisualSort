@@ -1,9 +1,8 @@
 function getHeight(elem) {
+    let h = 0;
     try {
-        var h = parseInt(elem.style.height, 10);
-    } catch (e) {
-        h = 0;
-    }
+        h = parseInt(elem.style.height, 10);
+    } catch (e) {}
     return h;
 }
 
@@ -27,8 +26,8 @@ $.fn.swap = function(elem) {
 
 function bubbleSort() {
     disableInput();
-    var compareDelay = DELAY / 2;
-    var outerDelay = DELAY * TOTAL_ELEMENTS;
+    const compareDelay = DELAY / 2;
+    const outerDelay = DELAY * TOTAL_ELEMENTS;
 
     for (i = 0; i < TOTAL_ELEMENTS; ++i) {
         (function(i) {
@@ -61,8 +60,8 @@ function bubbleSort() {
 
 function selectionSort() {
     disableInput();
-    var outerDelay = DELAY * TOTAL_ELEMENTS;
-    var innerDelay = outerDelay / TOTAL_ELEMENTS;
+    const outerDelay = DELAY * TOTAL_ELEMENTS;
+    const innerDelay = outerDelay / TOTAL_ELEMENTS;
     for (i = 0; i < TOTAL_ELEMENTS; i++) {
         var currentMaxIndex = i;
         (function(i) {

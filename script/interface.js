@@ -55,7 +55,7 @@ function insertBars() {
     }
 
     // generate bars
-    var arr = Array.from(set);
+    const arr = Array.from(set);
     for (i = 0; i < arr.length; ++i) {
         let bar = document.createElement("div");
         bar.setAttribute("class", "bar");
@@ -66,10 +66,10 @@ function insertBars() {
 }
 
 function disableInput(what = true) {
-    $(".sort").attr("disabled", what);
-    $(".sort").removeClass("green");
-    $(".slider-input").attr("disabled", what);
     $("#reset").addClass("green");
+    $(".sort").removeClass("green");
+    $(".sort").attr("disabled", what);
+    $(".slider-input").attr("disabled", what);
 }
 
 function clearContainer() {
