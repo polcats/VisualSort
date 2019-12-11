@@ -138,6 +138,10 @@ input[type="range"] {
     opacity: 1; /* Fully shown on mouse-over */
 }
 
+.slider input[disabled]:hover {
+    opacity: 0.5;
+}
+
 .slider input::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
