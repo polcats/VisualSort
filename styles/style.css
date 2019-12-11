@@ -60,10 +60,10 @@ input[type="button"]:hover {
     opacity: 1;
 }
 
-input[disabled] {
+html body div input[disabled] {
     background: #222;
     color: #888;
-    opacity: 1;
+    opacity: 0.5;
 }
 
 input[disabled]:hover {
@@ -159,4 +159,9 @@ span.count {
     text-align: left;
     font-weight: bold;
     padding: 2px 0px 0px 5px;
+}
+
+input[type="button"].green {
+    background: greenyellow;
+    color: #000;
 }

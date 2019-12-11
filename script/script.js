@@ -3,6 +3,7 @@ var TOTAL_ELEMENTS = document.getElementById("elements").value;
 var DELAY = document.getElementById("delay").value;
 var container = document.getElementById("bars");
 var bars = document.getElementsByClassName("bar");
+var shouldReset = false;
 
 function insertBars() {
     const width = CONTAINER_WIDTH / TOTAL_ELEMENTS;
@@ -74,6 +75,7 @@ function updateElements() {
 function disableInput(what = true) {
     $(".sort").attr("disabled", what);
     $(".slider-input").attr("disabled", what);
+    $("#reset").addClass("green");
 }
 
 function clearContainer() {
