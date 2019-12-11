@@ -74,6 +74,7 @@ function updateElements() {
 
 function disableInput(what = true) {
     $(".sort").attr("disabled", what);
+    $(".sort").removeClass("green");
     $(".slider-input").attr("disabled", what);
     $("#reset").addClass("green");
 }
