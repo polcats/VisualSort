@@ -22,7 +22,7 @@ body {
 }
 
 .bar {
-    background: green;
+    background:orange;
     border-right: 2px solid #000;
     margin: 0px;
     display: inline-block;
@@ -30,10 +30,11 @@ body {
     bottom: 0px;
     vertical-align: top;
     text-align: center;
+    font-weight: bold;
 }
 
 .compared {
-    background: lightseagreen;
+    background: #77c9d4;
 }
 
 .red {
