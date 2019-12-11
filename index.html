@@ -33,6 +33,14 @@
         <div id="container">
             <div id="bars">&nbsp;</div>
         </div>
-        <script type="text/javascript" src="script/script.js"></script>
+        <script type="text/javascript">
+            const CONTAINER_WIDTH = 600;
+            var TOTAL_ELEMENTS = document.getElementById("elements").value;
+            var DELAY = document.getElementById("delay").value;
+            var container = document.getElementById("bars");
+            var bars = document.getElementsByClassName("bar");
+        </script>
+        <script type="text/javascript" src="script/sort.js"></script>
+        <script type="text/javascript" src="script/interface.js"></script>
     </body>
 </html>
