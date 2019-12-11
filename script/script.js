@@ -1,5 +1,5 @@
 var CONTAINER_WIDTH = 600;
-var TOTAL_ELEMENTS = 10;
+var TOTAL_ELEMENTS = 30;
 
 var container = document.getElementById("bars");
 function clearContainer() {
