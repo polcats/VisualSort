@@ -109,13 +109,11 @@ function selectionSort() {
     var outerDelay = delay * TOTAL_ELEMENTS;
     var innerDelay = outerDelay / TOTAL_ELEMENTS;
     for (i = 0; i < TOTAL_ELEMENTS; i++) {
-        console.log(i + " outer : " + outerDelay * (i + 1));
         var currentMaxIndex = i;
         (function(i) {
             setTimeout(function() {
                 $(bars[i]).addClass("red");
                 for (j = i + 1; j < TOTAL_ELEMENTS; j++) {
-                    console.log(j + " - inner : " + innerDelay);
                     (function(j) {
                         setTimeout(function() {
                             $(bars[j]).addClass("compared");
