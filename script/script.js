@@ -3,10 +3,6 @@ var TOTAL_ELEMENTS = document.getElementById("elements").value;
 var container = document.getElementById("bars");
 var bars = document.getElementsByClassName("bar");
 
-function clearContainer() {
-    container.innerHTML = "";
-}
-
 function insertBars() {
     const width = CONTAINER_WIDTH / TOTAL_ELEMENTS;
 
@@ -26,8 +22,23 @@ function insertBars() {
         container.appendChild(bar);
     }
 }
-
 insertBars();
+
+function disableInput(what = true) {
+    $(".sort").attr("disabled", what);
+    $(".slider-input").attr("disabled", what);
+}
+
+function clearContainer() {
+    container.innerHTML = "";
+}
+
+function reset() {
+    TOTAL_ELEMENTS = document.getElementById("elements").value;
+    disableInput(false);
+    clearContainer();
+    insertBars();
+}
 
 function getHeight(elem) {
     try {
@@ -56,19 +67,8 @@ $.fn.swap = function(elem) {
     });
 };
 
-function disableButtons(what = true) {
-    $(".sort").attr("disabled", what);
-}
-
-function reset() {
-    TOTAL_ELEMENTS = document.getElementById("elements").value;
-    disableButtons(false);
-    container.innerHTML = "";
-    insertBars();
-}
-
 function bubbleSort() {
-    disableButtons();
+    disableInput();
     var delay = document.getElementById("delay").value;
     var compareDelay = delay / 2;
     var outerDelay = delay * TOTAL_ELEMENTS;
@@ -103,7 +103,7 @@ function bubbleSort() {
 }
 
 function selectionSort() {
-    disableButtons();
+    disableInput();
     var delay = document.getElementById("delay").value;
     var outerDelay = delay * TOTAL_ELEMENTS;
     var innerDelay = outerDelay / TOTAL_ELEMENTS;
