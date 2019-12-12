@@ -8,25 +8,35 @@ function generateElements(count) {
     return Array.from(set);
 }
 
+var timeouts = [];
 function animate(origin, solution) {
+    timeouts = [];
     for (i = 0; i < solution.moves.length; ++i) {
-        (function(solution, i, bars) {
-            setTimeout(function() {
-                let highlight = solution.moves[i].highlight;
+        (function(solution, i, bars, timeouts) {
+            timeouts.push(
+                setTimeout(function() {
+                    let highlight = solution.moves[i].highlight;
 
-                let elem = solution.moves[i].elements;
-                $(bars[elem[0]])
-                    .addClass("compared")
-                    .wait(100)
-                    .removeClass("compared");
-                $(bars[elem[1]])
-                    .addClass("compared")
-                    .wait(100)
-                    .removeClass("compared");
+                    let elem = solution.moves[i].elements;
+                    $(bars[elem[0]])
+                        .addClass("compared")
+                        .wait(100)
+                        .removeClass("compared");
+                    $(bars[elem[1]])
+                        .addClass("compared")
+                        .wait(100)
+                        .removeClass("compared");
 
-                $(bars[elem[0]]).swap(bars[elem[1]]);
-            }, DELAY * TOTAL_ELEMENTS * i);
-        })(solution, i, bars);
+                    $(bars[elem[0]]).swap(bars[elem[1]]);
+                }, DELAY * TOTAL_ELEMENTS * i)
+            );
+        })(solution, i, bars, timeouts);
+    }
+}
+
+function stopAnimation() {
+    for (i = 0; i < timeouts.length; ++i) {
+        clearTimeout(timeouts[i]);
     }
 }
 
@@ -98,10 +108,27 @@ function getElements() {
     return els;
 }
 
-function runAlgo() {
+function solve(algo, input) {
+    switch (algo) {
+        case "bubble": {
+            return bubble(input);
+            break;
+        }
+        case "insertion": {
+            return insertion(input);
+            break;
+        }
+        default: {
+            return false;
+        }
+    }
+}
+
+function runAlgo(algo) {
     var origin = getElements();
     var origin_copy = JSON.parse(JSON.stringify(origin));
-    var solution = bubble(origin_copy);
-    console.log(solution);
-    animate(origin, solution);
+    var solution = solve(algo, origin_copy);
+    if (solution) {
+        animate(origin, solution);
+    }
 }
