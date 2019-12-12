@@ -38,6 +38,9 @@ function insertBars() {
 function disableInput(what = true) {
     $(".sort").attr("disabled", what);
     $(".slider-input").attr("disabled", what);
+    $("#stop")
+        .attr("disabled", false)
+        .addClass("green");
 
     if (what) {
         $(".sort").removeClass("green");

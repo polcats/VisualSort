@@ -39,7 +39,9 @@ function animate(origin, solution) {
 
                     $(bars[elem[0]]).swap(bars[elem[1]]);
                     if (i == solution.moves.length - 1) {
-                        disableInput(false);
+                        $("#stop")
+                            .attr("disabled", true)
+                            .removeClass("green");
                     }
                 }, DELAY * TOTAL_ELEMENTS * i)
             );
