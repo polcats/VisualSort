@@ -5,13 +5,15 @@ body {
     text-align: center;
     font-family: UbuntuL;
     color: #fff;
+    display: grid;
+    grid-template-areas: "m" "c";
+    grid-gap: 25px;
 }
 
 #container {
+    grid-area: c;
     width: 100%;
-    height: auto;
-    position: absolute;
-    top: 100px;
+    /* height: auto; */
     border-top: #333 10px solid;
 }
 
@@ -82,11 +84,13 @@ input[type="range"] {
 }
 
 #menu {
+    grid-area: m;
     display: grid;
-    grid-template-areas: "sliders buttons";
-    grid-template-columns: repeat(auto-fit, minmax(50%, 1fr));
-    width: 900px;
-    height: 100px;
+    grid-template-areas: "sliders ." "buttons buttons";
+    /* grid-template-columns: repeat(auto-fit, minmax(50%, 1fr)); */
+    grid-gap: 10px;
+    width: 800px;
+    height: auto;
     margin: auto;
     padding: 0px;
 }
@@ -111,6 +115,7 @@ input[type="range"] {
     grid-area: buttons;
     display: flex;
     align-items: center;
+    margin: auto;
 }
 
 #buttons input[type="button"] {
