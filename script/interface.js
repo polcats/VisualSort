@@ -1,37 +1,7 @@
-// Initialize
-LoadUrlParams();
-
-function LoadUrlParams() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const elements = parseInt(urlParams.get("elements"));
-    var error = false;
-
-    if (urlParams.has("delay")) {
-        const delay = parseInt(urlParams.get("delay"));
-        if (delay > 0 && delay <= 100) {
-            DELAY = delay;
-            document.getElementById("delay").value = DELAY;
-        } else {
-            error = true;
-        }
-    }
-
-    if (urlParams.has("elements")) {
-        if (elements >= 5 && elements <= 30) {
-            TOTAL_ELEMENTS = elements;
-            document.getElementById("elements").value = TOTAL_ELEMENTS;
-        } else {
-            error = true;
-        }
-    }
-
-    if (error) {
-        alert("Unable to load some parameters!");
-    }
-
+(function init() {
     updateDelay();
     updateElements();
-}
+})();
 
 function updateDelay() {
     DELAY = document.getElementById("delay").value;
