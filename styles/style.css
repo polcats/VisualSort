@@ -33,13 +33,11 @@ body {
     font-weight: bold;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
-    /* transition: background-color ease-in 0.5s; */
 }
 
 .compared {
-    /* animation: fadein 0.8s; */
+    transition: background-color ease-in 0.5s;
     background: #77c9d4;
-    /* opacity: 1 !important; */
 }
 
 .red {
