@@ -94,7 +94,7 @@ input[type="range"] {
 }
 
 #menu a {
-    position: absolute;
+    position: fixed;
     right: 50px;
     bottom: 50px;
 }
