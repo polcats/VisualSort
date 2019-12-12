@@ -95,21 +95,49 @@ function selectionSort() {
     }
 }
 
+var solution = Array();
 function insertionSort()
 {
-    disableInput();
-    const outerDelay = DELAY * TOTAL_ELEMENTS;
-    const innerDelay = outerDelay / TOTAL_ELEMENTS;
-
+    solution = [];
     for (i = 1; i < TOTAL_ELEMENTS; ++i)
     {
-        let key = bars[i];
-        let j = i - 1;
-        while (j >= 0 && getHeight(bars[j]) < getHeight(key))
-        {
-            $(bars[j+1]).swap(bars[j]);
-            j = j -1;
-        }
-        bars[j+1] = key;
+        var key = bars[i];
+        var j = i - 1;
+            while (j >= 0 && getHeight(bars[j]) < getHeight(key))
+            {
+                $(bars[j+1]).swap(bars[j])
+                solution.push([(j+1), j]);
+                j = j -1;
+            }
     }
+}
+
+function reverseSolution()
+{
+    for (i = solution.length - 1; i >= 0; --i)
+    {
+        $(bars[solution[i][0]]).swap(bars[solution[i][1]]);
+    }
+}
+
+function compareSolution()
+{
+    var original = Array();
+    for (i = 0; i < TOTAL_ELEMENTS; ++i)
+    {
+        original.push(bars[i].innerHTML);
+    }
+    console.log(original);
+
+    insertionSort();
+
+    reverseSolution();
+
+    var reversed = Array();
+    for (i = 0; i < TOTAL_ELEMENTS; ++i)
+    {
+        reversed.push(bars[i].innerHTML);
+    }
+
+    console.log(reversed);
 }
