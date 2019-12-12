@@ -86,7 +86,7 @@ input[type="range"] {
 #menu {
     grid-area: m;
     display: grid;
-    grid-template-areas: "sliders ." "buttons buttons";
+    grid-template-areas: ". sliders" "buttons buttons";
     /* grid-template-columns: repeat(auto-fit, minmax(50%, 1fr)); */
     grid-gap: 10px;
     width: 800px;
