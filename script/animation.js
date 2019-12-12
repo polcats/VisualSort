@@ -13,14 +13,16 @@ function animate(origin, solution) {
         let highlight = solution.moves[i].highlight;
         (function(solution, i, bars) {
             setTimeout(function() {
-                $(".bar").removeClass("compared");
                 for (h = 0; h < highlight.length; ++h) {
-                    $(bars[highlight[0]]).addClass(highlight[1]);
+                    $(bars[highlight[0]])
+                        .addClass(highlight[1])
+                        .wait(50)
+                        .removeClass("compared");
                 }
+
                 let elem = solution.moves[i].elements;
                 $(bars[elem[0]]).swap(bars[elem[1]]);
-            }, 500 * i);
-            // remove highlight
+            }, DELAY * i);
         })(solution, i, bars);
     }
 }
@@ -41,8 +43,8 @@ function insertionSort(e) {
                 elements: []
             };
 
-            move.highlight.push([j + 1], "compared");
-            move.highlight.push([j, "compared"]);
+            move.highlight.push(j + 1, "compared");
+            move.highlight.push(j, "compared");
 
             move.elements.push(j + 1);
             move.elements.push(j);
@@ -52,8 +54,6 @@ function insertionSort(e) {
         }
         elements[j + 1] = key;
     }
-
-    console.log("solution : " + elements);
 
     return solutionObject;
 }
