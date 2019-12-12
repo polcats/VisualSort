@@ -95,49 +95,60 @@ function selectionSort() {
     }
 }
 
-var solution = Array();
-function insertionSort()
-{
-    solution = [];
-    for (i = 1; i < TOTAL_ELEMENTS; ++i)
-    {
-        var key = bars[i];
-        var j = i - 1;
-            while (j >= 0 && getHeight(bars[j]) < getHeight(key))
-            {
-                $(bars[j+1]).swap(bars[j])
-                solution.push([(j+1), j]);
-                j = j -1;
-            }
-    }
-}
+// var solutionObject = {};
+// function insertionSort()
+// {
+//     solutionObject = {
+//         moves : []
+//     };
 
-function reverseSolution()
-{
-    for (i = solution.length - 1; i >= 0; --i)
-    {
-        $(bars[solution[i][0]]).swap(bars[solution[i][1]]);
-    }
-}
+//     for (i = 1; i < TOTAL_ELEMENTS; ++i)
+//     {
+//         var key = bars[i];
+//         var j = i - 1;
+//         while (j >= 0 && getHeight(bars[j]) < getHeight(key))
+//         {
+//             $(bars[j+1]).swap(bars[j])
 
-function compareSolution()
-{
-    var original = Array();
-    for (i = 0; i < TOTAL_ELEMENTS; ++i)
-    {
-        original.push(bars[i].innerHTML);
-    }
-    console.log(original);
+//             let move = {
+//                 highlighted : [],
+//                 elements : []
+//             };
 
-    insertionSort();
+//             move.elements.push([j+1, j]);
+//             solutionObject.moves.push(move);
 
-    reverseSolution();
+//             j = j -1;
+//         }
+//     }
+// }
 
-    var reversed = Array();
-    for (i = 0; i < TOTAL_ELEMENTS; ++i)
-    {
-        reversed.push(bars[i].innerHTML);
-    }
+// function reverseSolution()
+// {
+//     for (i = solution.length - 1; i >= 0; --i)
+//     {
+//         $(bars[solution[i][0]]).swap(bars[solution[i][1]]);
+//     }
+// }
 
-    console.log(reversed);
-}
+// function compareSolution()
+// {
+//     var original = Array();
+//     for (i = 0; i < TOTAL_ELEMENTS; ++i)
+//     {
+//         original.push(bars[i].innerHTML);
+//     }
+//     console.log(original);
+
+//     insertionSort();
+
+//     reverseSolution();
+
+//     var reversed = Array();
+//     for (i = 0; i < TOTAL_ELEMENTS; ++i)
+//     {
+//         reversed.push(bars[i].innerHTML);
+//     }
+
+//     console.log(reversed);
+// }
