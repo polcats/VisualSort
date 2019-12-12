@@ -36,10 +36,20 @@ function insertBars() {
 }
 
 function disableInput(what = true) {
-    $("#reset").addClass("green");
-    $(".sort").removeClass("green");
     $(".sort").attr("disabled", what);
     $(".slider-input").attr("disabled", what);
+
+    if (what) {
+        $("#reset").addClass("green");
+        $("#stop").addClass("green");
+        $(".sort").removeClass("green");
+
+        return;
+    }
+
+    $("#reset").removeClass("green");
+    $("#stop").removeClass("green");
+    $(".sort").addClass("green");
 }
 
 function clearContainer() {
