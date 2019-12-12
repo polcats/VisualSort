@@ -40,16 +40,10 @@ function disableInput(what = true) {
     $(".slider-input").attr("disabled", what);
 
     if (what) {
-        $("#reset").addClass("green");
-        $("#stop").addClass("green");
         $(".sort").removeClass("green");
-
-        return;
+    } else {
+        $(".sort").addClass("green");
     }
-
-    $("#reset").removeClass("green");
-    $("#stop").removeClass("green");
-    $(".sort").addClass("green");
 }
 
 function clearContainer() {
