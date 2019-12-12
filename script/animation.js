@@ -38,6 +38,13 @@ function stopAnimation() {
     for (i = 0; i < timeouts.length; ++i) {
         clearTimeout(timeouts[i]);
     }
+    disableInput(false);
+}
+
+function reset() {
+    stopAnimation();
+    updateDelay();
+    updateElements();
 }
 
 function insertion(e) {
@@ -159,6 +166,7 @@ function solve(algo, input) {
 }
 
 function runAlgo(algo) {
+    disableInput();
     var origin = getElements();
     var origin_copy = JSON.parse(JSON.stringify(origin));
     var solution = solve(algo, origin_copy);
