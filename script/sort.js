@@ -14,16 +14,6 @@ function shouldSwap(elem1, elem2) {
     }
 }
 
-$.fn.swap = function(elem) {
-    elem = elem.jquery ? elem : $(elem);
-    return this.each(function() {
-        $(document.createTextNode(""))
-            .insertBefore(this)
-            .before(elem.before(this))
-            .remove();
-    });
-};
-
 function bubbleSort() {
     disableInput();
     const compareDelay = DELAY / 2;
