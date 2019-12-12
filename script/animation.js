@@ -99,6 +99,36 @@ function bubble(e) {
     return solutionObject;
 }
 
+function selection(e) {
+    var elements = e;
+    var solutionObject = {};
+    solutionObject.moves = [];
+
+    for (i = 0; i < elements.length - 1; ++i) {
+        let currentMax = i;
+        move = {
+            highlight: [],
+            elements: []
+        };
+        for (j = i + 1; j < elements.length; ++j) {
+            move.highlight.push(j, "compared");
+            move.highlight.push(j + 1, "compared");
+
+            if (elements[j] > elements[currentMax]) {
+                currentMax = j;
+            }
+        }
+        let temp = elements[currentMax];
+        elements[currentMax] = elements[i];
+        elements[i] = temp;
+
+        move.elements.push(i);
+        move.elements.push(currentMax);
+        solutionObject.moves.push(move);
+    }
+    return solutionObject;
+}
+
 function getElements() {
     var els = Array();
     for (i = 0; i < bars.length; ++i) {
@@ -116,6 +146,10 @@ function solve(algo, input) {
         }
         case "insertion": {
             return insertion(input);
+            break;
+        }
+        case "selection": {
+            return selection(input);
             break;
         }
         default: {
