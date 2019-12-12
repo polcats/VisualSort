@@ -75,7 +75,3 @@ function disableInput(what = true) {
 function clearContainer() {
     container.innerHTML = "";
 }
-
-function reset() {
-    window.location.href = "index.html?delay=" + DELAY + "&elements=" + TOTAL_ELEMENTS;
-}
