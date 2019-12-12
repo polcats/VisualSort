@@ -94,3 +94,22 @@ function selectionSort() {
         })(i);
     }
 }
+
+function insertionSort()
+{
+    disableInput();
+    const outerDelay = DELAY * TOTAL_ELEMENTS;
+    const innerDelay = outerDelay / TOTAL_ELEMENTS;
+
+    for (i = 1; i < TOTAL_ELEMENTS; ++i)
+    {
+        let key = bars[i];
+        let j = i - 1;
+        while (j >= 0 && getHeight(bars[j]) < getHeight(key))
+        {
+            $(bars[j+1]).swap(bars[j]);
+            j = j -1;
+        }
+        bars[j+1] = key;
+    }
+}
