@@ -28,6 +28,9 @@ function animate(origin, solution) {
                         .removeClass("compared");
 
                     $(bars[elem[0]]).swap(bars[elem[1]]);
+                    if (i == solution.moves.length - 1) {
+                        disableInput(false);
+                    }
                 }, DELAY * TOTAL_ELEMENTS * i)
             );
         })(solution, i, bars, timeouts);
