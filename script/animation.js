@@ -58,15 +58,6 @@ function insertionSort(e) {
     return solutionObject;
 }
 
-function test() {
-    var e = generateElements(10);
-    console.log("initial : " + e);
-    var newInstance = JSON.parse(JSON.stringify(e));
-    var r = insertionSort(newInstance);
-    solve(e, r);
-    return 0;
-}
-
 function getElements() {
     var els = Array();
     for (i = 0; i < bars.length; ++i) {
