@@ -12,7 +12,7 @@ body {
 
 #container {
     grid-area: c;
-    width: 100%;
+    width: 100vw;
     /* height: auto; */
     border-top: #333 10px solid;
 }
@@ -87,10 +87,10 @@ input[type="range"] {
     background: #000;
     grid-area: m;
     display: grid;
-    grid-template-areas: "buttons buttons sliders";
-    /* grid-template-columns: repeat(auto-fit, minmax(50%, 1fr)); */
+    grid-template-areas: "sliders buttons";
+    grid-template-columns: repeat(auto-fit, minmax(50%, 1fr));
     grid-gap: 10px;
-    width: 100%;
+    width: 100vw;
     height: auto;
     margin: auto;
     padding: 0px;
@@ -115,6 +115,7 @@ input[type="range"] {
 #buttons {
     grid-area: buttons;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     margin: auto;
 }
