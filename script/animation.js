@@ -28,16 +28,16 @@ function animate(origin, solution) {
                     let highlight = solution.moves[i].highlight;
 
                     let elem = solution.moves[i].elements;
-
+                    let innerDelay = DELAY * TOTAL_ELEMENTS;
                     if (0 < elem.length)
                     {
                         $(bars[elem[0]])
                             .addClass("compared")
-                            .wait(100)
+                            .wait(innerDelay)
                             .removeClass("compared");
                         $(bars[elem[1]])
                             .addClass("compared")
-                            .wait(100)
+                            .wait(innerDelay)
                             .removeClass("compared");
                         $(bars[elem[0]]).swap(bars[elem[1]]);
                     }
