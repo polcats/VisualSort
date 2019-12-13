@@ -6,7 +6,7 @@ function shell(e)
     var solutionObject = {};
     solutionObject.moves = [];
 
-    for (gap =  Math.floor(n / 2); gap > 0; gap = Math.floor(gap / 2))
+    for (gap =  parseInt(n / 2); gap > 0; gap = parseInt(gap / 2))
     {
         for (i = gap; i < n; ++i)
         {
@@ -19,7 +19,7 @@ function shell(e)
 
             
             let j;
-            for (j = i; j >= gap && elements[j - gap] > temp; j-=gap)
+            for (j = i; j >= gap && (elements[j - gap] > temp); j-=gap)
             {
                 move.elements.push(j);
                 move.elements.push(j - gap);
@@ -30,10 +30,6 @@ function shell(e)
                 elements[j] = elements[j - gap];
                 solutionObject.moves.push(move);
             }
-            // move.highlight.push(i, "compared");
-            // move.highlight.push(j, "compared");
-            // move.elements.push(j);
-            // move.elements.push(i);
             elements[j] = temp;
             
         }
