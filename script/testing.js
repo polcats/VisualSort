@@ -42,65 +42,6 @@ function shell(e)
     return solutionObject;
 }
 
-
-
-function comb(e)
-{
-    var solutionObject = {};
-    solutionObject.moves = [];
-
-    function getNextGap(gap)
-    {
-        let local_gap = Math.floor((gap * 10) / 13);
-        if (local_gap < 1)
-        {
-            return 1;
-        }
-
-        return local_gap;
-    }
-
-    let n = e.length;
-    let gap = n;
-    let swapped = true;
-
-    while ( 1 != gap || true == swapped)
-    {
-        gap = getNextGap(gap);
-        swapped = false;
-
-        for (i = 0; i < n - gap; ++i)
-        {
-            move = {
-                highlight: [],
-                elements: []
-            };
-
-            if (e[i] < e[gap + i])
-            {
-                move.highlight.push(i, "compared");
-                move.highlight.push(gap + i, "compared");
-                move.elements.push(i);
-                move.elements.push(gap + i);
-
-                let temp = e[i];
-                e[i] = e[gap+i];
-                e[i+gap] = temp;
-
-                swapped = true;
-            }
-            
-            solutionObject.moves.push(move);
-        }
-    }
-
-    return solutionObject;
-}
-
-
-
-
-
 function runTest()
 {
     disableInput();
