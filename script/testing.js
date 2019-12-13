@@ -6,7 +6,7 @@ function shell(e)
     var solutionObject = {};
     solutionObject.moves = [];
 
-    for (gap =  Math.floor(n / 2); gap > 0; Math.floor(gap/=2))
+    for (gap =  Math.floor(n / 2); gap > 0; gap = Math.floor(gap / 2))
     {
         for (i = gap; i < n; ++i)
         {
@@ -21,21 +21,21 @@ function shell(e)
             let j;
             for (j = i; j >= gap && elements[j - gap] > temp; j-=gap)
             {
-                // move.elements.push(j);
-                // move.elements.push(j - gap);
+                move.elements.push(j);
+                move.elements.push(j - gap);
                 
-                // move.highlight.push(j, "compared");
-                // move.highlight.push(j - gap, "compared");
+                move.highlight.push(j, "compared");
+                move.highlight.push(j - gap, "compared");
 
                 elements[j] = elements[j - gap];
+                solutionObject.moves.push(move);
             }
+            // move.highlight.push(i, "compared");
+            // move.highlight.push(j, "compared");
+            // move.elements.push(j);
+            // move.elements.push(i);
             elements[j] = temp;
-            move.highlight.push(i, "compared");
-            move.highlight.push(j, "compared");
-            move.elements.push(j);
-            move.elements.push(i);
-
-            solutionObject.moves.push(move);
+            
         }
     }
 
@@ -47,7 +47,7 @@ function runTest()
     disableInput();
     var origin = getElements();
     var origin_copy = JSON.parse(JSON.stringify(origin));
-    var solution = comb(origin_copy);
+    var solution = shell(origin_copy);
     if (solution) {
         try {
 
