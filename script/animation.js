@@ -22,23 +22,21 @@ var timeouts = [];
 function animate(origin, solution) {
     timeouts = [];
     for (i = 0; i < solution.moves.length; ++i) {
-        (function(solution, i, bars, timeouts) {
+        (function(solution, i, bars, timeouts, DELAY, TOTAL_ELEMENTS) {
             timeouts.push(
                 setTimeout(function() {
-                    let highlight = solution.moves[i].highlight;
-
+                    $(".bar").removeClass("compared");
                     let elem = solution.moves[i].elements;
                     let innerDelay = DELAY * TOTAL_ELEMENTS;
-                    if (0 < elem.length)
-                    {
-                        $(bars[elem[0]])
-                            .addClass("compared")
-                            .wait(innerDelay)
-                            .removeClass("compared");
-                        $(bars[elem[1]])
-                            .addClass("compared")
-                            .wait(innerDelay)
-                            .removeClass("compared");
+                    let highlight = solution.moves[i].highlight;
+
+                    if (highlight.length && i != solution.moves.length - 1) {
+                        for (h = 0; h < highlight.length; ++h) {
+                            $(bars[highlight[h]]).addClass("compared");
+                        }
+                    }
+
+                    if (elem.length) {
                         $(bars[elem[0]]).swap(bars[elem[1]]);
                     }
 
@@ -49,7 +47,7 @@ function animate(origin, solution) {
                     }
                 }, DELAY * TOTAL_ELEMENTS * i)
             );
-        })(solution, i, bars, timeouts);
+        })(solution, i, bars, timeouts, DELAY, TOTAL_ELEMENTS);
     }
 }
 
@@ -64,6 +62,99 @@ function reset() {
     stopAnimation();
     updateDelay();
     updateElements();
+}
+
+function bubble(e) {
+    var elements = e;
+    var solutionObject = {};
+    solutionObject.moves = [];
+
+    for (i = 0; i < elements.length; ++i) {
+        for (j = 0; j < elements.length - i - 1; ++j) {
+            let move = {
+                highlight: [],
+                elements: []
+            };
+
+            move.highlight.push(j);
+            move.highlight.push(j + 1);
+            solutionObject.moves.push(move);
+
+            if (elements[j] < elements[j + 1]) {
+                move = {
+                    highlight: [],
+                    elements: []
+                };
+                move.elements.push(j);
+                move.elements.push(j + 1);
+
+                var temp = elements[j];
+                elements[j] = elements[j + 1];
+                elements[j + 1] = temp;
+
+                move.highlight.push(j);
+                move.highlight.push(j + 1);
+            }
+            solutionObject.moves.push(move);
+        }
+    }
+    console.log(solutionObject);
+    return solutionObject;
+}
+
+function comb(e) {
+    var solutionObject = {};
+    solutionObject.moves = [];
+
+    function getNextGap(gap) {
+        let local_gap = Math.floor((gap * 10) / 13);
+        if (local_gap < 1) {
+            return 1;
+        }
+
+        return local_gap;
+    }
+
+    let n = e.length;
+    let gap = n;
+    let swapped = true;
+
+    while (1 != gap || true == swapped) {
+        gap = getNextGap(gap);
+        swapped = false;
+
+        for (i = 0; i < n - gap; ++i) {
+            move = {
+                highlight: [],
+                elements: []
+            };
+            move.highlight.push(i);
+            move.highlight.push(gap + i);
+            solutionObject.moves.push(move);
+
+            if (e[i] < e[gap + i]) {
+                move = {
+                    highlight: [],
+                    elements: []
+                };
+                move.elements.push(i);
+                move.elements.push(gap + i);
+
+                let temp = e[i];
+                e[i] = e[gap + i];
+                e[i + gap] = temp;
+
+                move.highlight.push(i);
+                move.highlight.push(gap + i);
+
+                swapped = true;
+            }
+
+            solutionObject.moves.push(move);
+        }
+    }
+
+    return solutionObject;
 }
 
 function insertion(e) {
@@ -82,8 +173,8 @@ function insertion(e) {
                 elements: []
             };
 
-            move.highlight.push(j, "compared");
-            move.highlight.push(j + 1, "compared");
+            move.highlight.push(j);
+            move.highlight.push(j + 1);
 
             move.elements.push(j + 1);
             move.elements.push(j);
@@ -92,88 +183,6 @@ function insertion(e) {
             j = j - 1;
         }
         elements[j + 1] = key;
-    }
-
-    return solutionObject;
-}
-
-function bubble(e) {
-    var elements = e;
-    var solutionObject = {};
-    solutionObject.moves = [];
-
-    for (i = 0; i < elements.length; ++i) {
-        for (j = 0; j < elements.length - i - 1; ++j) {
-            move = {
-                highlight: [],
-                elements: []
-            };
-
-            move.highlight.push(j, "compared");
-            move.highlight.push(j + 1, "compared");
-
-            if (elements[j] < elements[j + 1]) {
-                var temp = elements[j];
-                elements[j] = elements[j + 1];
-                elements[j + 1] = temp;
-                move.elements.push(j);
-                move.elements.push(j + 1);
-                solutionObject.moves.push(move);
-            }
-        }
-    }
-    return solutionObject;
-}
-
-
-function comb(e)
-{
-    var solutionObject = {};
-    solutionObject.moves = [];
-
-    function getNextGap(gap)
-    {
-        let local_gap = Math.floor((gap * 10) / 13);
-        if (local_gap < 1)
-        {
-            return 1;
-        }
-
-        return local_gap;
-    }
-
-    let n = e.length;
-    let gap = n;
-    let swapped = true;
-
-    while ( 1 != gap || true == swapped)
-    {
-        gap = getNextGap(gap);
-        swapped = false;
-
-        for (i = 0; i < n - gap; ++i)
-        {
-            move = {
-                highlight: [],
-                elements: []
-            };
-
-            if (e[i] < e[gap + i])
-            {
-                move.highlight.push(i, "compared");
-                move.highlight.push(gap + i, "compared");
-                move.elements.push(i);
-                move.elements.push(gap + i);
-
-                let temp = e[i];
-                e[i] = e[gap+i];
-                e[i+gap] = temp;
-
-                swapped = true;
-            }
-            
-            solutionObject.moves.push(move);
-        }
     }
 
     return solutionObject;
@@ -190,10 +199,19 @@ function selection(e) {
             highlight: [],
             elements: []
         };
-        for (j = i + 1; j < elements.length; ++j) {
-            move.highlight.push(j, "compared");
-            move.highlight.push(j + 1, "compared");
+        move.highlight.push(i);
+        move.highlight.push(currentMax);
+        solutionObject.moves.push(move);
 
+        for (j = i + 1; j < elements.length; ++j) {
+            move = {
+                highlight: [],
+                elements: []
+            };
+            move.highlight.push(i);
+            move.highlight.push(j);
+            move.highlight.push(currentMax);
+            solutionObject.moves.push(move);
             if (elements[j] > elements[currentMax]) {
                 currentMax = j;
             }
@@ -202,6 +220,12 @@ function selection(e) {
         elements[currentMax] = elements[i];
         elements[i] = temp;
 
+        move = {
+            highlight: [],
+            elements: []
+        };
+        move.highlight.push(j);
+        move.highlight.push(currentMax);
         move.elements.push(i);
         move.elements.push(currentMax);
         solutionObject.moves.push(move);
@@ -223,7 +247,7 @@ function solve(algo, input) {
         case "bubble": {
             return bubble(input);
         }
-        case "comb" : {
+        case "comb": {
             return comb(input);
         }
         case "insertion": {
