@@ -7,7 +7,7 @@ body {
     color: #fff;
     display: grid;
     grid-template-areas: "m" "c";
-    grid-gap: 25px;
+    grid-gap: 10px;
 }
 
 #container {
@@ -84,12 +84,13 @@ input[type="range"] {
 }
 
 #menu {
+    background: #000;
     grid-area: m;
     display: grid;
-    grid-template-areas: ". sliders" "buttons buttons";
+    grid-template-areas: "buttons buttons sliders";
     /* grid-template-columns: repeat(auto-fit, minmax(50%, 1fr)); */
     grid-gap: 10px;
-    width: 800px;
+    width: 100%;
     height: auto;
     margin: auto;
     padding: 0px;
