@@ -28,16 +28,20 @@ function animate(origin, solution) {
                     let highlight = solution.moves[i].highlight;
 
                     let elem = solution.moves[i].elements;
-                    $(bars[elem[0]])
-                        .addClass("compared")
-                        .wait(100)
-                        .removeClass("compared");
-                    $(bars[elem[1]])
-                        .addClass("compared")
-                        .wait(100)
-                        .removeClass("compared");
 
-                    $(bars[elem[0]]).swap(bars[elem[1]]);
+                    if (0 < elem.length)
+                    {
+                        $(bars[elem[0]])
+                            .addClass("compared")
+                            .wait(100)
+                            .removeClass("compared");
+                        $(bars[elem[1]])
+                            .addClass("compared")
+                            .wait(100)
+                            .removeClass("compared");
+                        $(bars[elem[0]]).swap(bars[elem[1]]);
+                    }
+
                     if (i == solution.moves.length - 1) {
                         $("#stop")
                             .attr("disabled", true)
@@ -121,6 +125,60 @@ function bubble(e) {
     return solutionObject;
 }
 
+
+function comb(e)
+{
+    var solutionObject = {};
+    solutionObject.moves = [];
+
+    function getNextGap(gap)
+    {
+        let local_gap = Math.floor((gap * 10) / 13);
+        if (local_gap < 1)
+        {
+            return 1;
+        }
+
+        return local_gap;
+    }
+
+    let n = e.length;
+    let gap = n;
+    let swapped = true;
+
+    while ( 1 != gap || true == swapped)
+    {
+        gap = getNextGap(gap);
+        swapped = false;
+
+        for (i = 0; i < n - gap; ++i)
+        {
+            move = {
+                highlight: [],
+                elements: []
+            };
+
+            if (e[i] < e[gap + i])
+            {
+                move.highlight.push(i, "compared");
+                move.highlight.push(gap + i, "compared");
+                move.elements.push(i);
+                move.elements.push(gap + i);
+
+                let temp = e[i];
+                e[i] = e[gap+i];
+                e[i+gap] = temp;
+
+                swapped = true;
+            }
+            
+            solutionObject.moves.push(move);
+        }
+    }
+
+    return solutionObject;
+}
+
 function selection(e) {
     var elements = e;
     var solutionObject = {};
@@ -164,15 +222,15 @@ function solve(algo, input) {
     switch (algo) {
         case "bubble": {
             return bubble(input);
-            break;
+        }
+        case "comb" : {
+            return comb(input);
         }
         case "insertion": {
             return insertion(input);
-            break;
         }
         case "selection": {
             return selection(input);
-            break;
         }
         default: {
             return false;
