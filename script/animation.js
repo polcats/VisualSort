@@ -34,7 +34,7 @@ function animate(origin, solution) {
                         $(bars[elem[1]]).swap(bars[elem[0]]);
                     }
 
-                    if (!lastFrame) {
+                    if (lastFrame) {
                         $("#stop")
                             .attr("disabled", true)
                             .removeClass("green");
