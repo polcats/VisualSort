@@ -16,3 +16,20 @@ An animated visualization of sorting algorithms.
 <li>Merge Sort</li>
 <li>Shell Sort</li>
 </ul>
+
+<h2>Solution and Animation Method (under construction)</h2>
+
+<h3>Animation Object</h3>
+<p>This contains multiple frames which holds the indeces of the elements to be highlighted and/or swapped.</p>
+
+```javascript
+Animation = {
+    "frames":[
+        {
+            "elements":[],
+            "highlights":[]
+        }
+    ]
+}
+```
+
