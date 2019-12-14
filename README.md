@@ -39,7 +39,7 @@ Animation = {
     ]
 }
 ```
-<h3>Usage</3>
+<h3>Usage</h3>
 <p>The animation object is created in a sorting algorithm. <br> Particular events are stored as frames of the animation.</p>
 
 ```javascript
