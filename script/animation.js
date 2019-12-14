@@ -8,15 +8,14 @@ $.fn.swap = function(elem) {
     });
 };
 
-var timeouts = [];
-function animate(origin, solution) {
-    timeouts = [];
+var ANIMATION_FRAMES = [];
+function animate(solution) {
+    ANIMATION_FRAMES = [];
 
     let frames = solution.getFrames();
-
     for (i = 0; i < frames.length; ++i) {
-        (function(frames, i, bars, timeouts, DELAY, TOTAL_ELEMENTS) {
-            timeouts.push(
+        (function(frames, i, bars, ANIMATION_FRAMES, DELAY, TOTAL_ELEMENTS) {
+            ANIMATION_FRAMES.push(
                 setTimeout(function() {
                     $(".bar").removeClass("compared");
                     let innerDelay = DELAY * TOTAL_ELEMENTS;
@@ -41,13 +40,13 @@ function animate(origin, solution) {
                     }
                 }, DELAY * TOTAL_ELEMENTS * i)
             );
-        })(frames, i, bars, timeouts, DELAY, TOTAL_ELEMENTS);
+        })(frames, i, bars, ANIMATION_FRAMES, DELAY, TOTAL_ELEMENTS);
     }
 }
 
 function stopAnimation() {
-    for (i = 0; i < timeouts.length; ++i) {
-        clearTimeout(timeouts[i]);
+    for (i = 0; i < ANIMATION_FRAMES.length; ++i) {
+        clearTimeout(ANIMATION_FRAMES[i]);
     }
     disableInput(false);
 }
@@ -56,6 +55,45 @@ function reset() {
     stopAnimation();
     updateDelay();
     updateElements();
+}
+
+function runAlgo(algo) {
+    function getElements() {
+        var els = Array();
+        for (i = 0; i < bars.length; ++i) {
+            els.push(parseInt(bars[i].innerHTML));
+        }
+
+        return els;
+    }
+
+    function solve(algo, input) {
+        switch (algo) {
+            case "bubble": {
+                return bubble(input);
+            }
+            case "comb": {
+                return comb(input);
+            }
+            case "insertion": {
+                return insertion(input);
+            }
+            case "selection": {
+                return selection(input);
+            }
+            default: {
+                return false;
+            }
+        }
+    }
+
+    disableInput();
+    var origin = getElements();
+    var origin_copy = JSON.parse(JSON.stringify(origin));
+    var solution = solve(algo, origin_copy);
+    if (solution) {
+        animate(solution);
+    }
 }
 
 class Move {
@@ -217,43 +255,4 @@ function selection(e) {
     }
 
     return solution;
-}
-
-function getElements() {
-    var els = Array();
-    for (i = 0; i < bars.length; ++i) {
-        els.push(parseInt(bars[i].innerHTML));
-    }
-
-    return els;
-}
-
-function solve(algo, input) {
-    switch (algo) {
-        case "bubble": {
-            return bubble(input);
-        }
-        case "comb": {
-            return comb(input);
-        }
-        case "insertion": {
-            return insertion(input);
-        }
-        case "selection": {
-            return selection(input);
-        }
-        default: {
-            return false;
-        }
-    }
-}
-
-function runAlgo(algo) {
-    disableInput();
-    var origin = getElements();
-    var origin_copy = JSON.parse(JSON.stringify(origin));
-    var solution = solve(algo, origin_copy);
-    if (solution) {
-        animate(origin, solution);
-    }
 }
