@@ -161,9 +161,8 @@ function comb(e) {
 }
 
 function insertion(e) {
-    var elements = e;
-    var solutionObject = {};
-    solutionObject.moves = [];
+    let elements = e;
+    let solution = new Animation();
 
     for (i = 1; i < elements.length; ++i) {
         var key = elements[i];
@@ -171,24 +170,17 @@ function insertion(e) {
         while (j >= 0 && elements[j] < key) {
             elements[j + 1] = elements[j];
 
-            move = {
-                highlight: [],
-                elements: []
-            };
-
-            move.highlight.push(j);
-            move.highlight.push(j + 1);
-
-            move.elements.push(j + 1);
-            move.elements.push(j);
-            solutionObject.moves.push(move);
+            let move = new Move();
+            move.addHighlights([j, j + 1]);
+            move.addElements([j, j + 1]);
+            solution.addMove(move);
 
             j = j - 1;
         }
         elements[j + 1] = key;
     }
 
-    return solutionObject;
+    return solution;
 }
 
 function selection(e) {
