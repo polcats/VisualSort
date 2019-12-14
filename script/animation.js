@@ -82,7 +82,9 @@ class Move {
 class Animation {
     Animation() {}
     addMove(move) {
-        this.frames.push(move);
+        // only stores a copy
+        let temp = JSON.parse(JSON.stringify(move));
+        this.frames.push(temp);
     }
     getFrames() {
         return this.frames;
@@ -98,10 +100,10 @@ function bubble(e) {
         for (j = 0; j < elements.length - i - 1; ++j) {
             let move = new Move();
             move.addHighlights([j, j + 1]);
-            solution.addMove(move);
+            solution.addMove({ ...move });
 
             if (elements[j] < elements[j + 1]) {
-                move = new Move();
+                move.reset();
                 move.addElements([j, j + 1]);
 
                 var temp = elements[j];
@@ -109,7 +111,7 @@ function bubble(e) {
                 elements[j + 1] = temp;
 
                 move.addHighlights([j, j + 1]);
-                solution.addMove(move);
+                solution.addMove({ ...move });
             }
         }
     }
@@ -142,7 +144,7 @@ function comb(e) {
             solution.addMove(move);
 
             if (e[i] < e[gap + i]) {
-                move = new Move();
+                move.reset();
                 move.addElements([i, i + gap]);
 
                 let temp = e[i];
@@ -195,7 +197,7 @@ function selection(e) {
         solution.addMove(move);
 
         for (j = i + 1; j < elements.length; ++j) {
-            move = new Move();
+            move.reset();
             move.addHighlights([i, j, currentMax]);
             solution.addMove(move);
 
@@ -208,7 +210,7 @@ function selection(e) {
         elements[currentMax] = elements[i];
         elements[i] = temp;
 
-        move = new Move();
+        move.reset();
         move.addHighlights([j, currentMax]);
         move.addElements([i, currentMax]);
         solution.addMove(move);
