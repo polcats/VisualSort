@@ -133,6 +133,7 @@ input[type="range"] {
 #algos select[disabled] {
     color: #fff;
     opacity: 0.5;
+    cursor: not-allowed;
 }
 
 #buttons {
