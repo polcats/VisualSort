@@ -94,8 +94,8 @@ function runAlgo() {
     }
 }
 
-class Move {
-    Move() {}
+class Frame {
+    Frame() {}
     addHighlights(highlights) {
         for (const e of highlights) {
             this.highlights.push(e);
@@ -117,7 +117,7 @@ class Move {
 
 class Animation {
     Animation() {}
-    addMove(frame) {
+    addFrame(frame) {
         // only stores a copy
         let temp = JSON.parse(JSON.stringify(frame));
         this.frames.push(temp);
@@ -135,9 +135,9 @@ class Algorithms {
 
         for (let i = 0; i < elements.length; ++i) {
             for (let j = 0; j < elements.length - i - 1; ++j) {
-                let frame = new Move();
+                let frame = new Frame();
                 frame.addHighlights([j, j + 1]);
-                solution.addMove({ ...frame });
+                solution.addFrame({ ...frame });
 
                 if (elements[j] < elements[j + 1]) {
                     frame.reset();
@@ -148,7 +148,7 @@ class Algorithms {
                     elements[j + 1] = temp;
 
                     frame.addHighlights([j, j + 1]);
-                    solution.addMove({ ...frame });
+                    solution.addFrame({ ...frame });
                 }
             }
         }
@@ -176,9 +176,9 @@ class Algorithms {
             swapped = false;
 
             for (i = 0; i < n - gap; ++i) {
-                let frame = new Move();
+                let frame = new Frame();
                 frame.addHighlights([i, i + gap]);
-                solution.addMove(frame);
+                solution.addFrame(frame);
 
                 if (e[i] < e[gap + i]) {
                     frame.reset();
@@ -189,7 +189,7 @@ class Algorithms {
                     e[i + gap] = temp;
 
                     frame.addHighlights([i, i + gap]);
-                    solution.addMove(frame);
+                    solution.addFrame(frame);
 
                     swapped = true;
                 }
@@ -209,10 +209,10 @@ class Algorithms {
             while (j >= 0 && elements[j] < key) {
                 elements[j + 1] = elements[j];
 
-                let frame = new Move();
+                let frame = new Frame();
                 frame.addHighlights([j, j + 1]);
                 frame.addElements([j, j + 1]);
-                solution.addMove(frame);
+                solution.addFrame(frame);
 
                 j = j - 1;
             }
@@ -228,15 +228,15 @@ class Algorithms {
 
         for (i = 0; i < elements.length - 1; ++i) {
             let currentMax = i;
-            let frame = new Move();
+            let frame = new Frame();
 
             frame.addHighlights([i, currentMax]);
-            solution.addMove(frame);
+            solution.addFrame(frame);
 
             for (var j = i + 1; j < elements.length; ++j) {
                 frame.reset();
                 frame.addHighlights([i, j, currentMax]);
-                solution.addMove(frame);
+                solution.addFrame(frame);
 
                 if (elements[j] > elements[currentMax]) {
                     currentMax = j;
@@ -250,7 +250,7 @@ class Algorithms {
             frame.reset();
             frame.addHighlights([j, currentMax]);
             frame.addElements([i, currentMax]);
-            solution.addMove(frame);
+            solution.addFrame(frame);
         }
 
         return solution;
