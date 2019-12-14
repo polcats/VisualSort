@@ -36,14 +36,19 @@ function insertBars() {
 }
 
 function disableInput(what = true) {
+    // disable input
     $(".sort").attr("disabled", what);
     $(".slider-input").attr("disabled", what);
+
     $("#stop")
-        .attr("disabled", false)
-        .addClass("green");
+        .attr("disabled", true)
+        .removeClass("green");
 
     if (what) {
         $(".sort").removeClass("green");
+        $("#stop")
+            .attr("disabled", false)
+            .addClass("green");
     } else {
         $(".sort").addClass("green");
     }
