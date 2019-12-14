@@ -8,7 +8,7 @@ $.fn.swap = function(elem) {
     });
 };
 
-var ANIMATION_FRAMES = [];
+let ANIMATION_FRAMES = [];
 function animate(solution) {
     ANIMATION_FRAMES = [];
 
@@ -57,7 +57,7 @@ function runAlgo() {
         .val();
 
     function getElements() {
-        var els = Array();
+        let els = Array();
         for (i = 0; i < bars.length; ++i) {
             els.push(parseInt(bars[i].innerHTML));
         }
@@ -86,9 +86,9 @@ function runAlgo() {
     }
 
     disableInput();
-    var origin = getElements();
-    var origin_copy = JSON.parse(JSON.stringify(origin));
-    var solution = solve(algo, origin_copy);
+    let origin = getElements();
+    let origin_copy = JSON.parse(JSON.stringify(origin));
+    let solution = solve(algo, origin_copy);
     if (solution) {
         animate(solution);
     }
@@ -96,16 +96,19 @@ function runAlgo() {
 
 class Frame {
     Frame() {}
+
     addHighlights(highlights) {
         for (const e of highlights) {
             this.highlights.push(e);
         }
     }
+
     addElements(elements) {
         for (const e of elements) {
             this.elements.push(e);
         }
     }
+
     reset() {
         this.highlights.length = 0;
         this.elements.length = 0;
@@ -117,14 +120,17 @@ class Frame {
 
 class Animation {
     Animation() {}
+
     addFrame(frame) {
         // only stores a copy
         let temp = JSON.parse(JSON.stringify(frame));
         this.frames.push(temp);
     }
+
     getFrames() {
         return this.frames;
     }
+
     frames = Array();
 }
 
@@ -143,7 +149,7 @@ class Algorithms {
                     frame.reset();
                     frame.addElements([j, j + 1]);
 
-                    var temp = elements[j];
+                    let temp = elements[j];
                     elements[j] = elements[j + 1];
                     elements[j + 1] = temp;
 
@@ -152,6 +158,7 @@ class Algorithms {
                 }
             }
         }
+
         return solution;
     }
 
@@ -204,8 +211,8 @@ class Algorithms {
         let solution = new Animation();
 
         for (i = 1; i < elements.length; ++i) {
-            var key = elements[i];
-            var j = i - 1;
+            let key = elements[i];
+            let j = i - 1;
             while (j >= 0 && elements[j] < key) {
                 elements[j + 1] = elements[j];
 
@@ -233,7 +240,8 @@ class Algorithms {
             frame.addHighlights([i, currentMax]);
             solution.addFrame(frame);
 
-            for (var j = i + 1; j < elements.length; ++j) {
+            let j = 0;
+            for (j = i + 1; j < elements.length; ++j) {
                 frame.reset();
                 frame.addHighlights([i, j, currentMax]);
                 solution.addFrame(frame);
