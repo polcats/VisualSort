@@ -117,9 +117,9 @@ class Move {
 
 class Animation {
     Animation() {}
-    addMove(move) {
+    addMove(frame) {
         // only stores a copy
-        let temp = JSON.parse(JSON.stringify(move));
+        let temp = JSON.parse(JSON.stringify(frame));
         this.frames.push(temp);
     }
     getFrames() {
@@ -135,20 +135,20 @@ class Algorithms {
 
         for (let i = 0; i < elements.length; ++i) {
             for (let j = 0; j < elements.length - i - 1; ++j) {
-                let move = new Move();
-                move.addHighlights([j, j + 1]);
-                solution.addMove({ ...move });
+                let frame = new Move();
+                frame.addHighlights([j, j + 1]);
+                solution.addMove({ ...frame });
 
                 if (elements[j] < elements[j + 1]) {
-                    move.reset();
-                    move.addElements([j, j + 1]);
+                    frame.reset();
+                    frame.addElements([j, j + 1]);
 
                     var temp = elements[j];
                     elements[j] = elements[j + 1];
                     elements[j + 1] = temp;
 
-                    move.addHighlights([j, j + 1]);
-                    solution.addMove({ ...move });
+                    frame.addHighlights([j, j + 1]);
+                    solution.addMove({ ...frame });
                 }
             }
         }
@@ -176,20 +176,20 @@ class Algorithms {
             swapped = false;
 
             for (i = 0; i < n - gap; ++i) {
-                let move = new Move();
-                move.addHighlights([i, i + gap]);
-                solution.addMove(move);
+                let frame = new Move();
+                frame.addHighlights([i, i + gap]);
+                solution.addMove(frame);
 
                 if (e[i] < e[gap + i]) {
-                    move.reset();
-                    move.addElements([i, i + gap]);
+                    frame.reset();
+                    frame.addElements([i, i + gap]);
 
                     let temp = e[i];
                     e[i] = e[gap + i];
                     e[i + gap] = temp;
 
-                    move.addHighlights([i, i + gap]);
-                    solution.addMove(move);
+                    frame.addHighlights([i, i + gap]);
+                    solution.addMove(frame);
 
                     swapped = true;
                 }
@@ -209,10 +209,10 @@ class Algorithms {
             while (j >= 0 && elements[j] < key) {
                 elements[j + 1] = elements[j];
 
-                let move = new Move();
-                move.addHighlights([j, j + 1]);
-                move.addElements([j, j + 1]);
-                solution.addMove(move);
+                let frame = new Move();
+                frame.addHighlights([j, j + 1]);
+                frame.addElements([j, j + 1]);
+                solution.addMove(frame);
 
                 j = j - 1;
             }
@@ -228,15 +228,15 @@ class Algorithms {
 
         for (i = 0; i < elements.length - 1; ++i) {
             let currentMax = i;
-            let move = new Move();
+            let frame = new Move();
 
-            move.addHighlights([i, currentMax]);
-            solution.addMove(move);
+            frame.addHighlights([i, currentMax]);
+            solution.addMove(frame);
 
             for (var j = i + 1; j < elements.length; ++j) {
-                move.reset();
-                move.addHighlights([i, j, currentMax]);
-                solution.addMove(move);
+                frame.reset();
+                frame.addHighlights([i, j, currentMax]);
+                solution.addMove(frame);
 
                 if (elements[j] > elements[currentMax]) {
                     currentMax = j;
@@ -247,10 +247,10 @@ class Algorithms {
             elements[currentMax] = elements[i];
             elements[i] = temp;
 
-            move.reset();
-            move.addHighlights([j, currentMax]);
-            move.addElements([i, currentMax]);
-            solution.addMove(move);
+            frame.reset();
+            frame.addHighlights([j, currentMax]);
+            frame.addElements([i, currentMax]);
+            solution.addMove(frame);
         }
 
         return solution;
