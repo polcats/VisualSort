@@ -91,10 +91,7 @@ class Animation {
 }
 
 function bubble(e) {
-    var elements = e;
-    var solutionObject = {};
-    solutionObject.moves = [];
-
+    let elements = e;
     let solution = new Animation();
 
     for (i = 0; i < elements.length; ++i) {
@@ -116,13 +113,11 @@ function bubble(e) {
             }
         }
     }
-    console.log(solution);
     return solution;
 }
 
 function comb(e) {
-    var solutionObject = {};
-    solutionObject.moves = [];
+    let solution = new Animation();
 
     function getNextGap(gap) {
         let local_gap = Math.floor((gap * 10) / 13);
@@ -142,37 +137,27 @@ function comb(e) {
         swapped = false;
 
         for (i = 0; i < n - gap; ++i) {
-            move = {
-                highlight: [],
-                elements: []
-            };
-            move.highlight.push(i);
-            move.highlight.push(gap + i);
-            solutionObject.moves.push(move);
+            let move = new Move();
+            move.addHighlights([i, i + gap]);
+            solution.addMove(move);
 
             if (e[i] < e[gap + i]) {
-                move = {
-                    highlight: [],
-                    elements: []
-                };
-                move.elements.push(i);
-                move.elements.push(gap + i);
+                move = new Move();
+                move.addElements([i, i + gap]);
 
                 let temp = e[i];
                 e[i] = e[gap + i];
                 e[i + gap] = temp;
 
-                move.highlight.push(i);
-                move.highlight.push(gap + i);
+                move.addHighlights([i, i + gap]);
+                solution.addMove(move);
 
                 swapped = true;
             }
-
-            solutionObject.moves.push(move);
         }
     }
 
-    return solutionObject;
+    return solution;
 }
 
 function insertion(e) {
