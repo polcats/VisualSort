@@ -1,15 +1,14 @@
-function shell(e)
-{
+// this is a draft file to test functionalities of upcoming/ongoing algos
+
+function shell(e) {
     let elements = e;
     let n = e.length;
 
     var solutionObject = {};
     solutionObject.moves = [];
 
-    for (gap =  parseInt(n / 2); gap > 0; gap = parseInt(gap / 2))
-    {
-        for (i = gap; i < n; ++i)
-        {
+    for (gap = parseInt(n / 2); gap > 0; gap = parseInt(gap / 2)) {
+        for (i = gap; i < n; ++i) {
             temp = elements[i];
 
             move = {
@@ -17,13 +16,11 @@ function shell(e)
                 elements: []
             };
 
-            
             let j;
-            for (j = i; j >= gap && (elements[j - gap] > temp); j-=gap)
-            {
+            for (j = i; j >= gap && elements[j - gap] > temp; j -= gap) {
                 move.elements.push(j);
                 move.elements.push(j - gap);
-                
+
                 move.highlight.push(j, "compared");
                 move.highlight.push(j - gap, "compared");
 
@@ -31,25 +28,54 @@ function shell(e)
                 solutionObject.moves.push(move);
             }
             elements[j] = temp;
-            
         }
     }
 
     return solutionObject;
 }
 
-function runTest()
-{
+function runTest() {
     disableInput();
     var origin = getElements();
     var origin_copy = JSON.parse(JSON.stringify(origin));
     var solution = shell(origin_copy);
     if (solution) {
         try {
-
             animate(origin, solution);
             console.log(solution);
-        }
-        catch(e){}
+        } catch (e) {}
     }
+}
+
+function mergeSort(e) {
+    if (e.length <= 1) {
+        return e;
+    }
+    let elements = e;
+
+    const mid = Math.floor(elements.length / 2),
+        left = elements.slice(0, mid),
+        right = elements.slice(mid);
+
+    return merge(mergeSort(left), mergeSort(right));
+}
+
+function merge(left, right) {
+    let solution = new Array(),
+        li = 0,
+        ri = 0;
+
+    while (li < left.length && ri < right.length) {
+        if (left[li] > right[ri]) {
+            solution.push(left[li]);
+            ++li;
+
+            continue;
+        }
+
+        solution.push(right[ri]);
+        ++ri;
+    }
+
+    return solution.concat(left.slice(li)).concat(right.slice(ri));
 }
