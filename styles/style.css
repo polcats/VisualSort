@@ -87,8 +87,8 @@ input[type="range"] {
     background: #000;
     grid-area: m;
     display: grid;
-    grid-template-areas: "sliders buttons";
-    grid-template-columns: repeat(auto-fit, minmax(50%, 1fr));
+    grid-template-areas: "sliders algos buttons";
+    grid-template-columns: repeat(auto-fit, minmax(33%, 1fr));
     grid-gap: 10px;
     width: 100vw;
     height: auto;
@@ -110,6 +110,12 @@ input[type="range"] {
 #sliders {
     grid-area: sliders;
     margin: auto;
+}
+
+#algos {
+    display: flex;
+    grid-area: algos;
+    align-items: center;
 }
 
 #buttons {
