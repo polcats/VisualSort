@@ -13,7 +13,6 @@ function animate(origin, solution) {
     timeouts = [];
 
     let frames = solution.getFrames();
-    console.log(frames);
 
     for (i = 0; i < frames.length; ++i) {
         (function(frames, i, bars, timeouts, DELAY, TOTAL_ELEMENTS) {
@@ -21,12 +20,11 @@ function animate(origin, solution) {
                 setTimeout(function() {
                     $(".bar").removeClass("compared");
                     let innerDelay = DELAY * TOTAL_ELEMENTS;
-
+                    let lastFrame = i == frames.length - 1;
                     let elem = frames[i].elements;
                     let highlight = frames[i].highlights;
-                    console.log(elem);
 
-                    if (highlight.length && i != frames.length - 1) {
+                    if (0 < highlight.length && !lastFrame) {
                         for (h = 0; h < highlight.length; ++h) {
                             $(bars[highlight[h]]).addClass("compared");
                         }
@@ -36,7 +34,7 @@ function animate(origin, solution) {
                         $(bars[elem[1]]).swap(bars[elem[0]]);
                     }
 
-                    if (i == frames.length - 1) {
+                    if (!lastFrame) {
                         $("#stop")
                             .attr("disabled", true)
                             .removeClass("green");
