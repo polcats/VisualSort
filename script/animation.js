@@ -1,13 +1,3 @@
-function generateElements(count) {
-    // generate unique values
-    var set = new Set();
-    while (set.size < count) {
-        set.add(Math.round(Math.random() * 99) + 1);
-    }
-
-    return Array.from(set);
-}
-
 $.fn.swap = function(elem) {
     elem = elem.jquery ? elem : $(elem);
     return this.each(function() {
@@ -21,33 +11,39 @@ $.fn.swap = function(elem) {
 var timeouts = [];
 function animate(origin, solution) {
     timeouts = [];
-    for (i = 0; i < solution.moves.length; ++i) {
-        (function(solution, i, bars, timeouts, DELAY, TOTAL_ELEMENTS) {
+
+    let frames = solution.getFrames();
+    console.log(frames);
+
+    for (i = 0; i < frames.length; ++i) {
+        (function(frames, i, bars, timeouts, DELAY, TOTAL_ELEMENTS) {
             timeouts.push(
                 setTimeout(function() {
                     $(".bar").removeClass("compared");
-                    let elem = solution.moves[i].elements;
                     let innerDelay = DELAY * TOTAL_ELEMENTS;
-                    let highlight = solution.moves[i].highlight;
 
-                    if (highlight.length && i != solution.moves.length - 1) {
+                    let elem = frames[i].elements;
+                    let highlight = frames[i].highlights;
+                    console.log(elem);
+
+                    if (highlight.length && i != frames.length - 1) {
                         for (h = 0; h < highlight.length; ++h) {
                             $(bars[highlight[h]]).addClass("compared");
                         }
                     }
 
-                    if (elem.length) {
-                        $(bars[elem[0]]).swap(bars[elem[1]]);
+                    if (0 < elem.length) {
+                        $(bars[elem[1]]).swap(bars[elem[0]]);
                     }
 
-                    if (i == solution.moves.length - 1) {
+                    if (i == frames.length - 1) {
                         $("#stop")
                             .attr("disabled", true)
                             .removeClass("green");
                     }
                 }, DELAY * TOTAL_ELEMENTS * i)
             );
-        })(solution, i, bars, timeouts, DELAY, TOTAL_ELEMENTS);
+        })(frames, i, bars, timeouts, DELAY, TOTAL_ELEMENTS);
     }
 }
 
@@ -64,42 +60,66 @@ function reset() {
     updateElements();
 }
 
+class Move {
+    Move() {}
+    addHighlights(highlights) {
+        for (const e of highlights) {
+            this.highlights.push(e);
+        }
+    }
+    addElements(elements) {
+        for (const e of elements) {
+            this.elements.push(e);
+        }
+    }
+    reset() {
+        this.highlights.length = 0;
+        this.elements.length = 0;
+    }
+
+    elements = Array();
+    highlights = Array();
+}
+
+class Animation {
+    Animation() {}
+    addMove(move) {
+        this.frames.push(move);
+    }
+    getFrames() {
+        return this.frames;
+    }
+    frames = Array();
+}
+
 function bubble(e) {
     var elements = e;
     var solutionObject = {};
     solutionObject.moves = [];
 
+    let solution = new Animation();
+
     for (i = 0; i < elements.length; ++i) {
         for (j = 0; j < elements.length - i - 1; ++j) {
-            let move = {
-                highlight: [],
-                elements: []
-            };
-
-            move.highlight.push(j);
-            move.highlight.push(j + 1);
-            solutionObject.moves.push(move);
+            let move = new Move();
+            move.addHighlights([j, j + 1]);
+            solution.addMove(move);
 
             if (elements[j] < elements[j + 1]) {
-                move = {
-                    highlight: [],
-                    elements: []
-                };
-                move.elements.push(j);
-                move.elements.push(j + 1);
+                move = new Move();
+                move.addElements([j, j + 1]);
 
                 var temp = elements[j];
                 elements[j] = elements[j + 1];
                 elements[j + 1] = temp;
 
-                move.highlight.push(j);
-                move.highlight.push(j + 1);
+                move.addHighlights([j, j + 1]);
+                solution.addMove(move);
             }
-            solutionObject.moves.push(move);
         }
     }
-    console.log(solutionObject);
-    return solutionObject;
+    console.log(solution);
+    return solution;
 }
 
 function comb(e) {
