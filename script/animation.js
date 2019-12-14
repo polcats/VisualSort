@@ -51,12 +51,6 @@ function stopAnimation() {
     disableInput(false);
 }
 
-function reset() {
-    stopAnimation();
-    updateDelay();
-    updateElements();
-}
-
 function runAlgo(algo) {
     function getElements() {
         var els = Array();
@@ -70,16 +64,16 @@ function runAlgo(algo) {
     function solve(algo, input) {
         switch (algo) {
             case "bubble": {
-                return bubble(input);
+                return Algorithms.bubble(input);
             }
             case "comb": {
-                return comb(input);
+                return Algorithms.comb(input);
             }
             case "insertion": {
-                return insertion(input);
+                return Algorithms.insertion(input);
             }
             case "selection": {
-                return selection(input);
+                return Algorithms.selection(input);
             }
             default: {
                 return false;
@@ -130,129 +124,131 @@ class Animation {
     frames = Array();
 }
 
-function bubble(e) {
-    let elements = e;
-    let solution = new Animation();
+class Algorithms {
+    static bubble(e) {
+        let elements = e;
+        let solution = new Animation();
 
-    for (i = 0; i < elements.length; ++i) {
-        for (j = 0; j < elements.length - i - 1; ++j) {
-            let move = new Move();
-            move.addHighlights([j, j + 1]);
-            solution.addMove({ ...move });
-
-            if (elements[j] < elements[j + 1]) {
-                move.reset();
-                move.addElements([j, j + 1]);
-
-                var temp = elements[j];
-                elements[j] = elements[j + 1];
-                elements[j + 1] = temp;
-
+        for (let i = 0; i < elements.length; ++i) {
+            for (let j = 0; j < elements.length - i - 1; ++j) {
+                let move = new Move();
                 move.addHighlights([j, j + 1]);
                 solution.addMove({ ...move });
+
+                if (elements[j] < elements[j + 1]) {
+                    move.reset();
+                    move.addElements([j, j + 1]);
+
+                    var temp = elements[j];
+                    elements[j] = elements[j + 1];
+                    elements[j + 1] = temp;
+
+                    move.addHighlights([j, j + 1]);
+                    solution.addMove({ ...move });
+                }
             }
         }
+        return solution;
     }
-    return solution;
-}
 
-function comb(e) {
-    let solution = new Animation();
+    static comb(e) {
+        let solution = new Animation();
 
-    function getNextGap(gap) {
-        let local_gap = Math.floor((gap * 10) / 13);
-        if (local_gap < 1) {
-            return 1;
+        function getNextGap(gap) {
+            let local_gap = Math.floor((gap * 10) / 13);
+            if (local_gap < 1) {
+                return 1;
+            }
+
+            return local_gap;
         }
 
-        return local_gap;
-    }
+        let n = e.length;
+        let gap = n;
+        let swapped = true;
 
-    let n = e.length;
-    let gap = n;
-    let swapped = true;
+        while (1 != gap || true == swapped) {
+            gap = getNextGap(gap);
+            swapped = false;
 
-    while (1 != gap || true == swapped) {
-        gap = getNextGap(gap);
-        swapped = false;
-
-        for (i = 0; i < n - gap; ++i) {
-            let move = new Move();
-            move.addHighlights([i, i + gap]);
-            solution.addMove(move);
-
-            if (e[i] < e[gap + i]) {
-                move.reset();
-                move.addElements([i, i + gap]);
-
-                let temp = e[i];
-                e[i] = e[gap + i];
-                e[i + gap] = temp;
-
+            for (i = 0; i < n - gap; ++i) {
+                let move = new Move();
                 move.addHighlights([i, i + gap]);
                 solution.addMove(move);
 
-                swapped = true;
+                if (e[i] < e[gap + i]) {
+                    move.reset();
+                    move.addElements([i, i + gap]);
+
+                    let temp = e[i];
+                    e[i] = e[gap + i];
+                    e[i + gap] = temp;
+
+                    move.addHighlights([i, i + gap]);
+                    solution.addMove(move);
+
+                    swapped = true;
+                }
             }
         }
+
+        return solution;
     }
 
-    return solution;
-}
+    static insertion(e) {
+        let elements = e;
+        let solution = new Animation();
 
-function insertion(e) {
-    let elements = e;
-    let solution = new Animation();
+        for (i = 1; i < elements.length; ++i) {
+            var key = elements[i];
+            var j = i - 1;
+            while (j >= 0 && elements[j] < key) {
+                elements[j + 1] = elements[j];
 
-    for (i = 1; i < elements.length; ++i) {
-        var key = elements[i];
-        var j = i - 1;
-        while (j >= 0 && elements[j] < key) {
-            elements[j + 1] = elements[j];
+                let move = new Move();
+                move.addHighlights([j, j + 1]);
+                move.addElements([j, j + 1]);
+                solution.addMove(move);
 
+                j = j - 1;
+            }
+            elements[j + 1] = key;
+        }
+
+        return solution;
+    }
+
+    static selection(e) {
+        let elements = e;
+        let solution = new Animation();
+
+        for (i = 0; i < elements.length - 1; ++i) {
+            let currentMax = i;
             let move = new Move();
-            move.addHighlights([j, j + 1]);
-            move.addElements([j, j + 1]);
+
+            move.addHighlights([i, currentMax]);
             solution.addMove(move);
 
-            j = j - 1;
-        }
-        elements[j + 1] = key;
-    }
+            for (var j = i + 1; j < elements.length; ++j) {
+                move.reset();
+                move.addHighlights([i, j, currentMax]);
+                solution.addMove(move);
 
-    return solution;
-}
-
-function selection(e) {
-    let elements = e;
-    let solution = new Animation();
-
-    for (i = 0; i < elements.length - 1; ++i) {
-        let currentMax = i;
-        let move = new Move();
-
-        move.addHighlights([i, currentMax]);
-        solution.addMove(move);
-
-        for (j = i + 1; j < elements.length; ++j) {
-            move.reset();
-            move.addHighlights([i, j, currentMax]);
-            solution.addMove(move);
-
-            if (elements[j] > elements[currentMax]) {
-                currentMax = j;
+                if (elements[j] > elements[currentMax]) {
+                    currentMax = j;
+                }
             }
+
+            let temp = elements[currentMax];
+            elements[currentMax] = elements[i];
+            elements[i] = temp;
+
+            move.reset();
+            move.addHighlights([j, currentMax]);
+            move.addElements([i, currentMax]);
+            solution.addMove(move);
         }
 
-        let temp = elements[currentMax];
-        elements[currentMax] = elements[i];
-        elements[i] = temp;
-
-        move.reset();
-        move.addHighlights([j, currentMax]);
-        move.addElements([i, currentMax]);
-        solution.addMove(move);
+        return solution;
     }
-
-    return solution;
 }

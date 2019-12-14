@@ -52,3 +52,9 @@ function disableInput(what = true) {
 function clearContainer() {
     container.innerHTML = "";
 }
+
+function reset() {
+    stopAnimation();
+    updateDelay();
+    updateElements();
+}
