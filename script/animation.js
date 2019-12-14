@@ -184,48 +184,37 @@ function insertion(e) {
 }
 
 function selection(e) {
-    var elements = e;
-    var solutionObject = {};
-    solutionObject.moves = [];
+    let elements = e;
+    let solution = new Animation();
 
     for (i = 0; i < elements.length - 1; ++i) {
         let currentMax = i;
-        move = {
-            highlight: [],
-            elements: []
-        };
-        move.highlight.push(i);
-        move.highlight.push(currentMax);
-        solutionObject.moves.push(move);
+        let move = new Move();
+
+        move.addHighlights([i, currentMax]);
+        solution.addMove(move);
 
         for (j = i + 1; j < elements.length; ++j) {
-            move = {
-                highlight: [],
-                elements: []
-            };
-            move.highlight.push(i);
-            move.highlight.push(j);
-            move.highlight.push(currentMax);
-            solutionObject.moves.push(move);
+            move = new Move();
+            move.addHighlights([i, j, currentMax]);
+            solution.addMove(move);
+
             if (elements[j] > elements[currentMax]) {
                 currentMax = j;
             }
         }
+
         let temp = elements[currentMax];
         elements[currentMax] = elements[i];
         elements[i] = temp;
 
-        move = {
-            highlight: [],
-            elements: []
-        };
-        move.highlight.push(j);
-        move.highlight.push(currentMax);
-        move.elements.push(i);
-        move.elements.push(currentMax);
-        solutionObject.moves.push(move);
+        move = new Move();
+        move.addHighlights([j, currentMax]);
+        move.addElements([i, currentMax]);
+        solution.addMove(move);
     }
-    return solutionObject;
+
+    return solution;
 }
 
 function getElements() {
