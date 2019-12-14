@@ -51,7 +51,7 @@ input[type="button"] {
     background: #555;
     padding: 20px;
     color: #fff;
-    width: 150px;
+    width: 80px;
     border-radius: 10px;
     font-weight: bold;
     opacity: 0.7;
@@ -88,8 +88,7 @@ input[type="range"] {
     grid-area: m;
     display: grid;
     grid-template-areas: "sliders algos buttons";
-    grid-template-columns: repeat(auto-fit, minmax(33%, 1fr));
-    grid-gap: 10px;
+    grid-gap: 25px;
     width: 100vw;
     height: auto;
     margin: auto;
@@ -110,12 +109,30 @@ input[type="range"] {
 #sliders {
     grid-area: sliders;
     margin: auto;
+    width: 300px;
 }
 
 #algos {
-    display: flex;
     grid-area: algos;
     align-items: center;
+    margin: auto;
+    width: 300px;
+}
+
+#algos select {
+    width: 200px;
+    background-color: #222;
+    border-radius: 10px;
+    padding: 10px;
+    font-family: UbuntuL;
+    font-weight: bold;
+    font-size: 15px;
+    color: #fff;
+}
+
+#algos select[disabled] {
+    color: #fff;
+    opacity: 0.5;
 }
 
 #buttons {
@@ -124,6 +141,7 @@ input[type="range"] {
     flex-wrap: wrap;
     align-items: center;
     margin: auto;
+    width: 300px;
 }
 
 #buttons input[type="button"] {
@@ -140,7 +158,7 @@ input[type="range"] {
     align-items: center;
 }
 
-.slider label {
+label {
     display: inline-block;
     text-align: right;
     width: 70px;

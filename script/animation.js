@@ -51,7 +51,11 @@ function stopAnimation() {
     disableInput(false);
 }
 
-function runAlgo(algo) {
+function runAlgo() {
+    let algo = $("select#algorithms")
+        .children("option:selected")
+        .val();
+
     function getElements() {
         var els = Array();
         for (i = 0; i < bars.length; ++i) {

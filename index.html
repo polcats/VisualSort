@@ -26,20 +26,16 @@
                 </div>
             </div>
             <div id="algos">
-                <label for="algorithms">Algorithms</label>
-                <br />
+                <label>Algorithms</label>
                 <select id="algorithms">
-                    <option value="bubble">Bubble Sort</option>
-                    <option value="comb">Comb Sort</option>
-                    <option value="insertion">Insertion Sort</option>
-                    <option value="selection">Selection Sort</option>
+                    <option value="bubble">Bubble</option>
+                    <option value="comb">Comb</option>
+                    <option value="insertion">Insertion</option>
+                    <option value="selection">Selection</option>
                 </select>
             </div>
             <div id="buttons">
-                <input type="button" class="sort green" onclick="runAlgo('bubble')" value="Bubble" />
-                <input type="button" class="sort green" onclick="runAlgo('comb')" value="Comb" />
-                <input type="button" class="sort green" onclick="runAlgo('insertion')" value="Insertion" />
-                <input type="button" class="sort green" onclick="runAlgo('selection');" value="Selection" />
+                <input type="button" class="sort green" onclick="runAlgo();" value="Sort" />
                 <input type="button" class="" onclick="stopAnimation();" id="stop" value="Stop" disabled />
                 <input type="button" class="green" onclick="reset();" id="reset" value="Reset" />
             </div>

@@ -36,10 +36,12 @@ function insertBars() {
 }
 
 function disableInput(what = true) {
-    // disable input
+    // disable inputs
     $(".sort").attr("disabled", what);
     $(".slider-input").attr("disabled", what);
+    $("select#algorithms").attr("disabled", what);
 
+    // swap colors
     $("#stop")
         .attr("disabled", true)
         .removeClass("green");
@@ -49,9 +51,11 @@ function disableInput(what = true) {
         $("#stop")
             .attr("disabled", false)
             .addClass("green");
-    } else {
-        $(".sort").addClass("green");
+
+        return;
     }
+
+    $(".sort").addClass("green");
 }
 
 function clearContainer() {
