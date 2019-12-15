@@ -24,7 +24,7 @@ An animated visualization of sorting algorithms.
 <p>The frames are essentially the stored "steps" of the algorithm.</p>
 
 ```javascript
-Animation = {
+animation = {
     "frames":[
         {
             "elements":[],
