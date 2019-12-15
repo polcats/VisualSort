@@ -13,7 +13,7 @@ function animate(solution) {
     ANIMATION_FRAMES = [];
 
     let frames = solution.getFrames();
-    for (i = 0; i < frames.length; ++i) {
+    for (let i = 0; i < frames.length; ++i) {
         (function(frames, i, bars, ANIMATION_FRAMES, DELAY, TOTAL_ELEMENTS) {
             ANIMATION_FRAMES.push(
                 setTimeout(function() {
@@ -45,7 +45,7 @@ function animate(solution) {
 }
 
 function stopAnimation() {
-    for (i = 0; i < ANIMATION_FRAMES.length; ++i) {
+    for (let i = 0; i < ANIMATION_FRAMES.length; ++i) {
         clearTimeout(ANIMATION_FRAMES[i]);
     }
     disableInput(false);
@@ -58,7 +58,7 @@ function runAlgo() {
 
     function getElements() {
         let els = Array();
-        for (i = 0; i < bars.length; ++i) {
+        for (let i = 0; i < bars.length; ++i) {
             els.push(parseInt(bars[i].innerHTML));
         }
 
@@ -182,7 +182,7 @@ class Algorithms {
             gap = getNextGap(gap);
             swapped = false;
 
-            for (i = 0; i < n - gap; ++i) {
+            for (let i = 0; i < n - gap; ++i) {
                 let frame = new Frame();
                 frame.addHighlights([i, i + gap]);
                 solution.addFrame(frame);
@@ -210,7 +210,7 @@ class Algorithms {
         let elements = e;
         let solution = new Animation();
 
-        for (i = 1; i < elements.length; ++i) {
+        for (let i = 1; i < elements.length; ++i) {
             let key = elements[i];
             let j = i - 1;
             while (j >= 0 && elements[j] < key) {
@@ -233,7 +233,7 @@ class Algorithms {
         let elements = e;
         let solution = new Animation();
 
-        for (i = 0; i < elements.length - 1; ++i) {
+        for (let i = 0; i < elements.length - 1; ++i) {
             let currentMax = i;
             let frame = new Frame();
 
