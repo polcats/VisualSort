@@ -5,7 +5,7 @@
 
 function updateDelay() {
     DELAY = document.getElementById("delay").value;
-    document.getElementById("delay-count").innerHTML = DELAY;
+    document.getElementById("delay-count").innerHTML = 101 - DELAY;
 }
 
 function updateElements() {

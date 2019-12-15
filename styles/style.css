@@ -178,6 +178,10 @@ label {
     transition: opacity 0.2s;
 }
 
+.slider input#delay {
+    direction: rtl;
+}
+
 .slider input:hover {
     opacity: 1; /* Fully shown on mouse-over */
 }
