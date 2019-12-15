@@ -58,6 +58,7 @@ function runAlgo() {
 
     function getElements() {
         let els = Array();
+
         for (let i = 0; i < bars.length; ++i) {
             els.push(parseInt(bars[i].innerHTML));
         }
@@ -89,6 +90,7 @@ function runAlgo() {
     let origin = getElements();
     let origin_copy = JSON.parse(JSON.stringify(origin));
     let solution = solve(algo, origin_copy);
+
     if (solution) {
         animate(solution);
     }
@@ -213,6 +215,7 @@ class Algorithms {
         for (let i = 1; i < elements.length; ++i) {
             let key = elements[i];
             let j = i - 1;
+
             while (j >= 0 && elements[j] < key) {
                 elements[j + 1] = elements[j];
 
@@ -223,6 +226,7 @@ class Algorithms {
 
                 j = j - 1;
             }
+
             elements[j + 1] = key;
         }
 
