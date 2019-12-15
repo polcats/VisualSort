@@ -15,7 +15,7 @@
             <div id="sliders">
                 <div class="slider">
                     <label for="delay">Speed</label>
-                    <input class="slider-input" name="delay" id="delay" type="range" min="1" max="100" value="1" oninput="updateDelay();" />
+                    <input class="slider-input" name="delay" id="delay" type="range" min="1" max="100" value="50" oninput="updateDelay();" />
                     <span class="count" id="delay-count">0</span>
                 </div>
 
@@ -46,10 +46,10 @@
         </div>
         <script type="text/javascript">
             const CONTAINER_WIDTH = 600;
-            var TOTAL_ELEMENTS = document.getElementById("elements").value;
-            var DELAY = document.getElementById("delay").value;
-            var container = document.getElementById("bars");
-            var bars = document.getElementsByClassName("bar");
+            let TOTAL_ELEMENTS = document.getElementById("elements").value;
+            let DELAY = document.getElementById("delay").value;
+            let container = document.getElementById("bars");
+            let bars = document.getElementsByClassName("bar");
         </script>
         <script type="text/javascript" src="script/interface.js"></script>
         <script type="text/javascript" src="script/animation.js"></script>
