@@ -52,6 +52,11 @@ function stopAnimation() {
 }
 
 function runAlgo() {
+    if (DELAY <= 0) {
+        console.log("Abnormal delay.");
+        return;
+    }
+
     let algo = $("select#algorithms")
         .children("option:selected")
         .val();
