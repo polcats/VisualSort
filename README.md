@@ -20,7 +20,7 @@ An animated visualization of sorting algorithms.
 <h2>How Does It Work (<i>Under Construction</i>)</h2>
 
 <h3>Animation Object</h3>
-<p>The animation object contains the frames which holds the indeces of the elements to be highlighted and/or swapped.</p>
+<p>The animation object contains the frames which hold the indices of the elements to be highlighted and/or swapped.</p>
 <p>The frames are essentially the stored "steps" of the algorithm.</p>
 
 ```javascript
@@ -77,4 +77,4 @@ class Algorthims {
 }
 ```
 <h3>Animating the Algorithm</h3>
-<p>The stored frames are played by a function that highlights the current elements in the frame and/or swaps them.</p>
+<p>The animation is played by a function that highlights the current elements in a frame and/or swaps them.</p>
