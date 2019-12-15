@@ -48,6 +48,8 @@ function stopAnimation() {
     for (let i = 0; i < ANIMATION_FRAMES.length; ++i) {
         clearTimeout(ANIMATION_FRAMES[i]);
     }
+
+    $(".bar").removeClass("compared");
     disableInput(false);
 }
 
