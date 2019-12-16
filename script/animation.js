@@ -132,7 +132,7 @@ class Animation {
 
     addFrame(frame) {
         // only stores a copy
-        let temp = JSON.parse(JSON.stringify(frame));
+        const temp = JSON.parse(JSON.stringify(frame));
         this.frames.push(temp);
     }
 
@@ -158,7 +158,7 @@ class Algorithms {
                     frame.reset();
                     frame.addElements([j, j + 1]);
 
-                    let temp = elements[j];
+                    const temp = elements[j];
                     elements[j] = elements[j + 1];
                     elements[j + 1] = temp;
 
@@ -200,7 +200,7 @@ class Algorithms {
                     frame.reset();
                     frame.addElements([i, i + gap]);
 
-                    let temp = e[i];
+                    const temp = e[i];
                     e[i] = e[gap + i];
                     e[i + gap] = temp;
 
@@ -262,7 +262,7 @@ class Algorithms {
                 }
             }
 
-            let temp = elements[currentMax];
+            const temp = elements[currentMax];
             elements[currentMax] = elements[i];
             elements[i] = temp;
 
