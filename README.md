@@ -11,13 +11,7 @@ An animated visualization of sorting algorithms.
 <li>Selection Sort</li>
 </ul>
 
-<h3>Ongoing</h3>
-<ul>
-<li>Merge Sort</li>
-<li>Shell Sort</li>
-</ul>
-
-<h2>How Does It Work (<i>Under Construction</i>)</h2>
+<h2>How Does It Work</h2>
 
 <h3>Animation Object</h3>
 <p>The animation object contains the frames which hold the indices of the elements to be highlighted and/or swapped.</p>
@@ -39,6 +33,7 @@ animation = {
     ]
 }
 ```
+
 <h3>Usage</h3>
 <p>The animation object is created in a sorting algorithm. <br> Particular events are stored as frames of the animation.</p>
 
@@ -50,7 +45,6 @@ class Algorthims {
 
         for (let i = 0; i < elements.length; ++i) {
             for (let j = 0; j < elements.length - i - 1; ++j) {
-            
                 // highlight adjacent elements
                 let frame = new Frame();
                 frame.addHighlights([j, j + 1]);
@@ -58,7 +52,7 @@ class Algorthims {
 
                 if (elements[j] < elements[j + 1]) {
                     frame.reset();
-                    
+
                     // Store indeces of to-be-swapped elements
                     frame.addElements([j, j + 1]);
 
@@ -76,5 +70,6 @@ class Algorthims {
     }
 }
 ```
+
 <h3>Animating the Algorithm</h3>
 <p>The animation is played by a function that highlights the current elements in a frame and/or swaps them.</p>
