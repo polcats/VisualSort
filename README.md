@@ -57,7 +57,8 @@ class Algorthims {
 
         for (let i = 0; i < elements.length; ++i) {
             for (let j = 0; j < elements.length - i - 1; ++j) {
-                // highlight adjacent elements
+            
+                // Highlight adjacent elements
                 let frame = new Frame();
                 frame.addHighlights([j, j + 1]);
                 solution.addFrame({ ...frame });
@@ -72,7 +73,7 @@ class Algorthims {
                     elements[j] = elements[j + 1];
                     elements[j + 1] = temp;
 
-                    // highlight swapped elements
+                    // Highlight swapped elements
                     frame.addHighlights([j, j + 1]);
                     solution.addFrame({ ...frame });
                 }
@@ -90,5 +91,6 @@ class Algorthims {
 <ul>
 <li>Refine Swap Animation</li>
 <li>Custom Sort Order (Ascending or Descending)</li>
+<li>Algorithm Details</li>
 <li>Algorithm Comparison</li>
 </ul>
