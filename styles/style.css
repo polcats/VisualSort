@@ -16,10 +16,19 @@ body {
 
 #algo-info {
     grid-area: algo-info;
-    /* border-top: 10px solid #333; */
     background: #222;
     height: 100%;
     width: 100%;
+    padding: 100px 0px;
+}
+
+#algo-info #algo-details {
+    display: block;
+    padding: 25px;
+    text-align: justify;
+    text-indent: 50px;
+    line-height: 25px;
+    font-weight: bold;
 }
 
 #container {
