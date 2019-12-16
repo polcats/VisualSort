@@ -6,13 +6,25 @@ body {
     font-family: UbuntuL;
     color: #fff;
     display: grid;
-    grid-template-areas: "m" "c";
-    grid-gap: 10px;
+    grid-template-areas: "algo-info menu" "algo-info container";
+    grid-template-rows: 100px 1fr;
+    grid-template-columns: 25vw 1fr;
+    /* grid-gap: 10px; */
+    height: 100vh;
+    width: 100vw;
+}
+
+#algo-info {
+    grid-area: algo-info;
+    /* border-top: 10px solid #333; */
+    background: #222;
+    height: 100%;
+    width: 100%;
 }
 
 #container {
-    grid-area: c;
-    width: 100vw;
+    grid-area: container;
+    width: 100%;
     /* height: auto; */
     border-top: #333 10px solid;
 }
@@ -85,12 +97,12 @@ input[type="range"] {
 
 #menu {
     background: #000;
-    grid-area: m;
+    grid-area: menu;
     display: grid;
     grid-template-areas: "sliders algos buttons";
     grid-gap: 25px;
-    width: 100vw;
-    height: auto;
+    width: 100%;
+    height: 100px;
     margin: auto;
     padding: 0px;
 }
