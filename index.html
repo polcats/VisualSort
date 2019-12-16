@@ -3,13 +3,15 @@
     <head>
         <meta charset="utf-8" />
         <link rel="icon" type="image/png" href="images/pc.ico" />
-        <script type="text/javascript" src="script/jquery-3.4.1.min.js"></script>
+        <script src="script/jquery-3.4.1.min.js"></script>
         <title>Visualization of Sorting Algorithms</title>
         <link rel="stylesheet" href="styles/fonts.css" />
         <link rel="stylesheet" href="styles/style.css" />
     </head>
     <body>
-        <a id="repository"" href="https://github.com/polcats/VisualSort" target="_blank"><img src="images/github.png" alt="GitHub" title="Visit Repository"/></a>
+        <a id="repository" href="https://github.com/polcats/VisualSort" target="_blank"
+            ><img src="images/github.png" alt="GitHub" title="Visit Repository"
+        /></a>
         <div id="menu">
             <div id="sliders">
                 <div class="slider">
@@ -42,15 +44,15 @@
         <div id="container">
             <div id="bars">&nbsp;</div>
         </div>
-        <script type="text/javascript">
+        <script>
             const CONTAINER_WIDTH = 600;
             let TOTAL_ELEMENTS = document.getElementById("elements").value;
             let DELAY = document.getElementById("delay").value;
             let container = document.getElementById("bars");
             let bars = document.getElementsByClassName("bar");
         </script>
-        <script type="text/javascript" src="script/interface.js"></script>
-        <script type="text/javascript" src="script/animation.js"></script>
-        <script type="text/javascript" src="script/testing.js"></script>
+        <script src="script/interface.js"></script>
+        <script src="script/animation.js"></script>
+        <script src="script/testing.js"></script>
     </body>
 </html>
