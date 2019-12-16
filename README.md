@@ -2,13 +2,25 @@
 
 An animated visualization of sorting algorithms.
 
-<h2>Animated Algorithms</h2>
-<h3>Available</h3>
+<h2>Algorithms</h2>
+<h3>Animated</h3>
 <ul>
 <li>Bubble Sort</li>
 <li>Comb Sort</li>
 <li>Insertion Sort</li>
 <li>Selection Sort</li>
+</ul>
+
+<h3>Implemented</h3>
+<ul>
+<li>Merge Sort</li>
+<li>Shell Sort</li>
+</ul>
+
+<h3>To Do</h3>
+<ul>
+<li>Heap Sort</li>
+<li>Counting Sort</li>
 </ul>
 
 <h2>How Does It Work</h2>
