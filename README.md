@@ -86,8 +86,9 @@ class Algorthims {
 <h3>Animating the Algorithm</h3>
 <p>The animation is played by a function that highlights the current elements in a frame and/or swaps them.</p>
 
-<h2>Possible Future Improvements</h2>
+<h2>Target Changes</h2>
 <ul>
-<li>Algorithm Comparison</li>
 <li>Refine Swap Animation</li>
+<li>Custom Sort Order (Ascending or Descending)</li>
+<li>Algorithm Comparison</li>
 </ul>
