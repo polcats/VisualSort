@@ -59,9 +59,18 @@ function runAlgo() {
         return;
     }
 
-    let algo = $("select#algorithms")
+    const algo = $("select#algorithms")
         .children("option:selected")
         .val();
+
+    disableInput();
+    const origin = getElements();
+    let origin_copy = JSON.parse(JSON.stringify(origin));
+    let solution = solve(algo, origin_copy);
+
+    if (solution) {
+        animate(solution);
+    }
 
     function getElements() {
         let els = Array();
@@ -91,15 +100,6 @@ function runAlgo() {
                 return false;
             }
         }
-    }
-
-    disableInput();
-    let origin = getElements();
-    let origin_copy = JSON.parse(JSON.stringify(origin));
-    let solution = solve(algo, origin_copy);
-
-    if (solution) {
-        animate(solution);
     }
 }
 
