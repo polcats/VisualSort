@@ -11,6 +11,7 @@ body {
     grid-template-columns: 25vw 1fr;
     height: 100vh;
     width: 100vw;
+    overflow: hidden;
 }
 
 a#repository {
@@ -32,7 +33,7 @@ a#repository img {
     padding: 100px 0px;
 }
 
-#algo-info #algo-details {
+#algo-info .algo-details {
     display: block;
     padding: 25px;
     text-align: justify;
@@ -109,4 +110,12 @@ a#repository img {
     align-items: center;
     margin: auto;
     width: 300px;
+}
+
+.hidden {
+    display: none;
+}
+
+.visible {
+    display: block;
 }
