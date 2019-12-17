@@ -54,6 +54,13 @@
                     <option value="selection">Selection Sort</option>
                 </select>
             </div>
+            <div id="sort-order">
+                <label>Order</label>
+                <select id="order" onchange="showDetails();">
+                    <option value="asc">Ascending</option>
+                    <option value="desc">Descending</option>
+                </select>
+            </div>
             <div id="buttons">
                 <input type="button" class="sort green" onclick="runAlgo();" value="Sort" />
                 <input type="button" class="" onclick="stopAnimation();" id="stop" value="Stop" disabled />

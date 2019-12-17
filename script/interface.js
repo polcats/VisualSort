@@ -53,6 +53,7 @@ function disableInput(what = true) {
     $(".sort").attr("disabled", what);
     $(".slider-input").attr("disabled", what);
     $("select#algorithms").attr("disabled", what);
+    $("select#order").attr("disabled", what);
 
     // swap colors
     $("#stop")
