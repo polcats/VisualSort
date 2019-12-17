@@ -231,8 +231,6 @@ class Algorithms {
             let key = elements[i];
             let j = i - 1;
 
-            // let condition = j >= 0 && (order == "desc" ? elements[j] < key : elements[j] > key);
-
             while (j >= 0 && (order == "desc" ? elements[j] < key : elements[j] > key)) {
                 elements[j + 1] = elements[j];
 
