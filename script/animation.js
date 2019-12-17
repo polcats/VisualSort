@@ -189,7 +189,7 @@ class Algorithms {
             return local_gap;
         }
 
-        let n = e.length;
+        const n = e.length;
         let gap = n;
         let swapped = true;
 
@@ -231,9 +231,7 @@ class Algorithms {
             let key = elements[i];
             let j = i - 1;
 
-            const condition = j >= 0 && (order == "desc" ? elements[j] < key : elements[j] > key);
-
-            while (condition) {
+            while (j >= 0 && (order == "desc" ? elements[j] < key : elements[j] > key)) {
                 elements[j + 1] = elements[j];
 
                 let frame = new Frame();
@@ -267,7 +265,7 @@ class Algorithms {
                 frame.addHighlights([i, j, current]);
                 solution.addFrame(frame);
 
-                const condition = order == "desc" ? elements[j] > elements[current] : elements[j] < elements[current];
+                let condition = order == "desc" ? elements[j] > elements[current] : elements[j] < elements[current];
 
                 if (condition) {
                     current = j;
