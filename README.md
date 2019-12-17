@@ -89,8 +89,8 @@ class Algorthims {
 
 <h2>Target Changes</h2>
 <ul>
-<li>Refine Swap Animation</li>
-<li>Custom Sort Order (Ascending or Descending)</li>
-<li>Algorithm Details</li>
-<li>Algorithm Comparison</li>
+<li>[ ] Refine Swap Animation</li>
+<li>[ ] Custom Sort Order (Ascending or Descending)</li>
+<li>[ ] Algorithm Comparison</li>
+<li>[x] Algorithm Details</li>
 </ul>
