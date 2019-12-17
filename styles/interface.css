@@ -1,3 +1,5 @@
+/* Buttons */
+
 input[type="button"] {
     border: none;
     background: #555;
@@ -9,27 +11,28 @@ input[type="button"] {
     opacity: 0.7;
     -webkit-transition: 0.2s;
     transition: opacity 0.2s;
+    position: relative;
+    margin: 5px;
+    display: inline-block;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+input[type="button"].green {
+    background: greenyellow;
+    color: #000;
 }
 
 input[type="button"]:hover {
     opacity: 1;
 }
 
-html body div input[disabled] {
-    background: #222;
-    color: #888;
-    opacity: 0.5;
-    cursor: not-allowed !important;
-}
-
 input[disabled]:hover {
     opacity: 1;
 }
 
-label {
-    padding: 0px 0px 0px 0px;
-    font-weight: bold;
-}
+/* Algo Selection */
+
 input[type="range"] {
     padding: 0px;
     margin: 0px;
@@ -52,25 +55,12 @@ input[type="range"] {
     cursor: not-allowed;
 }
 
-#buttons input[type="button"] {
-    position: relative;
-    margin: 5px;
-    display: inline-block;
-    vertical-align: middle;
-    cursor: pointer;
-}
+/* Sliddrs */
 
 .slider {
     display: block;
     display: flex;
     align-items: center;
-}
-
-label {
-    display: inline-block;
-    text-align: right;
-    width: 70px;
-    padding: 10px 15px 10px 0px;
 }
 
 .slider input {
@@ -118,6 +108,7 @@ label {
     background: #4caf50;
     cursor: pointer;
 }
+
 span.count {
     display: inline-block;
     width: 20px;
@@ -126,7 +117,19 @@ span.count {
     padding: 2px 0px 0px 5px;
 }
 
-input[type="button"].green {
-    background: greenyellow;
-    color: #000;
+/* Others */
+
+label {
+    display: inline-block;
+    font-weight: bold;
+    text-align: right;
+    width: 70px;
+    padding: 10px 15px 10px 0px;
+}
+
+html body div input[disabled] {
+    background: #222;
+    color: #888;
+    opacity: 0.5;
+    cursor: not-allowed !important;
 }
