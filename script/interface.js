@@ -1,6 +1,7 @@
 (function init() {
     updateDelay();
     updateElements();
+    showDetails();
 })();
 
 function updateDelay() {
@@ -66,4 +67,12 @@ function reset() {
     stopAnimation();
     updateDelay();
     updateElements();
+}
+
+function showDetails() {
+    const algo = $("select#algorithms")
+        .children("option:selected")
+        .val();
+    $(".algo-container").addClass("hidden");
+    $("#" + algo + "-info").removeClass("hidden");
 }

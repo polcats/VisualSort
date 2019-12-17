@@ -6,28 +6,60 @@ body {
     font-family: UbuntuL;
     color: #fff;
     display: grid;
-    grid-template-areas: "m" "c";
-    grid-gap: 10px;
+    grid-template-areas: "algo-info menu" "algo-info container";
+    grid-template-rows: 100px 1fr;
+    grid-template-columns: 25vw 1fr;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+}
+
+a#repository {
+    position: fixed;
+    right: 50px;
+    bottom: 50px;
+}
+
+a#repository img {
+    width: 50px;
+    height: 50px;
+}
+
+#algo-info {
+    grid-area: algo-info;
+    background: #222;
+    height: 100%;
+    width: 100%;
+    padding: 100px 0px;
+}
+
+#algo-info .algo-details {
+    display: block;
+    padding: 25px;
+    text-align: justify;
+    text-indent: 50px;
+    line-height: 25px;
+    font-weight: bold;
 }
 
 #container {
-    grid-area: c;
-    width: 100vw;
-    /* height: auto; */
+    grid-area: container;
+    width: 100%;
+    height: 100%;
     border-top: #333 10px solid;
 }
 
 #bars {
-    width: 700px;
     margin: auto;
+    width: 700px;
     height: 500px;
 }
 
 .bar {
     background: green;
+    display: inline-block;
     border-right: 2px solid #000;
     margin: 0px;
-    display: inline-block;
     position: relative;
     bottom: 0px;
     vertical-align: top;
@@ -46,64 +78,16 @@ body {
     background: red;
 }
 
-input[type="button"] {
-    border: none;
-    background: #555;
-    padding: 20px;
-    color: #fff;
-    width: 80px;
-    border-radius: 10px;
-    font-weight: bold;
-    opacity: 0.7;
-    -webkit-transition: 0.2s;
-    transition: opacity 0.2s;
-}
-
-input[type="button"]:hover {
-    opacity: 1;
-}
-
-html body div input[disabled] {
-    background: #222;
-    color: #888;
-    opacity: 0.5;
-    cursor: not-allowed !important;
-}
-
-input[disabled]:hover {
-    opacity: 1;
-}
-
-label {
-    padding: 0px 0px 0px 0px;
-    font-weight: bold;
-}
-input[type="range"] {
-    padding: 0px;
-    margin: 0px;
-}
-
 #menu {
     background: #000;
-    grid-area: m;
+    grid-area: menu;
     display: grid;
     grid-template-areas: "sliders algos buttons";
     grid-gap: 25px;
-    width: 100vw;
-    height: auto;
+    width: 100%;
+    height: 100px;
     margin: auto;
     padding: 0px;
-}
-
-a#repository {
-    position: fixed;
-    right: 50px;
-    bottom: 50px;
-}
-
-a#repository img {
-    width: 50px;
-    height: 50px;
 }
 
 #sliders {
@@ -119,23 +103,6 @@ a#repository img {
     width: 300px;
 }
 
-#algos select {
-    width: 200px;
-    background-color: #222;
-    border-radius: 10px;
-    padding: 10px;
-    font-family: UbuntuL;
-    font-weight: bold;
-    font-size: 15px;
-    color: #fff;
-}
-
-#algos select[disabled] {
-    color: #fff;
-    opacity: 0.5;
-    cursor: not-allowed;
-}
-
 #buttons {
     grid-area: buttons;
     display: flex;
@@ -145,81 +112,10 @@ a#repository img {
     width: 300px;
 }
 
-#buttons input[type="button"] {
-    position: relative;
-    margin: 5px;
-    display: inline-block;
-    vertical-align: middle;
-    cursor: pointer;
+.hidden {
+    display: none;
 }
 
-.slider {
+.visible {
     display: block;
-    display: flex;
-    align-items: center;
-}
-
-label {
-    display: inline-block;
-    text-align: right;
-    width: 70px;
-    padding: 10px 15px 10px 0px;
-}
-
-.slider input {
-    -webkit-appearance: none;
-    width: 200px;
-    height: 15px;
-    border-radius: 5px;
-    background: #555;
-    outline: none;
-    opacity: 0.7;
-    -webkit-transition: 0.2s;
-    transition: opacity 0.2s;
-}
-
-.slider input#delay {
-    direction: rtl;
-}
-
-.slider input:hover {
-    opacity: 1; /* Fully shown on mouse-over */
-}
-
-.slider input[disabled]:hover {
-    opacity: 0.5;
-}
-
-.slider input::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    background: greenyellow;
-    cursor: pointer;
-}
-
-.slider input[disabled]::-webkit-slider-thumb {
-    cursor: not-allowed;
-}
-
-.slider input::-moz-range-thumb {
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    background: #4caf50;
-    cursor: pointer;
-}
-span.count {
-    display: inline-block;
-    width: 20px;
-    text-align: left;
-    font-weight: bold;
-    padding: 2px 0px 0px 5px;
-}
-
-input[type="button"].green {
-    background: greenyellow;
-    color: #000;
 }

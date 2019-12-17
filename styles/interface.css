@@ -1,0 +1,135 @@
+/* Buttons */
+
+input[type="button"] {
+    border: none;
+    background: #555;
+    padding: 20px;
+    color: #fff;
+    width: 80px;
+    border-radius: 10px;
+    font-weight: bold;
+    opacity: 0.7;
+    -webkit-transition: 0.2s;
+    transition: opacity 0.2s;
+    position: relative;
+    margin: 5px;
+    display: inline-block;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+input[type="button"].green {
+    background: greenyellow;
+    color: #000;
+}
+
+input[type="button"]:hover {
+    opacity: 1;
+}
+
+input[disabled]:hover {
+    opacity: 1;
+}
+
+/* Algo Selection */
+
+input[type="range"] {
+    padding: 0px;
+    margin: 0px;
+}
+
+#algos select {
+    width: 200px;
+    background-color: #222;
+    border-radius: 10px;
+    padding: 10px;
+    font-family: UbuntuL;
+    font-weight: bold;
+    font-size: 15px;
+    color: #fff;
+}
+
+#algos select[disabled] {
+    color: #fff;
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Sliddrs */
+
+.slider {
+    display: block;
+    display: flex;
+    align-items: center;
+}
+
+.slider input {
+    -webkit-appearance: none;
+    width: 200px;
+    height: 15px;
+    border-radius: 5px;
+    background: #555;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: 0.2s;
+    transition: opacity 0.2s;
+}
+
+.slider input#delay {
+    direction: rtl;
+}
+
+.slider input:hover {
+    opacity: 1; /* Fully shown on mouse-over */
+}
+
+.slider input[disabled]:hover {
+    opacity: 0.5;
+}
+
+.slider input::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: greenyellow;
+    cursor: pointer;
+}
+
+.slider input[disabled]::-webkit-slider-thumb {
+    cursor: not-allowed;
+}
+
+.slider input::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #4caf50;
+    cursor: pointer;
+}
+
+span.count {
+    display: inline-block;
+    width: 20px;
+    text-align: left;
+    font-weight: bold;
+    padding: 2px 0px 0px 5px;
+}
+
+/* Others */
+
+label {
+    display: inline-block;
+    font-weight: bold;
+    text-align: right;
+    width: 70px;
+    padding: 10px 15px 10px 0px;
+}
+
+html body div input[disabled] {
+    background: #222;
+    color: #888;
+    opacity: 0.5;
+    cursor: not-allowed !important;
+}
