@@ -17,19 +17,37 @@
             <div id="sliders">
                 <div class="slider">
                     <label for="delay">Speed</label>
-                    <input class="slider-input" name="delay" id="delay" type="range" min="1" max="100" value="51" oninput="updateDelay();" />
+                    <input
+                        class="slider-input"
+                        name="delay"
+                        id="delay"
+                        type="range"
+                        min="1"
+                        max="100"
+                        value="51"
+                        oninput="updateDelay();"
+                    />
                     <span class="count" id="delay-count">0</span>
                 </div>
 
                 <div class="slider">
                     <label for="elements">Elements</label>
-                    <input class="slider-input" name="elements" id="elements" type="range" min="5" max="30" value="5" oninput="updateElements();" />
+                    <input
+                        class="slider-input"
+                        name="elements"
+                        id="elements"
+                        type="range"
+                        min="5"
+                        max="30"
+                        value="5"
+                        oninput="updateElements();"
+                    />
                     <span class="count" id="element-count">0</span>
                 </div>
             </div>
             <div id="algos">
                 <label>Algorithm</label>
-                <select id="algorithms">
+                <select id="algorithms" onchange="showDetails();">
                     <option value="bubble">Bubble Sort</option>
                     <option value="comb">Comb Sort</option>
                     <option value="insertion">Insertion Sort</option>
@@ -43,11 +61,54 @@
             </div>
         </div>
         <div id="algo-info">
-            <h2 id="algo-header">Bubble Sort</h2>
-            <span id="algo-details"
-                >Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate eos accusantium unde quisquam voluptatem excepturi beatae quos
-                hic, quibusdam adipisci eligendi exercitationem ab possimus. Cupiditate omnis soluta et qui optio.</span
-            >
+            <div id="bubble-info" class="algo-container hidden">
+                <h2 class="algo-header">Bubble Sort</h2>
+                <span class="algo-details"
+                    >Bubble sort, sometimes referred to as sinking sort, is a simple sorting algorithm that repeatedly
+                    steps through the list, compares adjacent elements and swaps them if they are in the wrong order.
+                </span>
+
+                <span class="algo-details">
+                    The pass through the list is repeated until the list is sorted. The algorithm, which is a comparison
+                    sort, is named for the way smaller or larger elements "bubble" to the top of the list.
+                </span>
+                <span class="algo-details">
+                    Although the algorithm is simple, it is too slow and impractical for most problems even when
+                    compared to insertion sort.</span
+                >
+            </div>
+
+            <div id="comb-info" class="algo-container hidden">
+                <h2 class="algo-header">Comb Sort</h2>
+                <span class="algo-details"
+                    >Comb Sort is mainly an improvement over Bubble Sort. Bubble sort always compares adjacent values.
+                    So all inversions are removed one by one. Comb Sort improves on Bubble Sort by using gap of size
+                    more than 1.
+                </span>
+                <span class="algo-details">
+                    The gap starts with a large value and shrinks by a factor of 1.3 in every iteration until it reaches
+                    the value 1. Thus Comb Sort removes more than one inversion counts with one swap and performs better
+                    than Bubble Sort.</span
+                >
+            </div>
+
+            <div id="insertion-info" class="algo-container hidden">
+                <h2 class="algo-header">Insertion Sort</h2>
+                <span class="algo-details"
+                    >Insertion sort is a simple sorting algorithm that builds the final sorted array one item at a time.
+                    It is much less efficient on large lists than more advanced algorithms such as quicksort, heapsort,
+                    or merge sort.
+                </span>
+            </div>
+
+            <div id="selection-info" class="algo-container hidden">
+                <h2 class="algo-header">Selection Sort</h2>
+                <span class="algo-details"
+                    >Selection sort is a sorting algorithm, specifically an in-place comparison sort. It has O time
+                    complexity, making it inefficient on large lists, and generally performs worse than the similar
+                    insertion sort</span
+                >
+            </div>
         </div>
         <div id="container">
             <div id="bars">&nbsp;</div>
