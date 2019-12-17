@@ -16,6 +16,10 @@ function updateElements() {
     insertBars();
 }
 
+function clearContainer() {
+    container.innerHTML = "";
+}
+
 function insertBars() {
     const width = CONTAINER_WIDTH / TOTAL_ELEMENTS;
 
@@ -34,6 +38,14 @@ function insertBars() {
         bar.innerHTML = arr[i];
         container.appendChild(bar);
     }
+}
+
+function showDetails() {
+    const algo = $("select#algorithms")
+        .children("option:selected")
+        .val();
+    $(".algo-container").addClass("hidden");
+    $("#" + algo + "-info").removeClass("hidden");
 }
 
 function disableInput(what = true) {
@@ -59,20 +71,8 @@ function disableInput(what = true) {
     $(".sort").addClass("green");
 }
 
-function clearContainer() {
-    container.innerHTML = "";
-}
-
 function reset() {
     stopAnimation();
     updateDelay();
     updateElements();
-}
-
-function showDetails() {
-    const algo = $("select#algorithms")
-        .children("option:selected")
-        .val();
-    $(".algo-container").addClass("hidden");
-    $("#" + algo + "-info").removeClass("hidden");
 }
