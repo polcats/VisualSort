@@ -100,6 +100,9 @@ function runAlgo() {
             case "selection": {
                 return Algorithms.selection(input, order);
             }
+            case "shell": {
+                return Algorithms.shell(input, order);
+            }
             default: {
                 return false;
             }
@@ -280,6 +283,57 @@ class Algorithms {
             frame.addHighlights([j, current]);
             frame.addElements([i, current]);
             solution.addFrame(frame);
+        }
+
+        return solution;
+    }
+
+    static shell(e, order) {
+        let elements = e;
+        const n = e.length;
+
+        let solution = new Animation();
+
+        for (let gap = parseInt(n / 2); gap > 0; gap = parseInt(gap / 2)) {
+            for (let i = gap; i < n; ++i) {
+                const temp = elements[i];
+
+                let j;
+                let frame = new Frame();
+
+                if (!isNaN(j - gap)) {
+                    frame.addHighlights([i, j - gap]);
+                }
+
+                solution.addFrame({ ...frame });
+
+                for (
+                    j = i;
+                    j >= gap && (order == "desc" ? elements[j - gap] < temp : elements[j - gap] > temp);
+                    j -= gap
+                ) {
+                    frame.reset();
+                    frame.addHighlights([i, j - gap]);
+                    frame.addElements([j, j - gap]);
+                    solution.addFrame({ ...frame });
+
+                    elements[j] = elements[j - gap];
+
+                    frame.reset();
+                    frame.addHighlights([j, j - gap]);
+                    solution.addFrame({ ...frame });
+                }
+
+                frame.reset();
+                frame.addHighlights([j, i]);
+                solution.addFrame({ ...frame });
+
+                elements[j] = temp;
+
+                frame.reset();
+                frame.addHighlights([j, i]);
+                solution.addFrame({ ...frame });
+            }
         }
 
         return solution;
