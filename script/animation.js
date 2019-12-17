@@ -63,10 +63,14 @@ function runAlgo() {
         .children("option:selected")
         .val();
 
+    const order = $("select#order")
+        .children("option:selected")
+        .val();
+
     disableInput();
     const origin = getElements();
     let origin_copy = JSON.parse(JSON.stringify(origin));
-    let solution = solve(algo, origin_copy);
+    let solution = solve(algo, order, origin_copy);
 
     if (solution) {
         animate(solution);
@@ -82,19 +86,19 @@ function runAlgo() {
         return els;
     }
 
-    function solve(algo, input) {
+    function solve(algo, order, input) {
         switch (algo) {
             case "bubble": {
-                return Algorithms.bubble(input);
+                return Algorithms.bubble(input, order);
             }
             case "comb": {
-                return Algorithms.comb(input);
+                return Algorithms.comb(input, order);
             }
             case "insertion": {
-                return Algorithms.insertion(input);
+                return Algorithms.insertion(input, order);
             }
             case "selection": {
-                return Algorithms.selection(input);
+                return Algorithms.selection(input, order);
             }
             default: {
                 return false;
@@ -144,7 +148,7 @@ class Animation {
 }
 
 class Algorithms {
-    static bubble(e) {
+    static bubble(e, order) {
         let elements = e;
         let solution = new Animation();
 
@@ -154,7 +158,9 @@ class Algorithms {
                 frame.addHighlights([j, j + 1]);
                 solution.addFrame({ ...frame });
 
-                if (elements[j] < elements[j + 1]) {
+                const condition = order == "desc" ? elements[j] < elements[j + 1] : elements[j] > elements[j + 1];
+
+                if (condition) {
                     frame.reset();
                     frame.addElements([j, j + 1]);
 
@@ -171,7 +177,7 @@ class Algorithms {
         return solution;
     }
 
-    static comb(e) {
+    static comb(e, order) {
         let solution = new Animation();
 
         function getNextGap(gap) {
@@ -196,7 +202,9 @@ class Algorithms {
                 frame.addHighlights([i, i + gap]);
                 solution.addFrame(frame);
 
-                if (e[i] < e[gap + i]) {
+                const condition = order == "desc" ? e[i] < e[gap + i] : e[i] > e[gap + i];
+
+                if (condition) {
                     frame.reset();
                     frame.addElements([i, i + gap]);
 
@@ -215,7 +223,7 @@ class Algorithms {
         return solution;
     }
 
-    static insertion(e) {
+    static insertion(e, order) {
         let elements = e;
         let solution = new Animation();
 
@@ -223,7 +231,9 @@ class Algorithms {
             let key = elements[i];
             let j = i - 1;
 
-            while (j >= 0 && elements[j] < key) {
+            const condition = j >= 0 && (order == "desc" ? elements[j] < key : elements[j] > key);
+
+            while (condition) {
                 elements[j + 1] = elements[j];
 
                 let frame = new Frame();
@@ -240,35 +250,37 @@ class Algorithms {
         return solution;
     }
 
-    static selection(e) {
+    static selection(e, order) {
         let elements = e;
         let solution = new Animation();
 
         for (let i = 0; i < elements.length - 1; ++i) {
-            let currentMax = i;
+            let current = i;
             let frame = new Frame();
 
-            frame.addHighlights([i, currentMax]);
+            frame.addHighlights([i, current]);
             solution.addFrame(frame);
 
             let j = 0;
             for (j = i + 1; j < elements.length; ++j) {
                 frame.reset();
-                frame.addHighlights([i, j, currentMax]);
+                frame.addHighlights([i, j, current]);
                 solution.addFrame(frame);
 
-                if (elements[j] > elements[currentMax]) {
-                    currentMax = j;
+                const condition = order == "desc" ? elements[j] > elements[current] : elements[j] < elements[current];
+
+                if (condition) {
+                    current = j;
                 }
             }
 
-            const temp = elements[currentMax];
-            elements[currentMax] = elements[i];
+            const temp = elements[current];
+            elements[current] = elements[i];
             elements[i] = temp;
 
             frame.reset();
-            frame.addHighlights([j, currentMax]);
-            frame.addElements([i, currentMax]);
+            frame.addHighlights([j, current]);
+            frame.addElements([i, current]);
             solution.addFrame(frame);
         }
 
