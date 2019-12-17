@@ -9,12 +9,12 @@ An animated visualization of sorting algorithms.
 <li>Comb Sort</li>
 <li>Insertion Sort</li>
 <li>Selection Sort</li>
+<li>Shell Sort</li>
 </ul>
 
 <h3>Implemented</h3>
 <ul>
 <li>Merge Sort</li>
-<li>Shell Sort</li>
 </ul>
 
 <h3>To Do</h3>
