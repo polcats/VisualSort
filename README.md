@@ -57,7 +57,6 @@ class Algorthims {
 
         for (let i = 0; i < elements.length; ++i) {
             for (let j = 0; j < elements.length - i - 1; ++j) {
-            
                 // Highlight adjacent elements
                 let frame = new Frame();
                 frame.addHighlights([j, j + 1]);
@@ -90,13 +89,13 @@ class Algorthims {
 <h2>Target Changes</h2>
 <ul>
 <li>[ ] Refine Swap Animation</li>
-<li>[ ] Custom Sort Order (Ascending or Descending)</li>
 <li>[ ] Algorithm Comparison</li>
+<li>[x] Custom Sort Order (Ascending or Descending)</li>
 <li>[x] Algorithm Details</li>
 </ul>
 
 <h2>References</h2>
 <ul>
-    <li><a href="https://www.geeksforgeeks.org/sorting-algorithms/" target="_blank">Geeks for Geeks (Sorting Algorithms)</a></li>    
-    <li><a href="https://betterexplained.com/articles/sorting-algorithms/" target="_blank">Better Explained (Sorting Algorithms)</a></li>    
+    <li><a href="https://www.geeksforgeeks.org/sorting-algorithms/" target="_blank">Geeks for Geeks (Sorting Algorithms)</a></li>
+    <li><a href="https://betterexplained.com/articles/sorting-algorithms/" target="_blank">Better Explained (Sorting Algorithms)</a></li>
 </ul>
