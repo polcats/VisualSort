@@ -12,7 +12,7 @@ let ANIMATION_FRAMES = [];
 function animate(solution) {
     ANIMATION_FRAMES = [];
 
-    let frames = solution.getFrames();
+    const frames = solution.getFrames();
     for (let i = 0; i < frames.length; ++i) {
         (function(frames, i, bars, ANIMATION_FRAMES, DELAY, TOTAL_ELEMENTS) {
             ANIMATION_FRAMES.push(
@@ -66,11 +66,11 @@ function runAlgo() {
         .children("option:selected")
         .val();
 
-    disableInput();
     let elements = JSON.parse(JSON.stringify(getElements()));
-    let solution = solve(algo, order, elements);
+    const solution = solve(algo, order, elements);
 
     if (solution) {
+        disableInput();
         animate(solution);
     }
 
