@@ -42,10 +42,11 @@ class Algorithms {
     static bubble(e, order) {
         let elements = e;
         let solution = new Animation();
+        let frame = new Frame();
 
         for (let i = 0; i < elements.length; ++i) {
             for (let j = 0; j < elements.length - i - 1; ++j) {
-                let frame = new Frame();
+                frame.reset();
                 frame.addHighlights([j, j + 1]);
                 solution.addFrame(frame);
 
@@ -69,27 +70,18 @@ class Algorithms {
     }
 
     static comb(e, order) {
-        let solution = new Animation();
-
-        function getNextGap(gap) {
-            let local_gap = Math.floor((gap * 10) / 13);
-            if (local_gap < 1) {
-                return 1;
-            }
-
-            return local_gap;
-        }
-
         const n = e.length;
         let gap = n;
         let swapped = true;
+        let solution = new Animation();
+        let frame = new Frame();
 
         while (1 != gap || true == swapped) {
             gap = getNextGap(gap);
             swapped = false;
 
             for (let i = 0; i < n - gap; ++i) {
-                let frame = new Frame();
+                frame.reset();
                 frame.addHighlights([i, i + gap]);
                 solution.addFrame(frame);
 
@@ -111,18 +103,28 @@ class Algorithms {
             }
         }
 
+        function getNextGap(gap) {
+            const local_gap = Math.floor((gap * 10) / 13);
+            if (local_gap < 1) {
+                return 1;
+            }
+
+            return local_gap;
+        }
+
         return solution;
     }
 
     static insertion(e, order) {
         let elements = e;
         let solution = new Animation();
+        let frame = new Frame();
 
         for (let i = 1; i < elements.length; ++i) {
             let key = elements[i];
             let j = i - 1;
 
-            let frame = new Frame();
+            frame.reset();
             frame.addHighlights([j, j + 1]);
             solution.addFrame(frame);
 
@@ -149,11 +151,12 @@ class Algorithms {
     static selection(e, order) {
         let elements = e;
         let solution = new Animation();
+        let frame = new Frame();
 
         for (let i = 0; i < elements.length - 1; ++i) {
             let current = i;
-            let frame = new Frame();
 
+            frame.reset();
             frame.addHighlights([i, current]);
             solution.addFrame(frame);
 
@@ -188,13 +191,14 @@ class Algorithms {
         const n = e.length;
 
         let solution = new Animation();
+        let frame = new Frame();
 
         for (let gap = parseInt(n / 2); gap > 0; gap = parseInt(gap / 2)) {
             for (let i = gap; i < n; ++i) {
                 const temp = elements[i];
-
                 let j;
-                let frame = new Frame();
+
+                frame.reset();
 
                 if (!isNaN(j - gap)) {
                     frame.addHighlights([i, j - gap]);
