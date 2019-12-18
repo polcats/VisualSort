@@ -18,10 +18,9 @@ function animate(solution) {
             ANIMATION_FRAMES.push(
                 setTimeout(function() {
                     $(".bar").removeClass("compared");
-                    let innerDelay = DELAY * TOTAL_ELEMENTS;
-                    let lastFrame = i == frames.length - 1;
-                    let elem = frames[i].elements;
-                    let highlight = frames[i].highlights;
+                    const lastFrame = i == frames.length - 1;
+                    const elem = frames[i].elements;
+                    const highlight = frames[i].highlights;
 
                     if (0 < highlight.length && !lastFrame) {
                         for (h = 0; h < highlight.length; ++h) {
@@ -68,9 +67,8 @@ function runAlgo() {
         .val();
 
     disableInput();
-    const origin = getElements();
-    let origin_copy = JSON.parse(JSON.stringify(origin));
-    let solution = solve(algo, order, origin_copy);
+    let elements = JSON.parse(JSON.stringify(getElements()));
+    let solution = solve(algo, order, elements);
 
     if (solution) {
         animate(solution);
@@ -159,7 +157,7 @@ class Algorithms {
             for (let j = 0; j < elements.length - i - 1; ++j) {
                 let frame = new Frame();
                 frame.addHighlights([j, j + 1]);
-                solution.addFrame({ ...frame });
+                solution.addFrame(frame);
 
                 const condition = order == "desc" ? elements[j] < elements[j + 1] : elements[j] > elements[j + 1];
 
@@ -172,7 +170,7 @@ class Algorithms {
                     elements[j + 1] = temp;
 
                     frame.addHighlights([j, j + 1]);
-                    solution.addFrame({ ...frame });
+                    solution.addFrame(frame);
                 }
             }
         }
@@ -312,7 +310,7 @@ class Algorithms {
                     frame.addHighlights([i, j - gap]);
                 }
 
-                solution.addFrame({ ...frame });
+                solution.addFrame(frame);
 
                 for (
                     j = i;
@@ -322,24 +320,24 @@ class Algorithms {
                     frame.reset();
                     frame.addHighlights([i, j - gap]);
                     frame.addElements([j, j - gap]);
-                    solution.addFrame({ ...frame });
+                    solution.addFrame(frame);
 
                     elements[j] = elements[j - gap];
 
                     frame.reset();
                     frame.addHighlights([j, j - gap]);
-                    solution.addFrame({ ...frame });
+                    solution.addFrame(frame);
                 }
 
                 frame.reset();
                 frame.addHighlights([j, i]);
-                solution.addFrame({ ...frame });
+                solution.addFrame(frame);
 
                 elements[j] = temp;
 
                 frame.reset();
                 frame.addHighlights([j, i]);
-                solution.addFrame({ ...frame });
+                solution.addFrame(frame);
             }
         }
 
