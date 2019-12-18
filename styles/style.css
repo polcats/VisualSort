@@ -67,10 +67,10 @@ a#repository img {
     font-weight: bold;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
-    transition: background-color ease-in 0.2s;
 }
 
 .compared {
+    transition: background-color ease-in 0.1s;
     background: #77c9d4;
 }
 
