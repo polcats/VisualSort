@@ -234,17 +234,24 @@ class Algorithms {
             let key = elements[i];
             let j = i - 1;
 
+            let frame = new Frame();
+            frame.addHighlights([j, j + 1]);
+            solution.addFrame(frame);
+
             while (j >= 0 && (order == "desc" ? elements[j] < key : elements[j] > key)) {
+                frame.reset();
+                frame.addHighlights([j, j + 1]);
+                solution.addFrame(frame);
+
                 elements[j + 1] = elements[j];
 
-                let frame = new Frame();
+                frame.reset();
                 frame.addHighlights([j, j + 1]);
                 frame.addElements([j, j + 1]);
                 solution.addFrame(frame);
 
                 j = j - 1;
             }
-
             elements[j + 1] = key;
         }
 
