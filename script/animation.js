@@ -13,6 +13,9 @@ let ANIMATION_FRAMES = [];
 function animate(solution) {
     ANIMATION_FRAMES = [];
 
+    // Add empty frame at the end
+    solution.addFrame(new Frame());
+
     const frames = solution.getFrames();
     for (let i = 0; i < frames.length; ++i) {
         (function(frames, i, bars, ANIMATION_FRAMES, SPEED, TOTAL_ELEMENTS) {
@@ -24,24 +27,22 @@ function animate(solution) {
                     const highlight = frames[i].highlights;
 
                     // Highlight compared elements
-                    if (0 < highlight.length) {
+                    if (highlight.length) {
                         for (h = 0; h < highlight.length; ++h) {
                             $(bars[highlight[h]]).addClass("compared");
                         }
                     }
 
                     // Swap compared elements
-                    if (0 < elem.length) {
+                    if (elem.length) {
                         $(bars[elem[1]]).swap(bars[elem[0]]);
                     }
 
                     // Disable stop button once animation ends
-                    // Remove highlight of last compared elements
                     if (lastFrame) {
                         $("#stop")
                             .attr("disabled", true)
                             .removeClass("green");
-                        $(".bar").removeClass("compared");
                     }
                 }, SPEED * TOTAL_ELEMENTS * i)
             );
