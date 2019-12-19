@@ -50,7 +50,7 @@ animation = {
 <p>The animation object is created in a sorting algorithm. <br> Particular events are stored as frames of the animation.</p>
 
 ```javascript
-class Algorthims {
+class Algorithms {
     static bubble(e, order) {
         let elements = e;
         let solution = new Animation();
@@ -59,17 +59,16 @@ class Algorthims {
         for (let i = 0; i < elements.length; ++i) {
             swapped = false;
             for (let j = 0; j < elements.length - 1; ++j) {
-                solution.addFrame(new Frame([], [j, j + 1])); // Highlight compared elements
+                solution.addFrame(new Frame([], [j, j + 1])); // Record to-be-highlighted elements
 
-                const condition = order == "desc" ? elements[j] < elements[j + 1] : elements[j] > elements[j + 1];
-                if (condition) {
+                if (order == "desc" ? elements[j] < elements[j + 1] : elements[j] > elements[j + 1]) {
                     swapped = true;
 
                     const temp = elements[j];
                     elements[j] = elements[j + 1];
                     elements[j + 1] = temp;
 
-                    solution.addFrame(new Frame([j, j + 1], [j, j + 1])); // Record to-be-swapped elements
+                    solution.addFrame(new Frame([j, j + 1], [j, j + 1])); // Record to-be-swapped & to-be-highlighted elements
                 }
             }
 

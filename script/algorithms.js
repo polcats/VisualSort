@@ -36,8 +36,7 @@ class Animation {
     }
 
     addFrame(frame) {
-        // Only store a copy
-        const temp = JSON.parse(JSON.stringify(frame));
+        const temp = JSON.parse(JSON.stringify(frame)); // Only store a copy
         this.frames.push(temp);
     }
 
@@ -57,8 +56,7 @@ class Algorithms {
             for (let j = 0; j < elements.length - 1; ++j) {
                 solution.addFrame(new Frame([], [j, j + 1]));
 
-                const condition = order == "desc" ? elements[j] < elements[j + 1] : elements[j] > elements[j + 1];
-                if (condition) {
+                if (order == "desc" ? elements[j] < elements[j + 1] : elements[j] > elements[j + 1]) {
                     swapped = true;
 
                     const temp = elements[j];
@@ -89,8 +87,7 @@ class Algorithms {
             for (let i = 0; i < n - gap; ++i) {
                 solution.addFrame(new Frame([], [i, i + gap]));
 
-                const condition = order == "desc" ? e[i] < e[gap + i] : e[i] > e[gap + i];
-                if (condition) {
+                if (order == "desc" ? e[i] < e[gap + i] : e[i] > e[gap + i]) {
                     swapped = true;
 
                     const temp = e[i];
@@ -150,9 +147,7 @@ class Algorithms {
             for (j = i + 1; j < elements.length; ++j) {
                 solution.addFrame(new Frame([], [i, j, current]));
 
-                let condition = order == "desc" ? elements[j] > elements[current] : elements[j] < elements[current];
-
-                if (condition) {
+                if (order == "desc" ? elements[j] > elements[current] : elements[j] < elements[current]) {
                     current = j;
                 }
             }
@@ -181,11 +176,7 @@ class Algorithms {
                     solution.addFrame(new Frame([], [i, j - gap]));
                 }
 
-                for (
-                    j = i;
-                    j >= gap && (order == "desc" ? elements[j - gap] < temp : elements[j - gap] > temp);
-                    j -= gap
-                ) {
+                for (j = i; j >= gap && (order == "desc" ? elements[j - gap] < temp : elements[j - gap] > temp); j -= gap) {
                     solution.addFrame(new Frame([j, j - gap], [i, j - gap]));
                     elements[j] = elements[j - gap];
                     solution.addFrame(new Frame([], [j, j - gap]));
