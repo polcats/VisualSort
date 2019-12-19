@@ -3,8 +3,8 @@
     <head>
         <meta charset="utf-8" />
         <link rel="icon" type="image/png" href="images/pc.ico" />
-        <script src="script/jquery-3.4.1.min.js"></script>
         <title>Visualization of Sorting Algorithms</title>
+        <script src="script/jquery-3.4.1.min.js"></script>
         <link rel="stylesheet" href="styles/fonts.css" />
         <link rel="stylesheet" href="styles/style.css" />
         <link rel="stylesheet" href="styles/interface.css" />
@@ -16,18 +16,18 @@
         <div id="menu">
             <div id="sliders">
                 <div class="slider">
-                    <label for="delay">Speed</label>
+                    <label for="speed">Speed</label>
                     <input
                         class="slider-input"
-                        name="delay"
-                        id="delay"
+                        name="speed"
+                        id="speed"
                         type="range"
                         min="1"
                         max="100"
                         value="51"
-                        oninput="updateDelay();"
+                        oninput="updateSpeed();"
                     />
-                    <span class="count" id="delay-count">0</span>
+                    <span class="count" id="speed-count">0</span>
                 </div>
 
                 <div class="slider">
@@ -119,7 +119,7 @@
         <script>
             const CONTAINER_WIDTH = 600;
             let TOTAL_ELEMENTS = document.getElementById("elements").value;
-            let DELAY = document.getElementById("delay").value;
+            let SPEED = document.getElementById("speed").value;
             let container = document.getElementById("bars");
             let bars = document.getElementsByClassName("bar");
         </script>

@@ -1,12 +1,12 @@
 (function init() {
-    updateDelay();
+    updateSpeed();
     updateElements();
     showDetails();
 })();
 
-function updateDelay() {
-    DELAY = document.getElementById("delay").value;
-    document.getElementById("delay-count").innerHTML = 101 - DELAY;
+function updateSpeed() {
+    SPEED = document.getElementById("speed").value;
+    document.getElementById("speed-count").innerHTML = 101 - SPEED;
 }
 
 function updateElements() {
@@ -74,6 +74,6 @@ function disableInput(what = true) {
 
 function reset() {
     stopAnimation();
-    updateDelay();
+    updateSpeed();
     updateElements();
 }

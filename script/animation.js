@@ -14,7 +14,7 @@ function animate(solution) {
 
     const frames = solution.getFrames();
     for (let i = 0; i < frames.length; ++i) {
-        (function(frames, i, bars, ANIMATION_FRAMES, DELAY, TOTAL_ELEMENTS) {
+        (function(frames, i, bars, ANIMATION_FRAMES, SPEED, TOTAL_ELEMENTS) {
             ANIMATION_FRAMES.push(
                 setTimeout(function() {
                     $(".bar").removeClass("compared");
@@ -37,9 +37,9 @@ function animate(solution) {
                             .attr("disabled", true)
                             .removeClass("green");
                     }
-                }, DELAY * TOTAL_ELEMENTS * i)
+                }, SPEED * TOTAL_ELEMENTS * i)
             );
-        })(frames, i, bars, ANIMATION_FRAMES, DELAY, TOTAL_ELEMENTS);
+        })(frames, i, bars, ANIMATION_FRAMES, SPEED, TOTAL_ELEMENTS);
     }
 }
 
@@ -53,7 +53,7 @@ function stopAnimation() {
 }
 
 function runAlgo() {
-    if (DELAY <= 0) {
+    if (SPEED <= 0) {
         console.log("Abnormal delay.");
         return;
     }

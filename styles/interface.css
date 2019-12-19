@@ -75,7 +75,7 @@ select[disabled] {
     transition: opacity 0.2s;
 }
 
-.slider input#delay {
+.slider input#speed {
     direction: rtl;
 }
 
