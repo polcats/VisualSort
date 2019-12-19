@@ -22,7 +22,7 @@ function animate(solution) {
                     const elem = frames[i].elements;
                     const highlight = frames[i].highlights;
 
-                    if (0 < highlight.length && !lastFrame) {
+                    if (0 < highlight.length) {
                         for (h = 0; h < highlight.length; ++h) {
                             $(bars[highlight[h]]).addClass("compared");
                         }
@@ -36,6 +36,7 @@ function animate(solution) {
                         $("#stop")
                             .attr("disabled", true)
                             .removeClass("green");
+                        $(".bar").removeClass("compared");
                     }
                 }, SPEED * TOTAL_ELEMENTS * i)
             );
