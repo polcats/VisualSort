@@ -61,7 +61,7 @@ class Algorthims {
             swapped = false;
             for (let j = 0; j < elements.length - i - 1; ++j) {
                 frame.reset();
-                frame.addHighlights([j, j + 1]);
+                frame.addHighlights([j, j + 1]); // Record compared elements
                 solution.addFrame(frame);
 
                 const condition = order == "desc" ? elements[j] < elements[j + 1] : elements[j] > elements[j + 1];
@@ -70,13 +70,13 @@ class Algorthims {
                     swapped = true;
 
                     frame.reset();
-                    frame.addElements([j, j + 1]);
+                    frame.addElements([j, j + 1]); // Record to-be-swapped elements
 
                     const temp = elements[j];
                     elements[j] = elements[j + 1];
                     elements[j + 1] = temp;
 
-                    frame.addHighlights([j, j + 1]);
+                    frame.addHighlights([j, j + 1]); // Record compared elements
                     solution.addFrame(frame);
                 }
             }
