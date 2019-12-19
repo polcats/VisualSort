@@ -1,5 +1,16 @@
 class Frame {
-    Frame() {}
+    constructor(e, h) {
+        this.elements = [];
+        this.highlights = [];
+
+        if (e != undefined && e.length) {
+            this.elements = e;
+        }
+
+        if (h != undefined && h.length) {
+            this.highlights = h;
+        }
+    }
 
     addHighlights(highlights) {
         for (const e of highlights) {
@@ -17,13 +28,12 @@ class Frame {
         this.highlights.length = 0;
         this.elements.length = 0;
     }
-
-    elements = Array();
-    highlights = Array();
 }
 
 class Animation {
-    Animation() {}
+    constructor() {
+        this.frames = [];
+    }
 
     addFrame(frame) {
         // Only store a copy
