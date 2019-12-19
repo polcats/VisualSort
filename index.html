@@ -3,8 +3,8 @@
     <head>
         <meta charset="utf-8" />
         <link rel="icon" type="image/png" href="images/pc.ico" />
-        <script src="script/jquery-3.4.1.min.js"></script>
         <title>Visualization of Sorting Algorithms</title>
+        <script src="script/jquery-3.4.1.min.js"></script>
         <link rel="stylesheet" href="styles/fonts.css" />
         <link rel="stylesheet" href="styles/style.css" />
         <link rel="stylesheet" href="styles/interface.css" />
@@ -16,38 +16,20 @@
         <div id="menu">
             <div id="sliders">
                 <div class="slider">
-                    <label for="delay">Speed</label>
-                    <input
-                        class="slider-input"
-                        name="delay"
-                        id="delay"
-                        type="range"
-                        min="1"
-                        max="100"
-                        value="51"
-                        oninput="updateDelay();"
-                    />
-                    <span class="count" id="delay-count">0</span>
+                    <label for="speed">Speed</label>
+                    <input class="slider-input" name="speed" id="speed" type="range" min="1" max="100" value="51" />
+                    <span class="count" id="speed-count">0</span>
                 </div>
 
                 <div class="slider">
                     <label for="elements">Elements</label>
-                    <input
-                        class="slider-input"
-                        name="elements"
-                        id="elements"
-                        type="range"
-                        min="5"
-                        max="30"
-                        value="5"
-                        oninput="updateElements();"
-                    />
+                    <input class="slider-input" name="elements" id="elements" type="range" min="5" max="30" value="5" />
                     <span class="count" id="element-count">0</span>
                 </div>
             </div>
             <div id="algos">
                 <label>Algorithm</label>
-                <select id="algorithms" onchange="showDetails();">
+                <select id="algorithms">
                     <option value="bubble">Bubble Sort</option>
                     <option value="comb">Comb Sort</option>
                     <option value="insertion">Insertion Sort</option>
@@ -57,15 +39,15 @@
             </div>
             <div id="sort-order">
                 <label>Order</label>
-                <select id="order" onchange="showDetails();">
+                <select id="order">
                     <option value="asc">Ascending</option>
                     <option value="desc">Descending</option>
                 </select>
             </div>
             <div id="buttons">
-                <input type="button" class="sort green" onclick="runAlgo();" value="Sort" />
-                <input type="button" class="" onclick="stopAnimation();" id="stop" value="Stop" disabled />
-                <input type="button" class="green" onclick="reset();" id="reset" value="Reset" />
+                <input type="button" id="sort" class="sort green" value="Sort" />
+                <input type="button" id="stop" value="Stop" disabled />
+                <input type="button" id="reset" class="green" value="Reset" />
             </div>
         </div>
         <div id="algo-info">
@@ -75,15 +57,6 @@
                     >Bubble sort, sometimes referred to as sinking sort, is a simple sorting algorithm that repeatedly
                     steps through the list, compares adjacent elements and swaps them if they are in the wrong order.
                 </span>
-
-                <span class="algo-details">
-                    The pass through the list is repeated until the list is sorted. The algorithm, which is a comparison
-                    sort, is named for the way smaller or larger elements "bubble" to the top of the list.
-                </span>
-                <span class="algo-details">
-                    Although the algorithm is simple, it is too slow and impractical for most problems even when
-                    compared to insertion sort.</span
-                >
             </div>
 
             <div id="comb-info" class="algo-container hidden">
@@ -93,17 +66,12 @@
                     So all inversions are removed one by one. Comb Sort improves on Bubble Sort by using gap of size
                     more than 1.
                 </span>
-                <span class="algo-details">
-                    The gap starts with a large value and shrinks by a factor of 1.3 in every iteration until it reaches
-                    the value 1. Thus Comb Sort removes more than one inversion counts with one swap and performs better
-                    than Bubble Sort.</span
-                >
             </div>
 
             <div id="insertion-info" class="algo-container hidden">
                 <h2 class="algo-header">Insertion Sort</h2>
                 <span class="algo-details"
-                    >Insertion sort is a simple sorting algorithm that builds the final sorted array one item at a time.
+                    >Insertion Sort is a simple sorting algorithm that builds the final sorted array one item at a time.
                     It is much less efficient on large lists than more advanced algorithms such as quicksort, heapsort,
                     or merge sort.
                 </span>
@@ -112,7 +80,7 @@
             <div id="selection-info" class="algo-container hidden">
                 <h2 class="algo-header">Selection Sort</h2>
                 <span class="algo-details"
-                    >Selection sort is a sorting algorithm, specifically an in-place comparison sort. It has O time
+                    >Selection Sort is a sorting algorithm, specifically an in-place comparison sort. It has O time
                     complexity, making it inefficient on large lists, and generally performs worse than the similar
                     insertion sort</span
                 >
@@ -121,19 +89,19 @@
             <div id="shell-info" class="algo-container hidden">
                 <h2 class="algo-header">Shell Sort</h2>
                 <span class="algo-details"
-                    >ShellSort is mainly a variation of Insertion Sort. In insertion sort, we move elements only one
+                    >Shell Sort is mainly a variation of Insertion Sort. In insertion sort, we move elements only one
                     position ahead. When an element has to be moved far ahead, many movements are involved. The idea of
                     shellSort is to allow exchange of far items.
                 </span>
             </div>
         </div>
         <div id="container">
-            <div id="bars">&nbsp;</div>
+            <div id="bars"></div>
         </div>
         <script>
             const CONTAINER_WIDTH = 600;
             let TOTAL_ELEMENTS = document.getElementById("elements").value;
-            let DELAY = document.getElementById("delay").value;
+            let SPEED = document.getElementById("speed").value;
             let container = document.getElementById("bars");
             let bars = document.getElementsByClassName("bar");
         </script>

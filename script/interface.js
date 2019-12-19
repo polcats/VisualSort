@@ -1,12 +1,12 @@
 (function init() {
-    updateDelay();
+    updateSpeed();
     updateElements();
     showDetails();
 })();
 
-function updateDelay() {
-    DELAY = document.getElementById("delay").value;
-    document.getElementById("delay-count").innerHTML = 101 - DELAY;
+function updateSpeed() {
+    SPEED = document.getElementById("speed").value;
+    document.getElementById("speed-count").innerHTML = 101 - SPEED;
 }
 
 function updateElements() {
@@ -74,6 +74,30 @@ function disableInput(what = true) {
 
 function reset() {
     stopAnimation();
-    updateDelay();
+    updateSpeed();
     updateElements();
 }
+
+$("#speed").on("input", function() {
+    updateSpeed();
+});
+
+$("#elements").on("input", function() {
+    updateElements();
+});
+
+$("#algorithms").on("change", function() {
+    showDetails();
+});
+
+$("#sort").on("click", function() {
+    runAlgo();
+});
+
+$("#stop").on("click", function() {
+    stopAnimation();
+});
+
+$("#reset").on("click", function() {
+    reset();
+});
