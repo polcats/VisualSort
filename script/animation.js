@@ -27,14 +27,14 @@ function animate(solution) {
                     const highlight = frames[i].highlights;
 
                     // Highlight compared elements
-                    if (0 < highlight.length) {
+                    if (highlight.length) {
                         for (h = 0; h < highlight.length; ++h) {
                             $(bars[highlight[h]]).addClass("compared");
                         }
                     }
 
                     // Swap compared elements
-                    if (0 < elem.length) {
+                    if (elem.length) {
                         $(bars[elem[1]]).swap(bars[elem[0]]);
                     }
 
