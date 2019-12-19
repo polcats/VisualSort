@@ -51,33 +51,41 @@ animation = {
 
 ```javascript
 class Algorthims {
-    static bubble(e) {
+    static bubble(e, order) {
         let elements = e;
         let solution = new Animation();
+        let frame = new Frame();
+        let swapped = false;
 
         for (let i = 0; i < elements.length; ++i) {
+            swapped = false;
             for (let j = 0; j < elements.length - i - 1; ++j) {
-                // Highlight adjacent elements
-                let frame = new Frame();
+                frame.reset();
                 frame.addHighlights([j, j + 1]);
-                solution.addFrame({ ...frame });
+                solution.addFrame(frame);
 
-                if (elements[j] < elements[j + 1]) {
+                const condition = order == "desc" ? elements[j] < elements[j + 1] : elements[j] > elements[j + 1];
+
+                if (condition) {
+                    swapped = true;
+
                     frame.reset();
-
-                    // Store indeces of to-be-swapped elements
                     frame.addElements([j, j + 1]);
 
-                    let temp = elements[j];
+                    const temp = elements[j];
                     elements[j] = elements[j + 1];
                     elements[j + 1] = temp;
 
-                    // Highlight swapped elements
                     frame.addHighlights([j, j + 1]);
-                    solution.addFrame({ ...frame });
+                    solution.addFrame(frame);
                 }
             }
+
+            if (!swapped) {
+                break;
+            }
         }
+
         return solution;
     }
 }
