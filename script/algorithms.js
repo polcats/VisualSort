@@ -44,38 +44,28 @@ class Animation {
     getFrames() {
         return this.frames;
     }
-
-    frames = Array();
 }
 
 class Algorithms {
     static bubble(e, order) {
         let elements = e;
         let solution = new Animation();
-        let frame = new Frame();
         let swapped = false;
 
         for (let i = 0; i < elements.length; ++i) {
             swapped = false;
-            for (let j = 0; j < elements.length - i - 1; ++j) {
-                frame.reset();
-                frame.addHighlights([j, j + 1]);
-                solution.addFrame(frame);
+            for (let j = 0; j < elements.length - 1; ++j) {
+                solution.addFrame(new Frame([], [j, j + 1]));
 
                 const condition = order == "desc" ? elements[j] < elements[j + 1] : elements[j] > elements[j + 1];
-
                 if (condition) {
                     swapped = true;
-
-                    frame.reset();
-                    frame.addElements([j, j + 1]);
 
                     const temp = elements[j];
                     elements[j] = elements[j + 1];
                     elements[j + 1] = temp;
 
-                    frame.addHighlights([j, j + 1]);
-                    solution.addFrame(frame);
+                    solution.addFrame(new Frame([j, j + 1], [j, j + 1]));
                 }
             }
 
@@ -83,7 +73,6 @@ class Algorithms {
                 break;
             }
         }
-
         return solution;
     }
 
@@ -92,31 +81,23 @@ class Algorithms {
         let gap = n;
         let swapped = true;
         let solution = new Animation();
-        let frame = new Frame();
 
         while (1 != gap || true == swapped) {
             gap = getNextGap(gap);
             swapped = false;
 
             for (let i = 0; i < n - gap; ++i) {
-                frame.reset();
-                frame.addHighlights([i, i + gap]);
-                solution.addFrame(frame);
+                solution.addFrame(new Frame([], [i, i + gap]));
 
                 const condition = order == "desc" ? e[i] < e[gap + i] : e[i] > e[gap + i];
-
                 if (condition) {
-                    frame.reset();
-                    frame.addElements([i, i + gap]);
+                    swapped = true;
 
                     const temp = e[i];
                     e[i] = e[gap + i];
                     e[i + gap] = temp;
 
-                    frame.addHighlights([i, i + gap]);
-                    solution.addFrame(frame);
-
-                    swapped = true;
+                    solution.addFrame(new Frame([i, i + gap], [i, i + gap]));
                 }
             }
         }
@@ -136,27 +117,17 @@ class Algorithms {
     static insertion(e, order) {
         let elements = e;
         let solution = new Animation();
-        let frame = new Frame();
 
         for (let i = 1; i < elements.length; ++i) {
             let key = elements[i];
             let j = i - 1;
 
-            frame.reset();
-            frame.addHighlights([j, j + 1]);
-            solution.addFrame(frame);
+            solution.addFrame(new Frame([], [j, j + 1]));
 
             while (j >= 0 && (order == "desc" ? elements[j] < key : elements[j] > key)) {
-                frame.reset();
-                frame.addHighlights([j, j + 1]);
-                solution.addFrame(frame);
-
+                solution.addFrame(new Frame([], [j, j + 1]));
                 elements[j + 1] = elements[j];
-
-                frame.reset();
-                frame.addHighlights([j, j + 1]);
-                frame.addElements([j, j + 1]);
-                solution.addFrame(frame);
+                solution.addFrame(new Frame([j, j + 1], [j, j + 1]));
 
                 j = j - 1;
             }
@@ -169,20 +140,15 @@ class Algorithms {
     static selection(e, order) {
         let elements = e;
         let solution = new Animation();
-        let frame = new Frame();
 
         for (let i = 0; i < elements.length - 1; ++i) {
             let current = i;
 
-            frame.reset();
-            frame.addHighlights([i, current]);
-            solution.addFrame(frame);
+            solution.addFrame(new Frame([], [i, current]));
 
             let j = 0;
             for (j = i + 1; j < elements.length; ++j) {
-                frame.reset();
-                frame.addHighlights([i, j, current]);
-                solution.addFrame(frame);
+                solution.addFrame(new Frame([], [i, j, current]));
 
                 let condition = order == "desc" ? elements[j] > elements[current] : elements[j] < elements[current];
 
@@ -195,10 +161,7 @@ class Algorithms {
             elements[current] = elements[i];
             elements[i] = temp;
 
-            frame.reset();
-            frame.addHighlights([j, current]);
-            frame.addElements([i, current]);
-            solution.addFrame(frame);
+            solution.addFrame(new Frame([i, current], [j, current]));
         }
 
         return solution;
@@ -207,49 +170,30 @@ class Algorithms {
     static shell(e, order) {
         let elements = e;
         const n = e.length;
-
         let solution = new Animation();
-        let frame = new Frame();
 
         for (let gap = parseInt(n / 2); gap > 0; gap = parseInt(gap / 2)) {
             for (let i = gap; i < n; ++i) {
                 const temp = elements[i];
                 let j;
 
-                frame.reset();
-
                 if (!isNaN(j - gap)) {
-                    frame.addHighlights([i, j - gap]);
+                    solution.addFrame(new Frame([], [i, j - gap]));
                 }
-
-                solution.addFrame(frame);
 
                 for (
                     j = i;
                     j >= gap && (order == "desc" ? elements[j - gap] < temp : elements[j - gap] > temp);
                     j -= gap
                 ) {
-                    frame.reset();
-                    frame.addHighlights([i, j - gap]);
-                    frame.addElements([j, j - gap]);
-                    solution.addFrame(frame);
-
+                    solution.addFrame(new Frame([j, j - gap], [i, j - gap]));
                     elements[j] = elements[j - gap];
-
-                    frame.reset();
-                    frame.addHighlights([j, j - gap]);
-                    solution.addFrame(frame);
+                    solution.addFrame(new Frame([], [j, j - gap]));
                 }
 
-                frame.reset();
-                frame.addHighlights([j, i]);
-                solution.addFrame(frame);
-
+                solution.addFrame(new Frame([], [j, i]));
                 elements[j] = temp;
-
-                frame.reset();
-                frame.addHighlights([j, i]);
-                solution.addFrame(frame);
+                solution.addFrame(new Frame([], [j, i]));
             }
         }
 
