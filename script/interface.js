@@ -77,3 +77,27 @@ function reset() {
     updateSpeed();
     updateElements();
 }
+
+$("#speed").on("input", function() {
+    updateSpeed();
+});
+
+$("#elements").on("input", function() {
+    updateElements();
+});
+
+$("#algorithms").on("change", function() {
+    showDetails();
+});
+
+$("#sort").on("click", function() {
+    runAlgo();
+});
+
+$("#stop").on("click", function() {
+    stopAnimation();
+});
+
+$("#reset").on("click", function() {
+    reset();
+});
