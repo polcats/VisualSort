@@ -61,8 +61,7 @@ class Algorithms {
             for (let j = 0; j < elements.length - 1; ++j) {
                 solution.addFrame(new Frame([], [j, j + 1])); // Record to-be-highlighted elements
 
-                const condition = order == "desc" ? elements[j] < elements[j + 1] : elements[j] > elements[j + 1];
-                if (condition) {
+                if (order == "desc" ? elements[j] < elements[j + 1] : elements[j] > elements[j + 1]) {
                     swapped = true;
 
                     const temp = elements[j];
