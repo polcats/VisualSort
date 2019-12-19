@@ -43,8 +43,10 @@ class Algorithms {
         let elements = e;
         let solution = new Animation();
         let frame = new Frame();
+        let swapped = false;
 
         for (let i = 0; i < elements.length; ++i) {
+            swapped = false;
             for (let j = 0; j < elements.length - i - 1; ++j) {
                 frame.reset();
                 frame.addHighlights([j, j + 1]);
@@ -53,6 +55,8 @@ class Algorithms {
                 const condition = order == "desc" ? elements[j] < elements[j + 1] : elements[j] > elements[j + 1];
 
                 if (condition) {
+                    swapped = true;
+
                     frame.reset();
                     frame.addElements([j, j + 1]);
 
@@ -63,6 +67,10 @@ class Algorithms {
                     frame.addHighlights([j, j + 1]);
                     solution.addFrame(frame);
                 }
+            }
+
+            if (!swapped) {
+                break;
             }
         }
 

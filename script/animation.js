@@ -22,7 +22,7 @@ function animate(solution) {
                     const elem = frames[i].elements;
                     const highlight = frames[i].highlights;
 
-                    if (0 < highlight.length && !lastFrame) {
+                    if (0 < highlight.length) {
                         for (h = 0; h < highlight.length; ++h) {
                             $(bars[highlight[h]]).addClass("compared");
                         }
@@ -36,6 +36,7 @@ function animate(solution) {
                         $("#stop")
                             .attr("disabled", true)
                             .removeClass("green");
+                        $(".bar").removeClass("compared");
                     }
                 }, SPEED * TOTAL_ELEMENTS * i)
             );
@@ -50,60 +51,4 @@ function stopAnimation() {
 
     $(".bar").removeClass("compared");
     disableInput(false);
-}
-
-function runAlgo() {
-    if (SPEED <= 0) {
-        console.log("Abnormal delay.");
-        return;
-    }
-
-    const algo = $("select#algorithms")
-        .children("option:selected")
-        .val();
-
-    const order = $("select#order")
-        .children("option:selected")
-        .val();
-
-    let elements = JSON.parse(JSON.stringify(getElements()));
-    const solution = solve(algo, order, elements);
-
-    if (solution) {
-        disableInput();
-        animate(solution);
-    }
-
-    function getElements() {
-        let els = Array();
-
-        for (let i = 0; i < bars.length; ++i) {
-            els.push(parseInt(bars[i].innerHTML));
-        }
-
-        return els;
-    }
-
-    function solve(algo, order, input) {
-        switch (algo) {
-            case "bubble": {
-                return Algorithms.bubble(input, order);
-            }
-            case "comb": {
-                return Algorithms.comb(input, order);
-            }
-            case "insertion": {
-                return Algorithms.insertion(input, order);
-            }
-            case "selection": {
-                return Algorithms.selection(input, order);
-            }
-            case "shell": {
-                return Algorithms.shell(input, order);
-            }
-            default: {
-                return false;
-            }
-        }
-    }
 }
