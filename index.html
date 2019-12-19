@@ -17,37 +17,19 @@
             <div id="sliders">
                 <div class="slider">
                     <label for="speed">Speed</label>
-                    <input
-                        class="slider-input"
-                        name="speed"
-                        id="speed"
-                        type="range"
-                        min="1"
-                        max="100"
-                        value="51"
-                        oninput="updateSpeed();"
-                    />
+                    <input class="slider-input" name="speed" id="speed" type="range" min="1" max="100" value="51" />
                     <span class="count" id="speed-count">0</span>
                 </div>
 
                 <div class="slider">
                     <label for="elements">Elements</label>
-                    <input
-                        class="slider-input"
-                        name="elements"
-                        id="elements"
-                        type="range"
-                        min="5"
-                        max="30"
-                        value="5"
-                        oninput="updateElements();"
-                    />
+                    <input class="slider-input" name="elements" id="elements" type="range" min="5" max="30" value="5" />
                     <span class="count" id="element-count">0</span>
                 </div>
             </div>
             <div id="algos">
                 <label>Algorithm</label>
-                <select id="algorithms" onchange="showDetails();">
+                <select id="algorithms">
                     <option value="bubble">Bubble Sort</option>
                     <option value="comb">Comb Sort</option>
                     <option value="insertion">Insertion Sort</option>
@@ -57,15 +39,15 @@
             </div>
             <div id="sort-order">
                 <label>Order</label>
-                <select id="order" onchange="showDetails();">
+                <select id="order">
                     <option value="asc">Ascending</option>
                     <option value="desc">Descending</option>
                 </select>
             </div>
             <div id="buttons">
-                <input type="button" class="sort green" onclick="runAlgo();" value="Sort" />
-                <input type="button" class="" onclick="stopAnimation();" id="stop" value="Stop" disabled />
-                <input type="button" class="green" onclick="reset();" id="reset" value="Reset" />
+                <input type="button" id="sort" class="sort green" value="Sort" />
+                <input type="button" id="stop" value="Stop" disabled />
+                <input type="button" id="reset" class="green" value="Reset" />
             </div>
         </div>
         <div id="algo-info">
@@ -114,7 +96,7 @@
             </div>
         </div>
         <div id="container">
-            <div id="bars">&nbsp;</div>
+            <div id="bars"></div>
         </div>
         <script>
             const CONTAINER_WIDTH = 600;
