@@ -1,3 +1,4 @@
+// Swap HTML elements
 $.fn.swap = function(elem) {
     elem = elem.jquery ? elem : $(elem);
     return this.each(function() {
@@ -22,16 +23,20 @@ function animate(solution) {
                     const elem = frames[i].elements;
                     const highlight = frames[i].highlights;
 
+                    // Highlight compared elements
                     if (0 < highlight.length) {
                         for (h = 0; h < highlight.length; ++h) {
                             $(bars[highlight[h]]).addClass("compared");
                         }
                     }
 
+                    // Swap compared elements
                     if (0 < elem.length) {
                         $(bars[elem[1]]).swap(bars[elem[0]]);
                     }
 
+                    // Disable stop button once animation ends
+                    // Remove highlight of last compared elements
                     if (lastFrame) {
                         $("#stop")
                             .attr("disabled", true)
