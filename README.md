@@ -54,30 +54,22 @@ class Algorthims {
     static bubble(e, order) {
         let elements = e;
         let solution = new Animation();
-        let frame = new Frame();
         let swapped = false;
 
         for (let i = 0; i < elements.length; ++i) {
             swapped = false;
-            for (let j = 0; j < elements.length - i - 1; ++j) {
-                frame.reset();
-                frame.addHighlights([j, j + 1]); // Highlight compared elements
-                solution.addFrame(frame);
+            for (let j = 0; j < elements.length - 1; ++j) {
+                solution.addFrame(new Frame([], [j, j + 1])); // Highlight compared elements
 
                 const condition = order == "desc" ? elements[j] < elements[j + 1] : elements[j] > elements[j + 1];
-
                 if (condition) {
                     swapped = true;
-
-                    frame.reset();
-                    frame.addElements([j, j + 1]); // Record to-be-swapped elements
 
                     const temp = elements[j];
                     elements[j] = elements[j + 1];
                     elements[j + 1] = temp;
 
-                    frame.addHighlights([j, j + 1]); // Highlight swapped elements
-                    solution.addFrame(frame);
+                    solution.addFrame(new Frame([j, j + 1], [j, j + 1])); // Record to-be-swapped elements
                 }
             }
 
@@ -85,7 +77,6 @@ class Algorthims {
                 break;
             }
         }
-
         return solution;
     }
 }
