@@ -13,6 +13,9 @@ let ANIMATION_FRAMES = [];
 function animate(solution) {
     ANIMATION_FRAMES = [];
 
+    // Add empty frame at the end
+    solution.addFrame(new Frame());
+
     const frames = solution.getFrames();
     for (let i = 0; i < frames.length; ++i) {
         (function(frames, i, bars, ANIMATION_FRAMES, SPEED, TOTAL_ELEMENTS) {
@@ -36,12 +39,10 @@ function animate(solution) {
                     }
 
                     // Disable stop button once animation ends
-                    // Remove highlight of last compared elements
                     if (lastFrame) {
                         $("#stop")
                             .attr("disabled", true)
                             .removeClass("green");
-                        $(".bar").removeClass("compared");
                     }
                 }, SPEED * TOTAL_ELEMENTS * i)
             );
