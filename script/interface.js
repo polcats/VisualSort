@@ -4,6 +4,7 @@
     showDetails();
 })();
 
+// Add bind events on UI elements
 $("#speed").on("input", function() {
     updateSpeed();
 });
@@ -47,13 +48,13 @@ function clearContainer() {
 function insertBars() {
     const width = CONTAINER_WIDTH / TOTAL_ELEMENTS;
 
-    // generate unique values
+    // Generate unique values
     let set = new Set();
     while (set.size < TOTAL_ELEMENTS) {
         set.add(Math.round(Math.random() * 99) + 1);
     }
 
-    // generate bars
+    // Generate bars
     const arr = Array.from(set);
     for (let i = 0; i < arr.length; ++i) {
         let bar = document.createElement("div");
@@ -73,13 +74,12 @@ function showDetails() {
 }
 
 function disableInput(what = true) {
-    // disable inputs
     $(".sort").attr("disabled", what);
     $(".slider-input").attr("disabled", what);
     $("select#algorithms").attr("disabled", what);
     $("select#order").attr("disabled", what);
 
-    // swap colors
+    // Swap colors
     $("#stop")
         .attr("disabled", true)
         .removeClass("green");

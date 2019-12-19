@@ -26,7 +26,7 @@ class Animation {
     Animation() {}
 
     addFrame(frame) {
-        // only stores a copy
+        // Only store a copy
         const temp = JSON.parse(JSON.stringify(frame));
         this.frames.push(temp);
     }
