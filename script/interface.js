@@ -4,6 +4,30 @@
     showDetails();
 })();
 
+$("#speed").on("input", function() {
+    updateSpeed();
+});
+
+$("#elements").on("input", function() {
+    updateElements();
+});
+
+$("#algorithms").on("change", function() {
+    showDetails();
+});
+
+$("#sort").on("click", function() {
+    runAlgo();
+});
+
+$("#stop").on("click", function() {
+    stopAnimation();
+});
+
+$("#reset").on("click", function() {
+    reset();
+});
+
 function updateSpeed() {
     SPEED = document.getElementById("speed").value;
     document.getElementById("speed-count").innerHTML = 101 - SPEED;
@@ -78,26 +102,58 @@ function reset() {
     updateElements();
 }
 
-$("#speed").on("input", function() {
-    updateSpeed();
-});
+function runAlgo() {
+    if (SPEED <= 0) {
+        console.log("Abnormal delay.");
+        return;
+    }
 
-$("#elements").on("input", function() {
-    updateElements();
-});
+    const algo = $("select#algorithms")
+        .children("option:selected")
+        .val();
 
-$("#algorithms").on("change", function() {
-    showDetails();
-});
+    const order = $("select#order")
+        .children("option:selected")
+        .val();
 
-$("#sort").on("click", function() {
-    runAlgo();
-});
+    let elements = JSON.parse(JSON.stringify(getElements()));
+    const solution = solve(algo, order, elements);
 
-$("#stop").on("click", function() {
-    stopAnimation();
-});
+    if (solution) {
+        disableInput();
+        animate(solution);
+    }
 
-$("#reset").on("click", function() {
-    reset();
-});
+    function getElements() {
+        let els = Array();
+
+        for (let i = 0; i < bars.length; ++i) {
+            els.push(parseInt(bars[i].innerHTML));
+        }
+
+        return els;
+    }
+
+    function solve(algo, order, input) {
+        switch (algo) {
+            case "bubble": {
+                return Algorithms.bubble(input, order);
+            }
+            case "comb": {
+                return Algorithms.comb(input, order);
+            }
+            case "insertion": {
+                return Algorithms.insertion(input, order);
+            }
+            case "selection": {
+                return Algorithms.selection(input, order);
+            }
+            case "shell": {
+                return Algorithms.shell(input, order);
+            }
+            default: {
+                return false;
+            }
+        }
+    }
+}
