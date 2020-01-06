@@ -1,3 +1,5 @@
+CURRENT_SET = new Set();
+
 (function init() {
     updateSpeed();
     updateElements();
@@ -29,6 +31,10 @@ $("#reset").on("click", function() {
     reset();
 });
 
+$("#restart").on("click", function() {
+    restart();
+});
+
 function updateSpeed() {
     SPEED = document.getElementById("speed").value;
     document.getElementById("speed-count").innerHTML = 101 - SPEED;
@@ -38,21 +44,25 @@ function updateElements() {
     clearContainer();
     TOTAL_ELEMENTS = document.getElementById("elements").value;
     document.getElementById("element-count").innerHTML = TOTAL_ELEMENTS;
-    insertBars();
+    CURRENT_SET = generateRandomSet();
+    insertBars(CURRENT_SET);
+}
+
+function generateRandomSet() {
+    let set = new Set();
+    while (set.size < TOTAL_ELEMENTS) {
+        set.add(Math.round(Math.random() * 99) + 1);
+    }
+
+    return set;
 }
 
 function clearContainer() {
     container.innerHTML = "";
 }
 
-function insertBars() {
+function insertBars(set) {
     const width = CONTAINER_WIDTH / TOTAL_ELEMENTS;
-
-    // Generate unique values
-    let set = new Set();
-    while (set.size < TOTAL_ELEMENTS) {
-        set.add(Math.round(Math.random() * 99) + 1);
-    }
 
     // Generate bars
     const arr = Array.from(set);
@@ -100,6 +110,13 @@ function reset() {
     stopAnimation();
     updateSpeed();
     updateElements();
+}
+
+function restart() {
+    stopAnimation();
+    clearContainer();
+    insertBars(CURRENT_SET);
+    disableInput(false);
 }
 
 function runAlgo() {
