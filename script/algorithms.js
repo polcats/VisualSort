@@ -24,11 +24,6 @@ class Frame {
             this.elements.push(e);
         }
     }
-
-    reset() {
-        this.highlights.length = 0;
-        this.elements.length = 0;
-    }
 }
 
 class Animation {
