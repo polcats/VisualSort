@@ -2,6 +2,7 @@ class Frame {
     constructor(e, h) {
         this.elements = [];
         this.highlights = [];
+        this.information = "";
 
         if (e != undefined && e.length) {
             this.elements = e;
