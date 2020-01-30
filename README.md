@@ -7,6 +7,7 @@ An animated visualization of sorting algorithms.
 <ul>
 <li>Bubble Sort</li>
 <li>Comb Sort</li>
+<li>Heap Sort</li>
 <li>Insertion Sort</li>
 <li>Selection Sort</li>
 <li>Shell Sort</li>
@@ -19,7 +20,6 @@ An animated visualization of sorting algorithms.
 
 <h3>To Do</h3>
 <ul>
-<li>Heap Sort</li>
 <li>Counting Sort</li>
 </ul>
 

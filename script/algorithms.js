@@ -186,4 +186,51 @@ class Algorithms {
 
         return solution;
     }
+
+    static heap(e, order) {
+        let elements = e;
+        const n = e.length;
+        let solution = new Animation();
+
+        for (let i = parseInt(n / 2) - 1; i >= 0; --i) {
+            heapify(elements, n, i, solution, order);
+        }
+
+        for (let i = n - 1; i >= 0; --i) {
+            const temp = elements[0];
+            elements[0] = elements[i];
+            elements[i] = temp;
+
+            solution.addFrame(new Frame([0, i], [0, i]));
+
+            heapify(elements, i, 0, solution, order);
+        }
+
+        function heapify(elements, n, i, solution, order) {
+            let current = i;
+            let left = 2 * i + 1;
+            let right = 2 * i + 2;
+
+            if (left < n && (order == "asc" ? elements[left] > elements[current] : elements[left] < elements[current])) {
+                current = left;
+            }
+
+            if (right < n && (order == "asc" ? elements[right] > elements[current] : elements[right] < elements[current])) {
+                current = right;
+            }
+
+            solution.addFrame(new Frame([], [current, i]));
+
+            if (current != i) {
+                const temp = elements[i];
+                elements[i] = elements[current];
+                elements[current] = temp;
+                solution.addFrame(new Frame([current, i], [current, i]));
+
+                heapify(elements, n, current, solution, order);
+            }
+        }
+
+        return solution;
+    }
 }

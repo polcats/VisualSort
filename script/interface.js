@@ -159,6 +159,9 @@ function runAlgo() {
             case "comb": {
                 return Algorithms.comb(input, order);
             }
+            case "heap": {
+                return Algorithms.heap(input, order);
+            }
             case "insertion": {
                 return Algorithms.insertion(input, order);
             }
