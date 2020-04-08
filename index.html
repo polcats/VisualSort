@@ -59,6 +59,16 @@
                     Bubble sort, sometimes referred to as sinking sort, is a simple sorting algorithm that repeatedly steps through the list, compares
                     adjacent elements and swaps them if they are in the wrong order.
                 </span>
+                <span class="algo-complexity">
+                    <ul>
+                        <li class="algo-info"><span class="complexity-item">Worst Complexity : </span><span class="complexity-value">N^2</span></li>
+                        <li class="algo-info"><span class="complexity-item">Average Complexity : </span><span class="complexity-value">N^2</span></li>
+                        <li class="algo-info"><span class="complexity-item">Best Complexity : </span><span class="complexity-value">N</span></li>
+                        <li class="algo-info"><span class="complexity-item">Space Complexity : </span><span class="complexity-value">1</span></li>
+                        <li class="algo-info"><span class="complexity-item">Method : </span><span class="complexity-value">Exchanging</span></li>
+                        <li class="algo-info"><span class="complexity-item">Stable : </span><span class="complexity-value">Yes</span></li>
+                    </ul>
+                </span>
             </div>
 
             <div id="comb-info" class="algo-container hidden">
@@ -66,6 +76,18 @@
                 <span class="algo-details">
                     Comb Sort is mainly an improvement over Bubble Sort. Bubble sort always compares adjacent values. So all inversions are removed
                     one by one. Comb Sort improves on Bubble Sort by using gap of size more than 1.
+                </span>
+                <span class="algo-complexity">
+                    <ul>
+                        <li class="algo-info"><span class="complexity-item">Worst Complexity : </span><span class="complexity-value">N^2</span></li>
+                        <li class="algo-info">
+                            <span class="complexity-item">Average Complexity : </span><span class="complexity-value">N * log(N)</span>
+                        </li>
+                        <li class="algo-info"><span class="complexity-item">Best Complexity : </span><span class="complexity-value">N</span></li>
+                        <li class="algo-info"><span class="complexity-item">Space Complexity : </span><span class="complexity-value">1</span></li>
+                        <li class="algo-info"><span class="complexity-item">Method : </span><span class="complexity-value">Exchanging</span></li>
+                        <li class="algo-info"><span class="complexity-item">Stable : </span><span class="complexity-value">No</span></li>
+                    </ul>
                 </span>
             </div>
 
@@ -75,6 +97,22 @@
                     Heap sort is a comparison based sorting technique based on Binary Heap data structure. It is similar to selection sort where we
                     first find the maximum element and place the maximum element at the end. We repeat the same process for remaining element.
                 </span>
+                <span class="algo-complexity">
+                    <ul>
+                        <li class="algo-info">
+                            <span class="complexity-item">Worst Complexity : </span><span class="complexity-value">N * log(N)</span>
+                        </li>
+                        <li class="algo-info">
+                            <span class="complexity-item">Average Complexity : </span><span class="complexity-value">N * log(N)</span>
+                        </li>
+                        <li class="algo-info">
+                            <span class="complexity-item">Best Complexity : </span><span class="complexity-value">N * log(N)</span>
+                        </li>
+                        <li class="algo-info"><span class="complexity-item">Space Complexity : </span><span class="complexity-value">1</span></li>
+                        <li class="algo-info"><span class="complexity-item">Method : </span><span class="complexity-value">Selection</span></li>
+                        <li class="algo-info"><span class="complexity-item">Stable : </span><span class="complexity-value">No</span></li>
+                    </ul>
+                </span>
             </div>
 
             <div id="insertion-info" class="algo-container hidden">
@@ -82,6 +120,18 @@
                 <span class="algo-details">
                     Insertion Sort is a simple sorting algorithm that builds the final sorted array one item at a time. It is much less efficient on
                     large lists than more advanced algorithms such as quicksort, heapsort, or merge sort.
+                </span>
+                <span class="algo-complexity">
+                    <ul>
+                        <li class="algo-info"><span class="complexity-item">Worst Complexity : </span><span class="complexity-value">N ^ 2</span></li>
+                        <li class="algo-info">
+                            <span class="complexity-item">Average Complexity : </span><span class="complexity-value">N ^ 2</span>
+                        </li>
+                        <li class="algo-info"><span class="complexity-item">Best Complexity : </span><span class="complexity-value">N</span></li>
+                        <li class="algo-info"><span class="complexity-item">Space Complexity : </span><span class="complexity-value">1</span></li>
+                        <li class="algo-info"><span class="complexity-item">Method : </span><span class="complexity-value">Insertion</span></li>
+                        <li class="algo-info"><span class="complexity-item">Stable : </span><span class="complexity-value">Yes</span></li>
+                    </ul>
                 </span>
             </div>
 
@@ -91,6 +141,18 @@
                     Selection Sort is a sorting algorithm, specifically an in-place comparison sort. It has O time complexity, making it inefficient
                     on large lists, and generally performs worse than the similar insertion sort
                 </span>
+                <span class="algo-complexity">
+                    <ul>
+                        <li class="algo-info"><span class="complexity-item">Worst Complexity : </span><span class="complexity-value">N ^ 2</span></li>
+                        <li class="algo-info">
+                            <span class="complexity-item">Average Complexity : </span><span class="complexity-value">N ^ 2</span>
+                        </li>
+                        <li class="algo-info"><span class="complexity-item">Best Complexity : </span><span class="complexity-value">N ^ 2</span></li>
+                        <li class="algo-info"><span class="complexity-item">Space Complexity : </span><span class="complexity-value">1</span></li>
+                        <li class="algo-info"><span class="complexity-item">Method : </span><span class="complexity-value">Selection</span></li>
+                        <li class="algo-info"><span class="complexity-item">Stable : </span><span class="complexity-value">No</span></li>
+                    </ul>
+                </span>
             </div>
 
             <div id="shell-info" class="algo-container hidden">
@@ -99,9 +161,23 @@
                     Shell Sort is mainly a variation of Insertion Sort. In insertion sort, we move elements only one position ahead. When an element
                     has to be moved far ahead, many movements are involved. The idea of shellSort is to allow exchange of far items.
                 </span>
+                <span class="algo-complexity">
+                    <ul>
+                        <li class="algo-info">
+                            <span class="complexity-item">Worst Complexity : </span><span class="complexity-value">Depends on Gap Sequence</span>
+                        </li>
+                        <li class="algo-info">
+                            <span class="complexity-item">Average Complexity : </span><span class="complexity-value">N * log(N)^2 OR N ^ (3/2)</span>
+                        </li>
+                        <li class="algo-info"><span class="complexity-item">Best Complexity : </span><span class="complexity-value">N</span></li>
+                        <li class="algo-info"><span class="complexity-item">Method : </span><span class="complexity-value">Insertion</span></li>
+                        <li class="algo-info"><span class="complexity-item">Stable : </span><span class="complexity-value">No</span></li>
+                    </ul>
+                </span>
             </div>
         </div>
         <div id="container"><div id="bars"></div></div>
+
         <script>
             const CONTAINER_WIDTH = 600;
             let TOTAL_ELEMENTS = document.getElementById("elements").value;
@@ -109,6 +185,7 @@
             let container = document.getElementById("bars");
             let bars = document.getElementsByClassName("bar");
         </script>
+
         <script src="script/interface.js"></script>
         <script src="script/animation.js"></script>
         <script src="script/algorithms.js"></script>
