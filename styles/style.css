@@ -141,3 +141,15 @@ a#repository img {
 .visible {
     display: block;
 }
+
+@media screen and (max-width: 1000px) {
+    body {
+        grid-template-areas: "menu" "container" "algo-info";
+        grid-template-rows: 100px 1fr;
+        grid-template-columns: 100vw 1fr;
+    }
+
+    #algo-info {
+        padding: 10px 0px;
+    }
+}
