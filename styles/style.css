@@ -42,6 +42,24 @@ a#repository img {
     font-weight: bold;
 }
 
+#algo-info .algo-complexity {
+    display: block;
+}
+
+#algo-info .algo-complexity ul {
+    text-align: left;
+    list-style-type: square;
+}
+
+#algo-info .algo-complexity ul .complexity-item {
+    font-weight: bold;
+    display: inline-block;
+    width: 160px;
+}
+#algo-info .algo-complexity ul .complexity-value {
+    padding: 5px;
+}
+
 #container {
     grid-area: container;
     width: 100%;
