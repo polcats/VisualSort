@@ -1,28 +1,16 @@
 class Frame {
-    constructor(e, h) {
-        this.elements = [];
-        this.highlights = [];
-        this.information = "";
-
-        if (e != undefined && e.length) {
-            this.elements = e;
-        }
-
-        if (h != undefined && h.length) {
-            this.highlights = h;
-        }
+    constructor(elements = [], highlights = [], information = "") {
+        this.elements = elements;
+        this.highlights = highlights;
+        this.information = information;
     }
 
     addHighlights(highlights) {
-        for (const e of highlights) {
-            this.highlights.push(e);
-        }
+        this.highlights.push(...highlights);
     }
 
     addElements(elements) {
-        for (const e of elements) {
-            this.elements.push(e);
-        }
+        this.elements.push(...elements);
     }
 }
 
@@ -32,8 +20,7 @@ class Animation {
     }
 
     addFrame(frame) {
-        const temp = JSON.parse(JSON.stringify(frame)); // Only store a copy
-        this.frames.push(temp);
+        this.frames.push(JSON.parse(JSON.stringify(frame))); // Store a copy
     }
 
     getFrames() {
@@ -43,22 +30,18 @@ class Animation {
 
 class Algorithms {
     static bubble(e, order) {
-        let elements = e;
+        let elements = e.slice();
         let solution = new Animation();
-        let swapped = false;
+        let swapped;
 
         for (let i = 0; i < elements.length; ++i) {
             swapped = false;
-            for (let j = 0; j < elements.length - 1; ++j) {
+            for (let j = 0; j < elements.length - i - 1; ++j) {
                 solution.addFrame(new Frame([], [j, j + 1]));
 
-                if (order == "desc" ? elements[j] < elements[j + 1] : elements[j] > elements[j + 1]) {
+                if ((order === "desc" && elements[j] < elements[j + 1]) || (order === "asc" && elements[j] > elements[j + 1])) {
                     swapped = true;
-
-                    const temp = elements[j];
-                    elements[j] = elements[j + 1];
-                    elements[j + 1] = temp;
-
+                    [elements[j], elements[j + 1]] = [elements[j + 1], elements[j]];
                     solution.addFrame(new Frame([j, j + 1], [j, j + 1]));
                 }
             }
@@ -159,23 +142,21 @@ class Algorithms {
     }
 
     static shell(e, order) {
-        let elements = e;
-        const n = e.length;
+        let elements = e.slice();
+        const n = elements.length;
         let solution = new Animation();
 
-        for (let gap = parseInt(n / 2); gap > 0; gap = parseInt(gap / 2)) {
+        for (let gap = Math.floor(n / 2); gap > 0; gap = Math.floor(gap / 2)) {
             for (let i = gap; i < n; ++i) {
                 const temp = elements[i];
-                let j;
+                let j = i;
 
-                if (!isNaN(j - gap)) {
-                    solution.addFrame(new Frame([], [i, j - gap]));
-                }
+                solution.addFrame(new Frame([], [i, j - gap]));
 
-                for (j = i; j >= gap && (order == "desc" ? elements[j - gap] < temp : elements[j - gap] > temp); j -= gap) {
-                    solution.addFrame(new Frame([j, j - gap], [i, j - gap]));
+                while (j >= gap && ((order === "desc" && elements[j - gap] < temp) || (order === "asc" && elements[j - gap] > temp))) {
                     elements[j] = elements[j - gap];
-                    solution.addFrame(new Frame([], [j, j - gap]));
+                    solution.addFrame(new Frame([j, j - gap], [i, j - gap]));
+                    j -= gap;
                 }
 
                 solution.addFrame(new Frame([], [j, i]));
